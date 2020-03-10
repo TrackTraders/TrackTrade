@@ -13,8 +13,8 @@ const path = require('path')
 
 mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 
-const app_name = require('.package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`)
+// const app_name = require('.package.json').name;
+// const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`)
 
 const app = express();
 
