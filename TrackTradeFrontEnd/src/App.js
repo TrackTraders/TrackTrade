@@ -5,7 +5,7 @@ import Home from './components/home/Home';
 import NotFound from './components/404/NotFound.js';
 import SignUp from './components/auth/SignUp';
 import LogIn from './components/auth/LogIn';
-import PostTrade from './components'
+// import PostTrade from './components'
 import Profile from './components/profile/Profile'
 import actions from './services/index'
 
@@ -42,7 +42,7 @@ class App extends Component {
 
         <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} />}></Route>
         
-        <Route exact path="/post" render={(props) => <PostTrade {...props}  />}></Route>
+        {/* <Route exact path="/post" render={(props) => <PostTrade {...props}  />}></Route> */}
 
         <Route component={NotFound} />
       </Switch>
