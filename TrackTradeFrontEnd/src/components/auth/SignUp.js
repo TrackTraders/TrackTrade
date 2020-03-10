@@ -32,11 +32,11 @@ export default class Signup extends Component {
                     >
                         <div className="signup-form-group">
                             <label for="fName">Username</label>
-                            <input onChange={this.handleChange} type="text" className="signup-form-input" placeholder="johntrades123" name="username" required />
+                            <input onChange={this.handleChange} type="text" className="signup-form-input" placeholder="johntrades123" name="actualusername" required />
                         </div>
                         <div className="signup-form-group">
                             <label for="email">Email</label>
-                            <input onChange={this.handleChange} type="email" className="signup-form-input" placeholder="smithjohn@email.com" name="email" required />
+                            <input onChange={this.handleChange} type="email" className="signup-form-input" placeholder="smithjohn@email.com" name="username" required />
                         </div>
                         <div className="signup-form-group">
                             <label for="password">Password</label>
