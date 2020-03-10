@@ -1,10 +1,11 @@
-import React, {Component, Fragment} from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import React, {Component} from 'react';
+import { Switch, Route } from 'react-router-dom';
 import Landing from './components/home/Landing';
 import Home from './components/home/Home';
 import NotFound from './components/404/NotFound.js';
 import SignUp from './components/auth/SignUp';
 import LogIn from './components/auth/LogIn';
+import PostTrade from './components'
 import Profile from './components/profile/Profile'
 import actions from './services/index'
 
@@ -35,9 +36,9 @@ class App extends Component {
 
         <Route exact path="/home" render={(props) => <Home {...props} user={this.state} />}></Route>
 
-        <Route exact path="/sign-up" render={(props) => <Signup {...props} setUser={this.setUser}  />}></Route>
+        <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
 
-        <Route exact path="/log-in" render={(props) => <Login {...props} setUser={this.setUser} />}></Route>
+        <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
 
         <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} />}></Route>
         
