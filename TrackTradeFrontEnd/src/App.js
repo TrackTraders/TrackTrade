@@ -28,34 +28,25 @@ class App extends Component {
   render(){
 
     return (
-    <BrowserRouter>
-      {this.state.email}
-      <nav>
-        <NavLink to="/">Home |</NavLink>
-  
-        {this.state.email ? 
-          <Fragment>
-           <NavLink onClick={this.logOut} to='/'>Log Out |</NavLink> 
-           <NavLink to="/profile">Profile|</NavLink>
-           </Fragment>
-           :
-           <Fragment>
-           <NavLink to="/sign-up">Sign Up |</NavLink>
-           <NavLink to="/log-in">Log In |</NavLink>
-           </Fragment>
-          }
-        
-      </nav>
+      <div>
+      
       <Switch>
-        <Route exact path="/" render={(props) => <Landing {...props} />} />
-        <Route exact path="/home" render={(props) => <Home {...props} />} />
-        <Route exact path="/sign-up" render={(props)=><SignUp {...props} setUser={this.setUser} />} />
-        <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser}/>} />
-        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state}/>} />
+        <Route exact path="/" render={(props) => <Landing {...props} />}></Route>
+
+        <Route exact path="/home" render={(props) => <Home {...props} user={this.state} />}></Route>
+
+        <Route exact path="/sign-up" render={(props) => <Signup {...props} setUser={this.setUser}  />}></Route>
+
+        <Route exact path="/log-in" render={(props) => <Login {...props} setUser={this.setUser} />}></Route>
+
+        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} />}></Route>
+        
+        <Route exact path="/post" render={(props) => <PostTrade {...props}  />}></Route>
 
         <Route component={NotFound} />
       </Switch>
-    </BrowserRouter>
+      
+    </div>
   );
   }
 }

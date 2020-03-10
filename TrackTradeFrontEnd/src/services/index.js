@@ -15,13 +15,13 @@ const actions = {
     return await service.get('/is-logged-in');
   },
   signUp: async (user) => {
-    return await service.post('/signup', user);
+    return await service.post('/sign-up', user);
   },
   logIn: async (user) => {
-    return await service.post('/login', user);
+    return await service.post('/log-in', user);
   },
   logOut: async () => {
-    return await service.get('/logout');
+    return await service.get('/log-out');
   }
 };
 
