@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FTWD-OCT-2019/badgirl.git"
+    "url": "git+https://github.com/TrackTraders/TrackTrade.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FTWD-OCT-2019/badgirl/issues"
+    "url": "https://github.com/TrackTraders/TrackTrade/issues"
   },
-  "homepage": "https://github.com/FTWD-OCT-2019/badgirl#readme"
+  "homepage": "https://github.com/TrackTraders/TrackTrade#readme"
 }
