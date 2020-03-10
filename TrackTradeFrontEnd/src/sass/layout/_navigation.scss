@@ -1,0 +1,74 @@
+.navigation {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 25rem 0;
+    align-items: center;
+    width: 100%;
+    background-color: #081c24;
+    color: #ddd;
+    font-size: 3rem;
+    font-weight: 700;
+
+    &--brand {
+        &,
+        &:link,
+        &:visited {
+            width: 5rem;
+            letter-spacing: 1rem;
+            font-weight: 300;
+            padding: 3rem 0;
+            text-transform: uppercase;
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &--right {
+        display: flex;
+        align-items: center;
+        padding-right: 3rem;
+        & > * {
+            list-style: none;
+            font-size: 2rem;
+        }
+
+    }
+
+    &--link {
+        &,
+        &:link,
+        &:visited {
+            text-decoration: none;
+            padding: 1rem 2rem;
+            color: #ddd;
+            transition: all .2s ease-in-out;
+        }
+
+        &:hover {
+            color: #2ba7fa;
+        }
+    }
+
+    &--signup {
+        &,
+        &:link,
+        &:visited {
+            text-decoration: none;
+            padding: 1rem 2rem;
+            color: #000;
+            background-color: #2ba7fa;
+            border-radius: 3px;
+            transition: all .2s ease-in-out;
+        }
+
+        &:hover {
+            background-color: #1985d8;
+        }
+    }
+
+}

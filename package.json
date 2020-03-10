@@ -1,0 +1,21 @@
+{
+  "name": "tracktrade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "echo --- preinstall --- && cd TrackTradeBackEnd && npm install && cd ../TrackTradeFrontEnd && npm install && npm run build && cd ..",
+    "start": "echo --- start --- && cd TrackTradeBackEnd && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FTWD-OCT-2019/badgirl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FTWD-OCT-2019/badgirl/issues"
+  },
+  "homepage": "https://github.com/FTWD-OCT-2019/badgirl#readme"
+}
