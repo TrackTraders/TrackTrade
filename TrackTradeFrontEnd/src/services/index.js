@@ -5,7 +5,7 @@ console.log('client ')
 
 process.env.NODE_ENV === 'production'
   //? (baseURL = 'here should be your production endpoint')
-  ? (baseURL = 'https://tracktrade.herokuapp.com')
+  ? (baseURL = 'https://cors-anywhere.herokuapp.com/https://tracktrade.herokuapp.com')
   : (baseURL = 'http://localhost:5000');
 
 const service = axios.create({ withCredentials: true, baseURL });
