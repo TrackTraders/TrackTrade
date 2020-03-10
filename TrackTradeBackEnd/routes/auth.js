@@ -18,6 +18,7 @@ router.post('/sign-up', (req, res, next) => {
 })
 
 router.get('/is-logged-in', (req,res,next)=>{
+    console.log('-=-=-=-=-=-');
     res.json(req.user)
 })
 
