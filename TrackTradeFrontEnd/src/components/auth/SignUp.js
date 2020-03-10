@@ -16,6 +16,7 @@ export default class Signup extends Component {
         try{
             let user = await actions.signUp(this.state);
             this.props.setUser({...user.data})  
+            this.props.history.push('/home')
         } catch(err){
             console.log('*****',err.message)
         }

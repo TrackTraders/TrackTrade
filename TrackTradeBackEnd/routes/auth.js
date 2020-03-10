@@ -9,7 +9,7 @@ router.post('/sign-up', (req, res, next) => {
       req.login(user, (err,result) => {
           res.status(201).json(user)
       })
-      res.redirect('/home')
+      //res.redirect('/home')
   })
   .catch(err => {
       console.log(err)
