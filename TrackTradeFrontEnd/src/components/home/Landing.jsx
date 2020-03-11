@@ -6,7 +6,7 @@ export default class Landing extends Component {
     render() {
         return (
             <div>
-                <Header loggedIn={false}/>
+                <Header {...this.props} loggedIn={false}/>
 
                 <main className="landing-main">
                     <div className="landing-main--text">

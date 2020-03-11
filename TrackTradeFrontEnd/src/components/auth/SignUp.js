@@ -22,6 +22,28 @@ export default class Signup extends Component {
         }
     }
 
+    googleLogIn = async e => {
+        e.preventDefault()
+        try{
+            let user = await actions.googleLogIn(this.state);
+            this.props.setUser({...user.data})  
+            this.props.history.push('/home')
+        } catch(err){
+            console.log('*****',err.message)
+        }
+    }
+
+    facebookLogIn = async e => {
+        e.preventDefault()
+        try{
+            let user = await actions.facebookLogIn(this.state);
+            this.props.setUser({...user.data})  
+            this.props.history.push('/home')
+        } catch(err){
+            console.log('*****',err.message)
+        }
+    }
+
     render() {
         return (
             <div className="signuppage">
@@ -32,12 +54,8 @@ export default class Signup extends Component {
                     <form className="signup-form" onSubmit={this.handleSubmit}
                     >
                         <div className="signup-form-group">
-                            <label for="fName">Username</label>
-                            <input onChange={this.handleChange} type="text" className="signup-form-input" placeholder="johntrades123" name="actualusername" required />
-                        </div>
-                        <div className="signup-form-group">
-                            <label for="email">Email</label>
-                            <input onChange={this.handleChange} type="email" className="signup-form-input" placeholder="smithjohn@email.com" name="username" required />
+                            <label for="email">Username</label>
+                            <input onChange={this.handleChange} type="text" className="signup-form-input" placeholder="smithjohntrades123" name="username" required />
                         </div>
                         <div className="signup-form-group">
                             <label for="password">Password</label>

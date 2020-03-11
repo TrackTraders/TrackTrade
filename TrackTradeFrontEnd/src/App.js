@@ -20,21 +20,17 @@ class App extends Component {
   }
 
   setUser = (user) => this.setState(user)
-  
-  logOut = async () => {
-    let res = await actions.logOut()
-    this.setUser({email:null, createdAt: null, updatedAt: null, _id: null }) //FIX 
-  }
 
   render(){
-
+    console.log(this.state)
     return (
       <div>
-      
+      { this.state._id
+      ?
       <Switch>
-        <Route exact path="/" render={(props) => <Landing {...props} />}></Route>
+        <Route exact path="/" render={(props) => <Home {...props} />}></Route>
 
-        <Route exact path="/home" render={(props) => <Home {...props} user={this.state} />}></Route>
+        <Route exact path="/home" render={(props) => <Home {...props} username={this.state.username}/>}></Route>
 
         <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
 
@@ -46,7 +42,23 @@ class App extends Component {
 
         <Route component={NotFound} />
       </Switch>
-      
+      :
+      <Switch>
+        <Route exact path="/" render={(props) => <Landing {...props} />}></Route>
+
+        <Route exact path="/home" render={(props) => <Landing {...props} />}></Route>
+
+        <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
+
+        <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+
+        <Route exact path="/profile" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+        
+        {/* <Route exact path="/post" render={(props) => <PostTrade {...props}  />}></Route> */}
+
+        <Route component={NotFound} />
+      </Switch>
+      }
     </div>
   );
   }

@@ -6,7 +6,7 @@ export default class Home extends Component {
     render() {
         return (
             <div class="container">
-            <Header loggedIn={true}/>
+            <Header {...this.props} loggedIn={true}/>
             <main class="landing-main">
                 <div class="landing-main--text">
                     <h1 class="landing-main--title">*Hacker voice* ... I'm in!</h1>

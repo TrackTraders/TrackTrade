@@ -4,7 +4,7 @@ const passport = require('../config/passport')
 
 
 router.post('/sign-up', (req, res, next) => {
-  User.register({username: req.body.username},req.body.password)
+  User.register({username: req.body.username}, req.body.password)
   .then(user => {
       req.login(user, (err,result) => {
           res.status(201).json(user)
@@ -39,31 +39,27 @@ router.get("/log-out", (req,res, next)=>{
 })
 
 
-// router.get('/', (req,res, next) => {
-//     res.send(req.isAuthenticated())
-// })
+router.get("/auth/google",
+    passport.authenticate("google", {scope:['profile']})
+)
 
-// router.get("/auth/google",
-//     passport.authenticate("google", {scope:['profile']})
-// )
+router.get("/auth/google/home",
+    passport.authenticate('google', { prompt: 'select_account', failureRedirect: '/'}),
+    (req,res, next)=>{
+        res.redirect('/home')
+    }
+)
 
-// router.get("/auth/google/home",
-//     passport.authenticate('google', { prompt: 'select_account', failureRedirect: '/'}),
-//     (req,res, next)=>{
-//         res.redirect('/home')
-//     }
-// )
+router.get("/auth/facebook",
+  passport.authenticate("facebook")
+);
 
-// router.get("/auth/facebook",
-//   passport.authenticate("facebook")
-// );
-
-// router.get("/auth/facebook/home",
-//     passport.authenticate('facebook', {  prompt: 'select_account', failureRedirect: '/'}),
-//     (req,res, next)=>{
-//         res.redirect('/home')
-//     }
-// )
+router.get("/auth/facebook/home",
+    passport.authenticate('facebook', {  prompt: 'select_account', failureRedirect: '/'}),
+    (req,res, next)=>{
+        res.redirect('/home')
+    }
+)
 
 
 

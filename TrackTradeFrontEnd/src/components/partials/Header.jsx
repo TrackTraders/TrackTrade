@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import actions from '../../services/index'
 
 export default class Header extends Component {
+
+    logOut = async () => {
+        let res = await actions.logOut()
+        this.props.history.push('/')
+        window.location.reload()
+    }
+
     render() {
-        console.log(this.props)
         return (
             !this.props.loggedIn ?
             <nav className="navbar navbar-default">    
@@ -21,7 +28,7 @@ export default class Header extends Component {
                     <Link to="/" className="navigation--brand">Track Trade</Link>
                     <ul className="navigation--right">
                     <li id="about"><Link className="navigation--link navigation--login" to="/profile">Profile</Link></li>
-                    <li id="contact"><Link className="navigation--link navigation--signup" to="/log-out">Log Out</Link></li>
+                    <li id="contact"><Link onClick={this.logOut} className="navigation--link navigation--signup" to="/">Log Out</Link></li>
                     </ul>
                 </div>
             </nav>
