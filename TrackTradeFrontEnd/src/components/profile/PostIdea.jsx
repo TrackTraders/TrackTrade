@@ -13,7 +13,7 @@ export default class PostTrade extends Component {
       e.preventDefault()
       //console.log(e)
       try{
-          await actions.postTrade(this.state);
+          await actions.postIdea(this.state);
           
           this.props.history.push('/profile')
       } catch(err){
@@ -44,14 +44,18 @@ export default class PostTrade extends Component {
                   <input onChange={this.handleChange} type="number" className="signup-form-input" name="entry" step="0.0001" min="0" max="1000" required />
               </div>
               <div className="signup-form-group">
-                  <label for="close">Close price</label>
-                  <input onChange={this.handleChange} type="number" className="signup-form-input" name="close"  step="0.0001" min="0" max="1000" required />
+                  <label for="close">Stop Loss</label>
+                  <input onChange={this.handleChange} type="number" className="signup-form-input" name="stoploss"  step="0.0001" min="0" max="1000" required />
+              </div>
+              <div className="signup-form-group">
+                  <label for="close">Take Profit</label>
+                  <input onChange={this.handleChange} type="number" className="signup-form-input" name="takeprofit"  step="0.0001" min="0" max="1000" required />
               </div>
               <div className="signup-form-group">
                   <label for="lot">Lot size</label>
                   <input onChange={this.handleChange} type="number" className="signup-form-input" name="lot"  step="0.01" min="0" max="100" required />
               </div>
-              <button type="submit" className="signup-form-btn">Post Trade</button>
+              <button type="submit" className="signup-form-btn">Post Idea</button>
           </form>
         </div>
         <Footer/>

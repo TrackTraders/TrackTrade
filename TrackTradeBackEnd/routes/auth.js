@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/User')
 const Trade = require('../models/Trade')
+const TradeIdea = require('../models/TradeIdea')
 const passport = require('../config/passport')
 
 
@@ -25,9 +26,9 @@ router.get('/is-logged-in', (req,res,next)=>{
 })
 
 router.post('/log-in', passport.authenticate("local"), (req,res, next)=>{
-    
+    console.log('-==-=-=-=-=-=-=-=-=wdfs=d-c-=sdc=-sdc-=sdc')
   const user = new User({
-      username: req.body.email,
+      username: req.body.username,
       password: req.body.password
   })
   res.status(200).json(user)
@@ -39,16 +40,59 @@ router.get("/log-out", (req,res, next)=>{
   res.status(200).json({msg: "Logged out!"})
 })
 
-router.post('/post', (req, res, next) => {
+router.post('/postIdea', (req, res, next) => {
   console.log("--------id:", req.body._id)
   console.log("--------currency:", req.body.currency)
-  console.log("--------type:", req.body.type)
+  console.log("--------kind:", req.body.kind)
+  console.log("--------entry:", req.body.entry)
+  console.log("--------stop loss:", req.body.stoploss)
+  console.log("--------take profit:", req.body.takeprofit)
+  console.log("--------lot:", req.body.lot)
+  
+  TradeIdea.create({trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, stoploss: req.body.stoploss, takeprofit: req.body.takeprofit, lot: req.body.lot}}).then(tradeIdea => {
+    console.log(tradeIdea);
+    res.json(tradeIdea);
+  }).catch(err => console.log(err))
+}
+)
+
+router.post('/postTrade', (req, res, next) => {
+  console.log("--------id:", req.body._id)
+  console.log("--------currency:", req.body.currency)
+  console.log("--------kind:", req.body.kind)
   console.log("--------entry:", req.body.entry)
   console.log("--------close:", req.body.close)
   console.log("--------lot:", req.body.lot)
-  let newTrade = new Trade({userID: req.body._id}, {trade: {currency: req.body.currency, type: req.body.type, entry: req.body.entry, close: req.body.close, lot: req.body.lot}})
-  newTrade.save(err=>console.log(err))
+  
+  Trade.create({trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, close: req.body.close, lot: req.body.lot}}).then(trade => {
+    console.log(trade);
+    res.json(trade);
+  }).catch(err => console.log(err))
 }
 )
+
+router.get('/get-trades', (req,res,next)=>{
+  console.log('profile');
+  console.log(req.user)
+  Trade.find({"trade.trader": req.user.username}, (err,trades)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(trades)
+    }
+  })
+})
+
+router.get('/get-ideas', (req,res,next)=>{
+  console.log('profile');
+  console.log(req.user)
+  TradeIdea.find({"trade.trader": req.user.username}, (err,trades)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(trades)
+    }
+  })
+})
 
 module.exports = router;

@@ -23,8 +23,17 @@ const actions = {
   logOut: async () => {
     return await service.get('/log-out');
   },
+  postIdea: async (trade) => {
+    return await service.post('/postIdea', trade);
+  },
   postTrade: async (trade) => {
-    return await service.post('/post', trade);
+    return await service.post('/postTrade', trade);
+  },
+  getIdeas: async () => {
+    return await service.get('/get-ideas');
+  },
+  getTrades: async () => {
+    return await service.get('/get-trades');
   }
 };
 

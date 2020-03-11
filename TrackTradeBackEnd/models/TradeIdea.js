@@ -1,16 +1,17 @@
 const { Schema, model } = require('mongoose');
 
-const tradeSchema = new Schema({
+const tradeIdeaSchema = new Schema({
     trade: {
         trader: String,
         currency: String,
         kind: String,
         entry: Number,
-        close: Number,
+        stoploss: Number,
+        takeprofit: Number,
         lot: Number
     }
 }, {
     createdAt: 'created_at'
 })
 
-module.exports = model('Trade', tradeSchema);
+module.exports = model('TradeIdea', tradeIdeaSchema);
