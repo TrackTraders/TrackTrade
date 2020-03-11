@@ -23,11 +23,8 @@ const actions = {
   logOut: async () => {
     return await service.get('/log-out');
   },
-  googleLogIn: async (user) => {
-    return await service.post('/google/auth', user);
-  },
-  facebookLogIn: async (user) => {
-    return await service.post('/facebook/auth', user);
+  postTrade: async (trade) => {
+    return await service.post('/post', trade);
   }
 };
 

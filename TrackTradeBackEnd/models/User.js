@@ -4,17 +4,7 @@ const findOrCreate = require('mongoose-findorcreate')
 
 const userSchema = new Schema({
     username: String,
-    email: String,
-    password: String,
-    googleId: {
-        type: String,
-        require: true,
-        index:true,
-        unique:true,
-        sparse:true
-   
-      },
-    facebookId: String
+    password: String
 })
 
 userSchema.plugin(PLM);

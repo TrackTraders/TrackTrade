@@ -5,7 +5,7 @@ import Home from './components/home/Home';
 import NotFound from './components/404/NotFound.js';
 import SignUp from './components/auth/SignUp';
 import LogIn from './components/auth/LogIn';
-// import PostTrade from './components'
+import PostTrade from './components/profile/PostTrade'
 import Profile from './components/profile/Profile'
 import actions from './services/index'
 
@@ -20,6 +20,8 @@ class App extends Component {
   }
 
   setUser = (user) => this.setState(user)
+
+  setTrade = (trade) => this.setState(trade)
 
   render(){
     console.log(this.state)
@@ -38,7 +40,7 @@ class App extends Component {
 
         <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} />}></Route>
         
-        {/* <Route exact path="/post" render={(props) => <PostTrade {...props}  />}></Route> */}
+        <Route exact path="/post" render={(props) => <PostTrade {...props} setTrade={this.setTrade} />}></Route>
 
         <Route component={NotFound} />
       </Switch>

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/User')
+const Trade = require('../models/Trade')
 const passport = require('../config/passport')
 
 
@@ -38,32 +39,16 @@ router.get("/log-out", (req,res, next)=>{
   res.status(200).json({msg: "Logged out!"})
 })
 
-
-router.get("/auth/google",
-    passport.authenticate("google", {scope:['profile']})
+router.post('/post', (req, res, next) => {
+  console.log("--------id:", req.body._id)
+  console.log("--------currency:", req.body.currency)
+  console.log("--------type:", req.body.type)
+  console.log("--------entry:", req.body.entry)
+  console.log("--------close:", req.body.close)
+  console.log("--------lot:", req.body.lot)
+  let newTrade = new Trade({userID: req.body._id}, {trade: {currency: req.body.currency, type: req.body.type, entry: req.body.entry, close: req.body.close, lot: req.body.lot}})
+  newTrade.save(err=>console.log(err))
+}
 )
-
-router.get("/auth/google/home",
-    passport.authenticate('google', { prompt: 'select_account', failureRedirect: '/'}),
-    (req,res, next)=>{
-        res.redirect('/home')
-    }
-)
-
-router.get("/auth/facebook",
-  passport.authenticate("facebook")
-);
-
-router.get("/auth/facebook/home",
-    passport.authenticate('facebook', {  prompt: 'select_account', failureRedirect: '/'}),
-    (req,res, next)=>{
-        res.redirect('/home')
-    }
-)
-
-
-
-
-
 
 module.exports = router;
