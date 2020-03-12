@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Header from '../partials/Header'
-import Footer from '../partials/Footer'
 import actions from '../../services/index'
 
 export default class PostTrade extends Component {

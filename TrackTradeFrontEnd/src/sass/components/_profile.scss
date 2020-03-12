@@ -20,9 +20,46 @@
                 background-image: url("./images/VET_logo.png");
                 background-size: contain;
                 border-radius: 50%;
+                border: none;
                 height: 100px;
                 width: 100px;
                 background-color: #ccc;
+                overflow: hidden;
+
+                
+
+                &__change {
+                    background-color: rgba(34,34,34,0.8);
+                    color: #fff;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    padding: 2rem auto;
+                    transform: translateY(10rem);
+                    transition: all .2s ease-in-out;
+                    z-index: -1;
+                    
+                    
+
+                    &-form {
+                        padding: 1rem 2.5rem 3rem;
+                        &--input {
+                            display: none;
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                        &--label {
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+
+                &:hover &__change {
+                    transform: translateY(5rem);
+                    z-index: 3;
+                }
             
             }
 
@@ -38,6 +75,7 @@
             justify-content: space-evenly;
             padding-right: 1rem;
 
+
             &-text {
 
                 padding: 1rem 1.5rem;
@@ -48,9 +86,10 @@
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
+                transition: all .2s ease-in-out;
 
                 &:hover {
-
+                    background-color: #eee;
                     cursor: pointer;
 
                 }

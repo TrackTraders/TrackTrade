@@ -278,9 +278,31 @@ body::-webkit-scrollbar-thumb {
         background-image: url("./images/VET_logo.png");
         background-size: contain;
         border-radius: 50%;
+        border: none;
         height: 100px;
         width: 100px;
-        background-color: #ccc; }
+        background-color: #ccc;
+        overflow: hidden; }
+        .profile-nav__user-avatar__change {
+          background-color: rgba(34, 34, 34, 0.8);
+          color: #fff;
+          font-weight: 700;
+          text-transform: uppercase;
+          padding: 2rem auto;
+          transform: translateY(10rem);
+          transition: all .2s ease-in-out;
+          z-index: -1; }
+          .profile-nav__user-avatar__change-form {
+            padding: 1rem 2.5rem 3rem; }
+            .profile-nav__user-avatar__change-form--input {
+              display: none; }
+              .profile-nav__user-avatar__change-form--input:hover {
+                cursor: pointer; }
+            .profile-nav__user-avatar__change-form--label:hover {
+              cursor: pointer; }
+        .profile-nav__user-avatar:hover .profile-nav__user-avatar__change {
+          transform: translateY(5rem);
+          z-index: 3; }
       .profile-nav__user-username {
         padding-left: 4rem;
         font-size: 3rem; }
@@ -296,8 +318,10 @@ body::-webkit-scrollbar-thumb {
         border-radius: 2px;
         font-size: 2rem;
         text-transform: uppercase;
-        list-style: none; }
+        list-style: none;
+        transition: all .2s ease-in-out; }
         .profile-nav__links-text:hover {
+          background-color: #eee;
           cursor: pointer; }
   .profile-content {
     margin: 6rem auto; }

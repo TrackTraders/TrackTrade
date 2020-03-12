@@ -40,7 +40,10 @@ const actions = {
   },
   deleteTrades: async (id) => {
     return await service.post('/delete-trades', id);
-  }
+  },
+  changeAvatar: async (trade) => {
+    return await service.post('/postTrade', trade);
+  },
 };
 
 export default actions;

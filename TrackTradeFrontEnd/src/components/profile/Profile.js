@@ -5,7 +5,7 @@ import ShowIdeas from './ShowIdeas'
 import ShowTrades from './ShowTrades'
 import Stats from './Stats'
 import Connections from './Connections'
-
+import actions from '../../services/index'
 
 export default class Profile extends Component {
 
@@ -30,6 +30,23 @@ export default class Profile extends Component {
         }
     }
 
+    handleSubmit = async e => {
+        
+        console.log("SUBMITTED BABY!!!!!!!!!",  e.target.files[0])
+
+        // e.preventDefault()
+        // try{
+        //     let user = await actions.changeAvatar(this.state);
+        //     this.props.setUser({...user.data})  
+        //     this.props.history.push('/home')
+        // } catch(err){
+        //     console.log('*****',err.message)
+        // }
+    }
+
+
+    // changeProfileState = ()
+
     render() {
         return (
             <div>
@@ -37,7 +54,14 @@ export default class Profile extends Component {
                 <div className="profile">
                     <div className="profile-nav">
                         <div className="profile-nav__user">
-                            <div className="profile-nav__user-avatar"></div>
+                            <div className="profile-nav__user-avatar">
+                                <div className="profile-nav__user-avatar__change">
+                                <form className="profile-nav__user-avatar__change-form">
+                                    <label className="profile-nav__user-avatar__change-form--label" for="img">Change Avatar</label>
+                                    <input className="profile-nav__user-avatar__change-form--input" onChange={this.handleSubmit} type="file" id="img" name="img" accept="image/*"/>
+                                </form>
+                                </div>
+                            </div>
                             <h1 className="profile-nav__user-username">{this.props.user.username}</h1>
                         </div>
                         <ul className="profile-nav__links">
