@@ -11,6 +11,17 @@ export default class ShowIdeas extends Component {
         this.setState({actualTrades})
         console.log(this.state)
     }
+    
+    deleteCard = async id => {
+        try {
+            await actions.deleteIdeas({cardId: id});
+            let actualTrades = await actions.getIdeas();
+            this.setState({actualTrades})
+        }
+        catch(err) {
+            console.log('--=-=-=-=-=-=-=', err)
+        }
+    }
 
     formatTime = (time) => {
         return String(new Date(time)).substring(0,24)
@@ -22,6 +33,7 @@ export default class ShowIdeas extends Component {
                 return (
                     
                     <div className="trade-ideas-card">
+                        <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 {eachTrade.trade.currency} {eachTrade.trade.kind}
@@ -87,7 +99,7 @@ export default class ShowIdeas extends Component {
 
     render() {
         return (
-            <div class="trade-ideas">
+            <div className="trade-ideas">
                 {this.showIdeas()}
             </div>
         )

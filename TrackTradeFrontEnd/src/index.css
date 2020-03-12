@@ -57,10 +57,10 @@ body::-webkit-scrollbar-thumb {
 .navigation {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 25rem 0;
+  padding: 2rem 25rem;
   align-items: center;
   width: 100%;
-  background-color: #081c24;
+  background-color: #06151b;
   color: #ddd;
   font-size: 3rem;
   font-weight: 700; }
@@ -105,7 +105,7 @@ body::-webkit-scrollbar-thumb {
   margin-bottom: 20rem;
   padding: 5rem 25rem 30rem;
   height: 100%;
-  background-color: #081c24;
+  background-color: #06151b;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
   .landing-main--title {
     color: #ddd;
@@ -133,7 +133,7 @@ body::-webkit-scrollbar-thumb {
   .landing-main--image {
     background-image: url("./images/trading-landing.jpeg");
     background-size: cover;
-    background-color: #081c24;
+    background-color: #06151b;
     height: 388px;
     width: 612px;
     margin: 10rem 3rem 0 0;
@@ -208,7 +208,7 @@ body::-webkit-scrollbar-thumb {
 
 .signup {
   height: 100%;
-  background-color: #081c24;
+  background-color: #06151b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -254,88 +254,12 @@ body::-webkit-scrollbar-thumb {
       color: #fff;
       padding: 1rem 1.5rem;
       margin: 5rem -1rem 0 7.5rem; }
-  .signup-social {
-    display: flex;
-    flex-direction: column;
-    padding-left: 10rem;
-    /* Facebook */ }
-    .signup-social-google-button, .signup-social-google-button:link, .signup-social-google-button:visited {
-      text-decoration: none;
-      height: 50px;
-      border-width: 0;
-      background: white;
-      color: #737373;
-      border-radius: 3px;
-      white-space: nowrap;
-      box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
-      transition-property: background-color, box-shadow;
-      transition-duration: 150ms;
-      transition-timing-function: ease-in-out;
-      padding: 0 1rem;
-      margin-bottom: 3rem; }
-    .signup-social-google-button:focus, .signup-social-google-button:hover {
-      outline: none;
-      box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
-      background-color: #ddd;
-      color: #333; }
-    .signup-social-google-button:active {
-      outline: none;
-      background-color: #e5e5e5;
-      box-shadow: none;
-      transition-duration: 10ms; }
-    .signup-social-google-button__icon {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 10px 10px 0 5px;
-      width: 28px;
-      height: 28px;
-      box-sizing: border-box; }
-    .signup-social-google-button__text {
-      display: inline-block;
-      vertical-align: middle;
-      padding: 0 24px;
-      margin-top: 10px;
-      font-size: 2rem;
-      font-weight: bold;
-      font-family: 'Roboto',arial,sans-serif; }
-    .signup-social-facebook, .signup-social-facebook:link, .signup-social-facebook:visited {
-      text-decoration: none;
-      box-sizing: border-box;
-      position: relative;
-      width: 35rem;
-      padding: 0 15px 0 46px;
-      border: none;
-      text-align: center;
-      line-height: 50px;
-      white-space: nowrap;
-      border-radius: 0.2em;
-      font-size: 2rem;
-      color: #FFF;
-      background-color: #4C69BA;
-      background-image: linear-gradient(#4C69BA, #3B55A0);
-      /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-      text-shadow: 0 -1px 0 #354C8C; }
-    .signup-social-facebook:before {
-      content: "";
-      box-sizing: border-box;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 6rem;
-      height: 100%;
-      border-right: #364e92 1px solid;
-      background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png") 6px 6px no-repeat;
-      background-position: center; }
-    .signup-social-facebook:hover, .signup-social-facebook:focus {
-      outline: none;
-      background-color: #5B7BD5;
-      background-image: linear-gradient(#5B7BD5, #4864B1); }
 
 .separator {
   width: 5px;
   height: 50vh;
   margin: 3rem 10rem 0 0;
-  border-right: 2px solid #111; }
+  border-right: 2px solid #222; }
 
 .profile {
   min-height: 80vh;
@@ -383,14 +307,33 @@ body::-webkit-scrollbar-thumb {
   grid-template-columns: repeat(auto-fit, 35rem);
   margin: auto;
   justify-content: center;
-  gap: 3rem 5rem; }
+  gap: 5rem 5rem; }
   .trade-ideas-card {
     background-color: rgba(153, 153, 153, 0.2);
+    border: 1px solid rgba(153, 153, 153, 0.3);
+    box-shadow: 0 0.75rem 2rem #0d0d0d;
+    border-radius: 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 3rem 1rem;
-    word-wrap: break-word; }
+    word-wrap: break-word;
+    position: relative;
+    transition: all .3s ease-in-out; }
+    .trade-ideas-card:hover {
+      cursor: pointer;
+      transform: translateY(-0.5rem);
+      box-shadow: 0 1.25rem 3rem #0d0d0d; }
+    .trade-ideas-card-delete {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2rem;
+      transition: all .2s ease-in-out; }
+      .trade-ideas-card-delete:hover {
+        cursor: pointer;
+        color: red; }
     .trade-ideas-card__item {
       padding: 1rem;
       font-size: 2rem;

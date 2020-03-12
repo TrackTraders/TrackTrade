@@ -2,10 +2,10 @@
 
     display: flex;
     justify-content: space-between;
-    padding: 2rem 25rem 0;
+    padding: 2rem 25rem;
     align-items: center;
     width: 100%;
-    background-color: #081c24;
+    background-color: $color-blue-dark-1;
     color: #ddd;
     font-size: 3rem;
     font-weight: 700;
@@ -50,7 +50,7 @@
         }
 
         &:hover {
-            color: #2ba7fa;
+            color: $color-blue-bright-1;
         }
     }
 
@@ -62,13 +62,13 @@
             text-decoration: none;
             padding: 1rem 2rem;
             color: #000;
-            background-color: #2ba7fa;
+            background-color: $color-blue-bright-1;
             border-radius: 3px;
             transition: all .2s ease-in-out;
         }
 
         &:hover {
-            background-color: #1985d8;
+            background-color: $color-blue-bright-2;
         }
     }
 

@@ -6,7 +6,7 @@
 .signup {
 
     height: 100%;
-    background-color: #081c24;
+    background-color: $color-blue-dark-1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,25 +44,25 @@
 
         &-input {
             font-size: 3rem;
-            background-color: #042635;
+            background-color: $color-blue-1;
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 2px;
             transition: all .2s ease-in-out;
 
             &:hover {
-                background-color: #053042;
+                background-color: $color-blue-2;
             }
 
             &:active,
             &:focus {
                 outline: none;
-                background-color: #225b74;
+                background-color: $color-blue-4;
             }
         }
 
         &-btn {
-            background-color: #003952;
+            background-color: $color-blue-3;
             border: none;
             border-radius: 3px;
             font-size: 3rem;
@@ -72,118 +72,11 @@
             margin: 5rem -1rem 0 7.5rem;
         }
     }
-
-    &-social {
-
-        display: flex;
-        flex-direction: column;
-        padding-left: 10rem;
-        
-
-        &-google-button {
-
-            &,
-            &:link,
-            &:visited {
-                text-decoration: none;
-                height: 50px;
-                border-width: 0;
-                background: white;
-                color: #737373;
-                border-radius: 3px;
-                white-space: nowrap;
-                box-shadow: 1px 1px 0px 1px rgba(0,0,0,0.05);
-                transition-property: background-color, box-shadow;
-                transition-duration: 150ms;
-                transition-timing-function: ease-in-out;
-                padding: 0 1rem;
-                margin-bottom: 3rem;
-            }
-            
-            &:focus,
-            &:hover {
-                outline: none;
-                box-shadow: 1px 4px 5px 1px rgba(0,0,0,0.1);
-                background-color: #ddd;
-                color: #333;
-            }
-            
-            &:active {
-                outline: none;
-                background-color: #e5e5e5;
-                box-shadow: none;
-                transition-duration: 10ms;
-            }
-          }
-              
-          &-google-button__icon {
-            display: inline-block;
-            vertical-align: middle;
-            margin: 10px 10px 0 5px;
-            width: 28px;
-            height: 28px;
-            box-sizing: border-box;
-          }
-          
-          &-google-button__text {
-            display: inline-block;
-            vertical-align: middle;
-            padding: 0 24px;
-            margin-top: 10px;
-            font-size: 2rem;
-            font-weight: bold;
-            font-family: 'Roboto',arial,sans-serif;
-          }
-
-          /* Facebook */
-        &-facebook {
-
-            &,
-            &:link,
-            &:visited {
-                text-decoration: none;
-                box-sizing: border-box;
-                position: relative;
-                width: 35rem;
-                padding: 0 15px 0 46px;
-                border: none;
-                text-align: center;
-                line-height: 50px;
-                white-space: nowrap;
-                border-radius: 0.2em;
-                font-size: 2rem;
-                color: #FFF;
-                background-color: #4C69BA;
-                background-image: linear-gradient(#4C69BA, #3B55A0);
-                
-                /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-                text-shadow: 0 -1px 0 #354C8C;
-            }
-        }
-        &-facebook:before {
-            content: "";
-            box-sizing: border-box;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 6rem;
-            height: 100%;
-            border-right: #364e92 1px solid;
-            background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
-            background-position: center;
-        }
-        &-facebook:hover,
-        &-facebook:focus {
-            outline: none;
-            background-color: #5B7BD5;
-            background-image: linear-gradient(#5B7BD5, #4864B1);
-        }
-    }
 }
 
 .separator {
     width: 5px;
     height: 50vh;
     margin: 3rem 10rem 0 0;
-    border-right: 2px solid #111;
+    border-right: 2px solid #222;
 }

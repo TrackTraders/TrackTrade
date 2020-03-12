@@ -71,6 +71,28 @@ router.post('/postTrade', (req, res, next) => {
 }
 )
 
+router.post('/delete-ideas', (req,res,next)=>{
+
+  TradeIdea.deleteOne({_id: req.body.cardId}, (err,trades)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(trades)
+    }
+  })
+})
+
+router.post('/delete-trades', (req,res,next)=>{
+
+  Trade.deleteOne({_id: req.body.cardId}, (err,trades)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(trades)
+    }
+  })
+})
+
 router.get('/get-trades', (req,res,next)=>{
   console.log('profile');
   console.log(req.user)

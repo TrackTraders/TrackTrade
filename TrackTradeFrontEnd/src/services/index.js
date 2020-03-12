@@ -34,6 +34,12 @@ const actions = {
   },
   getTrades: async () => {
     return await service.get('/get-trades');
+  },
+  deleteIdeas: async (id) => {
+    return await service.post('/delete-ideas', id);
+  },
+  deleteTrades: async (id) => {
+    return await service.post('/delete-trades', id);
   }
 };
 

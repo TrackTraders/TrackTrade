@@ -26,7 +26,7 @@ export default class Profile extends Component {
             }
         }
         else {
-            return <ShowIdeas />
+            return null
         }
     }
 
