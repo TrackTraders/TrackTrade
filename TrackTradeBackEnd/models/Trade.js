@@ -9,8 +9,6 @@ const tradeSchema = new Schema({
         close: Number,
         lot: Number
     }
-}, {
-    createdAt: 'created_at'
-})
+}, { timestamps: { createdAt: 'created_at' } })
 
 module.exports = model('Trade', tradeSchema);

@@ -89,6 +89,7 @@ body::-webkit-scrollbar-thumb {
   .navigation--link:hover {
     color: #2ba7fa; }
   .navigation--signup, .navigation--signup:link, .navigation--signup:visited {
+    margin-left: 2rem;
     text-decoration: none;
     padding: 1rem 2rem;
     color: #000;
@@ -335,3 +336,71 @@ body::-webkit-scrollbar-thumb {
   height: 50vh;
   margin: 3rem 10rem 0 0;
   border-right: 2px solid #111; }
+
+.profile {
+  min-height: 80vh;
+  max-height: 100%;
+  background-color: #081c24;
+  border-top: 2px solid #040e13;
+  color: #ddd;
+  padding: 5rem 25rem; }
+  .profile-nav {
+    display: flex;
+    justify-content: space-between; }
+    .profile-nav__user {
+      display: flex;
+      align-items: center; }
+      .profile-nav__user-avatar {
+        background-image: url("./images/VET_logo.png");
+        background-size: contain;
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+        background-color: #ccc; }
+      .profile-nav__user-username {
+        padding-left: 4rem;
+        font-size: 3rem; }
+    .profile-nav__links {
+      display: flex;
+      justify-content: space-evenly;
+      padding-right: 1rem; }
+      .profile-nav__links-text {
+        padding: 1rem 1.5rem;
+        margin: auto 2rem;
+        background-color: #ccc;
+        color: #222;
+        border-radius: 2px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        list-style: none; }
+        .profile-nav__links-text:hover {
+          cursor: pointer; }
+  .profile-content {
+    margin: 6rem auto; }
+
+.trade-ideas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 35rem);
+  margin: auto;
+  justify-content: center;
+  gap: 3rem 5rem; }
+  .trade-ideas-card {
+    background-color: rgba(153, 153, 153, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 1rem;
+    word-wrap: break-word; }
+    .trade-ideas-card__item {
+      padding: 1rem;
+      font-size: 2rem;
+      display: flex;
+      justify-content: space-between; }
+      .trade-ideas-card__item-title {
+        text-transform: uppercase;
+        font-weight: 700; }
+      .trade-ideas-card__item-content {
+        font-size: 1.8rem; }
+      .trade-ideas-card__item-date {
+        padding-top: 2rem;
+        font-size: 1.6rem; }

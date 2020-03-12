@@ -13,7 +13,7 @@ export default class Header extends Component {
     render() {
         
             if(!this.props.loggedIn){
-            return (<nav className="navbar navbar-default">    
+            return (<nav>    
                 <div className="navigation">
                     <Link to="/" className="navigation--brand">Track Trade</Link>
                     <ul className="navigation--right">
@@ -26,7 +26,7 @@ export default class Header extends Component {
             } else {
                 if(this.props.isProfile){
                     return (
-                        <nav className="navbar navbar-default">    
+                        <nav>    
                             <div className="navigation">
                                 <Link to="/" className="navigation--brand">Track Trade</Link>
                                 <ul className="navigation--right">
@@ -41,7 +41,7 @@ export default class Header extends Component {
                 }
                 else {
                     return (
-                    <nav className="navbar navbar-default">    
+                    <nav>    
                         <div className="navigation">
                             <Link to="/" className="navigation--brand">Track Trade</Link>
                             <ul className="navigation--right">

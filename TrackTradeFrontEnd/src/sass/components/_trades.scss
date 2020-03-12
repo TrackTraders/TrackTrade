@@ -1,0 +1,54 @@
+.trade {
+
+    &-ideas {
+
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 35rem);
+        margin: auto;
+        justify-content: center;
+        gap: 3rem 5rem;
+        // background-color: rgba(5, 17, 22, 0.5);
+
+        &-card {
+
+            background-color: rgba(153, 153, 153, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            // align-items: start;
+            padding: 3rem 1rem;
+            word-wrap: break-word;
+            
+
+            &__item {
+
+                padding: 1rem;
+                font-size: 2rem;
+                display: flex;
+                justify-content: space-between;
+    
+                &-title {
+                    text-transform: uppercase;
+                    font-weight: 700;
+                }
+
+                &-content {
+                    font-size: 1.8rem;
+                }
+
+                &-date {
+                    
+                    padding-top: 2rem;
+                    font-size: 1.6rem;
+                    &-title {
+
+                    }
+
+                    &-content {
+
+                    }
+                }
+            }
+        }
+    }
+}

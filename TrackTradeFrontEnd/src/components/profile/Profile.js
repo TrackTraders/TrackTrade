@@ -34,15 +34,23 @@ export default class Profile extends Component {
         return (
             <div>
                 <Header {...this.props} isProfile={true} loggedIn={true}/>
-                    
-                    <ul>
-                        <li onClick={() => this.setState({display:"ideas"})}>Ideas</li>
-                        <li onClick={() => this.setState({display:"trades"})}>Trades</li>
-                        <li onClick={() => this.setState({display:"stats"})}>Stats</li>
-                        <li onClick={() => this.setState({display:"connections"})}>Connections</li>
-                    </ul>
-
-                    {this.displayStuff()}
+                <div className="profile">
+                    <div className="profile-nav">
+                        <div className="profile-nav__user">
+                            <div className="profile-nav__user-avatar"></div>
+                            <h1 className="profile-nav__user-username">{this.props.user.username}</h1>
+                        </div>
+                        <ul className="profile-nav__links">
+                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"ideas"})}>Ideas</li>
+                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"trades"})}>Trades</li>
+                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"stats"})}>Stats</li>
+                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"connections"})}>Connections</li>
+                        </ul>
+                    </div>
+                    <div className="profile-content">
+                        {this.displayStuff()}
+                    </div>
+                </div>
                 <Footer/>
             </div>
         )

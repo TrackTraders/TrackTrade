@@ -10,8 +10,6 @@ const tradeIdeaSchema = new Schema({
         takeprofit: Number,
         lot: Number
     }
-}, {
-    createdAt: 'created_at'
-})
+}, { timestamps: { createdAt: 'created_at' } })
 
 module.exports = model('TradeIdea', tradeIdeaSchema);
