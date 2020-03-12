@@ -58,7 +58,6 @@ export default class PostTrade extends Component {
               <button type="submit" className="signup-form-btn">Post Idea</button>
           </form>
         </div>
-        <Footer/>
       </div>
     )
   }

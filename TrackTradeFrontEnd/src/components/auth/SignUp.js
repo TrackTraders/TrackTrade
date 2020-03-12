@@ -39,6 +39,10 @@ export default class Signup extends Component {
                             <label for="password">Password</label>
                             <input onChange={this.handleChange} type="password" className="signup-form-input" name="password" required />
                         </div>
+                        <div className="signup-form-group">
+                            <label for="img">Profile Image</label>
+                            <input onChange={this.handleChange} type="file" id="img" name="img" accept="image/*"/>
+                        </div>
                         <button type="submit" className="signup-form-btn">Sign Up</button>
                     </form>
                     </div>                

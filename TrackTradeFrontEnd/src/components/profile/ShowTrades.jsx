@@ -56,18 +56,10 @@ export default class ShowTrades extends Component {
                         </div>
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
-                                Stoploss:
+                                Close:
                             </div>
                             <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.stoploss}
-                            </div>
-                        </div>
-                        <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Takeprofit:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.takeprofit}
+                                {eachTrade.trade.close}
                             </div>
                         </div>
                         <div className="trade-ideas-card__item">

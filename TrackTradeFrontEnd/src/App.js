@@ -57,7 +57,9 @@ class App extends Component {
 
         <Route exact path="/profile" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
         
-        <Route exact path="/post" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+        <Route exact path="/postIdea" render={(props) => <LogIn {...props} />}></Route>
+
+        <Route exact path="/postTrade" render={(props) => <LogIn {...props} />}></Route>
 
         <Route component={NotFound} />
       </Switch>

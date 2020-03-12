@@ -3,8 +3,9 @@ const PLM = require('passport-local-mongoose');
 const findOrCreate = require('mongoose-findorcreate')
 
 const userSchema = new Schema({
-    username: String,
-    password: String
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    avatar: {type: String, required: false}
 })
 
 userSchema.plugin(PLM);
