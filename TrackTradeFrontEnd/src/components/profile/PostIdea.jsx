@@ -24,7 +24,7 @@ export default class PostTrade extends Component {
   render() {
     return (
       <div>
-        <Header loggedIn={true}/>
+        <Header {...this.props} loggedIn={true}/>
         <div className="signup">
           <form className="signup-form" onSubmit={this.handleSubmit}>
               <div className="signup-form-group">
@@ -54,6 +54,10 @@ export default class PostTrade extends Component {
               <div className="signup-form-group">
                   <label for="lot">Lot size</label>
                   <input onChange={this.handleChange} type="number" className="signup-form-input" name="lot"  step="0.01" min="0" max="100" required />
+              </div>
+              <div className="signup-form-group">
+                  <label for="lot">Description</label>
+                  <textarea onChange={this.handleChange} type="text" className="signup-form-input" name="description" />
               </div>
               <button type="submit" className="signup-form-btn">Post Idea</button>
           </form>

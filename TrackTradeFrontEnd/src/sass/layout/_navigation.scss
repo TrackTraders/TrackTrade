@@ -73,3 +73,120 @@
     }
 
 }
+
+.menu {
+  display: block;
+  position: relative;
+  
+
+    &-link {
+
+        &,
+        &:visited,
+        &:link {
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 400;
+            padding: 4rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+    }
+
+    
+}
+
+.menu-title {
+  display: block;
+  width: 200px;
+  height: 50px;
+  
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  transition: 0.3s background-color;
+
+    &-text {
+        font-size: 1.6rem;
+        margin-bottom: 10rem;
+
+    }
+    &-arrow {
+        
+        font-size: 2rem;
+        transform: translate(1rem,0.3rem) rotate(90deg) scaleX(2);
+        transition: all .7s cubic-bezier(0.19, 1, 0.22, 1);
+        display: inline-block;
+    }
+}
+
+.menu:hover > .menu-title:before {
+  border-top-width: 0;
+  transition:
+    0.2s border-top-width ease-in,
+    0.3s border-top-color;
+}
+
+.menu:hover > .menu-title:after {
+  border-bottom-width: 5px;
+  transition: 0.2s border-bottom-width ease;
+}
+
+.menu:hover .menu-title-arrow {
+    transform: translate(1rem,.1rem) rotate(-90deg) scaleX(2);
+}
+
+.menu-dropdown {
+  min-width: 100%;
+//   padding: 1rem 0;
+  position: absolute;
+  background: $color-blue-gray-1;
+  z-index: 100;
+  transition:
+    0.3s padding
+}
+
+.menu:not(:hover) > .menu-dropdown {
+  padding: 0;
+  background: $color-blue-dark-3;
+  z-index: 99;
+}
+
+.menu-dropdown > * {
+  overflow: hidden;
+  height: 50px;
+  padding: 10px 10px 0;
+  background-image: linear-gradient(rgba($color-blue-2, 1) 0%, rgba($color-blue-2, 1) 95%, rgba(12,12,12, 1) 100%);
+  white-space: nowrap;
+  transition: 
+    0.5s height ease-in-out,
+    0.5s padding ease-in-out,
+    0.5s margin ease-in-out,
+    0.5s 0.2s color,
+    0.2s background-color;
+
+    
+}
+
+.menu-dropdown > *:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+.menu:not(:hover) > .menu-dropdown > * {
+  visibility: hidden;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  color: rgba(25,25,25,0);
+  transition: 
+    0.3s height,
+    0.3s padding,
+    0.3s margin,
+    0.3s color,
+    0.3s visibility;
+  z-index: 99;
+}

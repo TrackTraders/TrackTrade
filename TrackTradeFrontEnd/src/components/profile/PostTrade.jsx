@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from '../partials/Header'
 import actions from '../../services/index'
 
+
 export default class PostTrade extends Component {
 
   state = {}
@@ -15,6 +16,7 @@ export default class PostTrade extends Component {
           await actions.postTrade(this.state);
           
           this.props.history.push('/profile')
+          
       } catch(err){
           console.log('*****',err.message)
       }
@@ -23,7 +25,7 @@ export default class PostTrade extends Component {
   render() {
     return (
       <div>
-        <Header loggedIn={true}/>
+        <Header {...this.props} loggedIn={true}/>
         <div className="signup">
           <form className="signup-form" onSubmit={this.handleSubmit}>
               <div className="signup-form-group">

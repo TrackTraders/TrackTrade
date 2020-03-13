@@ -10,18 +10,26 @@
 
         &-card {
 
-            background-color: rgba(153, 153, 153, 0.2);
-            border: 1px solid rgba(153, 153, 153, 0.3);
-            box-shadow: 0 .75rem 2rem rgba(13, 13, 13, 1);
-            border-radius: 2px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            // align-items: start;
-            padding: 3rem 1rem;
-            word-wrap: break-word;
-            position: relative;
-            transition: all .3s ease-in-out;
+            &,
+            &:link,
+            &:visited {
+    
+                background-color: rgba(153, 153, 153, 0.2);
+                border: 1px solid rgba(153, 153, 153, 0.3);
+                text-decoration: none;
+                color: #ddd;
+                box-shadow: 0 .75rem 2rem rgba(13, 13, 13, 1);
+                border-radius: 2px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                // align-items: start;
+                padding: 3rem 1rem;
+                word-wrap: break-word;
+                position: relative;
+                transition: all .3s ease-in-out;
+
+            }
             
             &:hover {
                 cursor: pointer;

@@ -29,7 +29,7 @@ class App extends Component {
       { this.state._id
       ?
       <Switch>
-        <Route exact path="/" render={(props) => <Home {...props} />}></Route>
+        <Route exact path="/" render={(props) => <Home {...props} username={this.state.username} />}></Route>
 
         <Route exact path="/home" render={(props) => <Home {...props} username={this.state.username}/>}></Route>
 
@@ -37,11 +37,11 @@ class App extends Component {
 
         <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
 
-        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} />}></Route>
+        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} username={this.state.username} />}></Route>
         
-        <Route exact path="/postIdea" render={(props) => <PostIdea {...props} />}></Route>
+        <Route exact path="/postIdea" render={(props) => <PostIdea {...props} username={this.state.username} />}></Route>
 
-        <Route exact path="/postTrade" render={(props) => <PostTrade {...props} />}></Route>
+        <Route exact path="/postTrade" render={(props) => <PostTrade {...props} username={this.state.username} />}></Route>
 
         <Route component={NotFound} />
       </Switch>

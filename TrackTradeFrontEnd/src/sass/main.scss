@@ -1,3 +1,4 @@
+@import "abstracts/mixins";
 @import "abstracts/variables";
 
 @import "base/base";
@@ -9,4 +10,5 @@
 @import "components/landing";
 @import "components/signup";
 @import "components/profile";
+@import "components/popup";
 @import "components/trades";

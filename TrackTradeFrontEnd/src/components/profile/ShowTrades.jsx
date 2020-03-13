@@ -31,7 +31,10 @@ export default class ShowTrades extends Component {
             return this.state.actualTrades.data.map(eachTrade=>{
                 return (
                     
-                    <div className="trade-ideas-card">
+                    <a href="#popup" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
+                    }} className="trade-ideas-card">
                         {/* <div onClick={() => this.deleteCard(eachTrade._id)} class="trade-ideas-card-delete">&times;</div> */}
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
@@ -78,7 +81,7 @@ export default class ShowTrades extends Component {
                                 {this.formatTime(eachTrade.created_at)}
                             </div>
                         </div>
-                    </div>
+                    </a>
                     
                 )
             })
@@ -92,6 +95,26 @@ export default class ShowTrades extends Component {
         return (
             <div class="trade-ideas">
                 {this.showIdeas()}
+                {this.state.eachTrade ? <div class="popup" id="popup">
+                    <div class="popup__content" id="content">
+                        <div class="popup__left">
+                            
+                        </div>
+                        <div class="popup__right">
+                            <a href="#main" class="popup__close">&times;</a>
+                            <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Lot size: {this.state.eachTrade.trade.lot}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Closed at: {this.state.eachTrade.trade.close}</h2>
+                            
+                            
+                            <h2 class="heading-secondary u-margin-bottom-small">
+                            {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
+                            </h2>
+                            
+                        </div>
+                    </div>
+                </div> : null}
             </div>
         )
     }

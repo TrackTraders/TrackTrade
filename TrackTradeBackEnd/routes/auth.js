@@ -49,7 +49,7 @@ router.post('/postIdea', (req, res, next) => {
   console.log("--------take profit:", req.body.takeprofit)
   console.log("--------lot:", req.body.lot)
   
-  TradeIdea.create({trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, stoploss: req.body.stoploss, takeprofit: req.body.takeprofit, lot: req.body.lot}}).then(tradeIdea => {
+  TradeIdea.create({trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, stoploss: req.body.stoploss, takeprofit: req.body.takeprofit, lot: req.body.lot, description: req.body.description}}).then(tradeIdea => {
     console.log(tradeIdea);
     res.json(tradeIdea);
   }).catch(err => console.log(err))

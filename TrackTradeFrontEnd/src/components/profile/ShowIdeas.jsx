@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import actions from '../../services/index'
 
-
+    
 export default class ShowIdeas extends Component {
 
     state = {}
@@ -27,12 +27,29 @@ export default class ShowIdeas extends Component {
         return String(new Date(time)).substring(0,24)
     }
 
+    // exitPopup = () => {
+    //     if(this.state.eachTrade){
+    //         var popup = document.querySelector('.popup');
+    
+    //         popup.addEventListener('click', e => {
+    //             if(e.target.matches('.popup *')) return;
+    //             else {
+    //                 window.location.hash = "#tours"
+    //             }
+    //           });
+
+    //     }
+    // }
+
     showIdeas = () => {
         if(this.state.actualTrades){
             return this.state.actualTrades.data.map(eachTrade=>{
                 return (
                     
-                    <div className="trade-ideas-card">
+                    <a href="#popup" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
+                    }} className="trade-ideas-card">
                         <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
@@ -87,7 +104,17 @@ export default class ShowIdeas extends Component {
                                 {this.formatTime(eachTrade.created_at)}
                             </div>
                         </div>
-                    </div>
+                        {(eachTrade.updatedAt === eachTrade.created_at) ? null :
+                         <div className="trade-ideas-card__item-date">
+                            <div className="trade-ideas-card__item-date-title">
+                                Updated at:
+                            </div>
+                            <div className="trade-ideas-card__item-date-content">
+                                {this.formatTime(eachTrade.updatedAt)}
+                            </div>
+                        </div>
+                        }                        
+                    </a>
                     
                 )
             })
@@ -101,6 +128,30 @@ export default class ShowIdeas extends Component {
         return (
             <div className="trade-ideas">
                 {this.showIdeas()}
+                {/* {this.exitPopup()} */}
+
+                {this.state.eachTrade ? <div class="popup" id="popup">
+                    <div class="popup__content" id="content">
+                        <div class="popup__left">
+                            
+                        </div>
+                        <div class="popup__right">
+                            <a href="#main" class="popup__close">&times;</a>
+                            <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Lot size: {this.state.eachTrade.trade.lot}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Stoploss: {this.state.eachTrade.trade.stoploss}</h2>
+                            <h2 class="heading-secondary u-margin-bottom-small">Takeprofit: {this.state.eachTrade.trade.takeprofit}</h2>
+                            
+                            
+                            <h2 class="heading-secondary u-margin-bottom-small">
+                            {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
+                            </h2>
+                            
+                        </div>
+                    </div>
+                </div> : null}
+                
             </div>
         )
     }

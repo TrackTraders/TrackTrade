@@ -10,7 +10,7 @@ import actions from '../../services/index'
 export default class Profile extends Component {
 
     state = {
-        display: null
+        display: "ideas"
     }
 
     displayStuff = () => {
@@ -26,7 +26,7 @@ export default class Profile extends Component {
             }
         }
         else {
-            return null
+            return <ShowIdeas />
         }
     }
 
@@ -65,10 +65,10 @@ export default class Profile extends Component {
                             <h1 className="profile-nav__user-username">{this.props.user.username}</h1>
                         </div>
                         <ul className="profile-nav__links">
-                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"ideas"})}>Ideas</li>
-                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"trades"})}>Trades</li>
-                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"stats"})}>Stats</li>
-                            <li className="profile-nav__links-text" onClick={() => this.setState({display:"connections"})}>Connections</li>
+                            <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>Ideas</li>
+                            <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}>Trades</li>
+                            <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}>Stats</li>
+                            <li className={this.state.display === "connections" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"connections"})}>Connections</li>
                         </ul>
                     </div>
                     <div className="profile-content">
