@@ -6,7 +6,7 @@ export default class ShowAllTrades extends Component {
     
     async componentDidMount() {
         let actualTrades = await actions.getAllTrades();
-        this.setState({actualTrades})
+        this.setState({actualTrades: actualTrades.data.reverse()})
         console.log(this.state)
     }
 
@@ -16,8 +16,8 @@ export default class ShowAllTrades extends Component {
 
     showIdeas = () => {
         if(this.state.actualTrades){
-            let reversedActualTrades = this.state.actualTrades.data.reverse();
-            return reversedActualTrades.map(eachTrade=>{
+            
+            return this.state.actualTrades.map(eachTrade=>{
                 return (
                     <div className="trade-ideas-card">
                     <a href="#popup" onClick={async () => {
