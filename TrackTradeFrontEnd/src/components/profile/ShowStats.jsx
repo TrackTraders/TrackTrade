@@ -4,9 +4,14 @@ import CanvasJSReact from '../../canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
-let lastFiveDataPoints = [];
+let allTradesDataPoints = [];
 let winLossDataPoints = [];
-let currencyPerformance = [];
+let currencyPerformance = [
+    { label: "USD/JPY",  y: -3, color: "#d21"  },
+    { label: "EUR/USD", y: 4, color: "#2c1"  },
+    { label: "EUR/GBP", y: -2, color: "#d21"  },
+    { label: "CHF/JPY",  y: 3, color: "#2c1"  },
+    { label: "USD/CAD",  y: 6, color: "#2c1"  }];
 
 export default class ShowStats extends Component {
 
@@ -15,19 +20,34 @@ export default class ShowStats extends Component {
     }
     
     async componentDidMount() {
+
         let actualTrades = await actions.getTrades();
         this.setState({actualTrades})
-        console.log(this.state)
-        
         
         let trades = this.state.actualTrades.data
         var chart = this.chart;
         let wins = 0;
         let losses = 0;
-		for (var i = 0; i < trades.length; i++) {
+        let obj = {};
+
+        for (let i = 0; i < trades.length; i++) {
+            obj[trades[i].trade.currency] = 0
+            // if(currencyPerformance){
+            //     for(let cur in currencyPerformance){
+            //         if(cur.label.includes(trades[i].trade.currency)){
+            //             pips > 0 ? currencyPerformance[cur]++ : currencyPerformance[cur]--;
+            //         }
+            //     }
+            // } else {
+            //     return null
+            // }
+        }
+
+
+		for (let i = 0; i < trades.length; i++) {
+
             let pips;
             let num;
-            let cuancerPerformCalc;
 
             //sell not jpy
             if(trades[i].trade.kind === 'sell' && !trades[i].trade.currency.includes("JPY")){
@@ -43,18 +63,28 @@ export default class ShowStats extends Component {
             }
             //buy jpy
             else if(trades[i].trade.kind === 'buy' && trades[i].trade.currency.includes("JPY")){
-                pips = trades[i].trade.close - trades[i].trade.entry
+                pips = Math.ceil((trades[i].trade.close * 100) - (trades[i].trade.entry * 100))
             }
-            console.log(pips)
+            // console.log(pips)
             
-            pips > 0 ? wins++ : losses++
+            if(pips > 0){
+                wins++;
+                obj[trades[i].trade.currency] += 1
+            } else {
+                losses++;
+                obj[trades[i].trade.currency] -= 1
+
+            }
+            console.log(obj)
 
             // trades.map(eachTrade=>{
             //     return eachTrade.trade.currency
                 
             // })
+
+           
             
-            lastFiveDataPoints.push({
+            allTradesDataPoints.push({
                 // x: new Date(this.state.actualTrades.data[i].created_at),
                 x: num,
                 y: pips * trades[i].trade.lot * 10
@@ -64,6 +94,8 @@ export default class ShowStats extends Component {
                 { y: wins, label: "Wins", color: '#2c1' },
                 { y: losses, label: "Losses", color: '#d21' }
             ]
+
+            // curPerformCalc
 
             num++;
             
@@ -106,7 +138,7 @@ export default class ShowStats extends Component {
 				type: "spline",
 				xValueFormatString: "Trade #",
 				yValueFormatString: "$0",
-				dataPoints: lastFiveDataPoints
+				dataPoints: allTradesDataPoints
 			}]
         }
 
@@ -141,7 +173,7 @@ export default class ShowStats extends Component {
                     color: "#dddddd",
                     xValueFormatString: "Trade #",
                     yValueFormatString: "$0",
-                    dataPoints: lastFiveDataPoints
+                    dataPoints: allTradesDataPoints
                 }]
             }
         }
@@ -152,7 +184,9 @@ export default class ShowStats extends Component {
                 theme: "dark2",
                 backgroundColor: "#081c24",
                 title: {
-                    text: "Win Loss Ratio"
+                    text: "WIN LOSS RATIO",
+                    fontFamily: 'arial',
+                    fontColor: '#dddddd'
                 },
                 data: [{
                     type: "pie",
@@ -171,26 +205,29 @@ export default class ShowStats extends Component {
                 theme: "dark2",
                 backgroundColor: "#081c24",
                 title: {
-                    text: "Basic Column Chart"
+                    text: "CURRENCY PERFORMANCE",
+                    fontFamily: 'arial',
+                    fontColor: '#dddddd'
+                },
+                axisY: {
+                    title: "Wins/Losses",
+                    includeZero: false
+                },                
+                axisX: {
+                    title: "Currency Pair",
+                    includeZero: true
                 },
                 data: [
                 {
-                    // Change type to "doughnut", "line", "splineArea", etc.
                     type: "column",
-                    dataPoints: [
-                        { label: "Apple",  y: -10  },
-                        { label: "Orange", y: 15  },
-                        { label: "Banana", y: 25  },
-                        { label: "Mango",  y: 30  },
-                        { label: "Grape",  y: 28  }
-                    ]
+                    dataPoints: currencyPerformance
                 }
                 ]
             }
         }
         
-        // console.log(this.state)
-        console.log(winLossDataPoints)
+        console.log(this.state)
+        
         return (
             <div className="profile-stats">
                 

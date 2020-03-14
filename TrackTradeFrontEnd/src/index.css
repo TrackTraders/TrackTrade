@@ -436,6 +436,18 @@ body::-webkit-scrollbar-thumb {
   .profile-content {
     margin: 6rem auto; }
 
+.connections-container {
+  font-size: 2rem;
+  height: 500px;
+  width: 250px;
+  padding: 1rem 1.5rem;
+  overflow-y: scroll;
+  background-color: #222; }
+  .connections-container > * {
+    padding: .75rem 0 1rem; }
+    .connections-container > *:not(:last-child) {
+      border-bottom: 1px solid black; }
+
 .home {
   min-height: 80vh;
   max-height: 100%;
