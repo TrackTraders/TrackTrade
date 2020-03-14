@@ -3,7 +3,7 @@ import Header from '../partials/Header'
 import Footer from '../partials/Footer'
 import ShowIdeas from './ShowIdeas'
 import ShowTrades from './ShowTrades'
-import Stats from './Stats'
+import ShowStats from './ShowStats'
 import Connections from './Connections'
 import actions from '../../services/index'
 
@@ -20,7 +20,7 @@ export default class Profile extends Component {
             } else if(this.state.display === "trades"){
                 return <ShowTrades />
             } else if(this.state.display === "stats"){
-                return <Stats />
+                return <ShowStats />
             } else if(this.state.display === "connections"){
                 return <Connections />
             }

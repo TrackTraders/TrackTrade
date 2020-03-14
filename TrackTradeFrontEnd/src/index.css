@@ -45,15 +45,15 @@ body::-webkit-scrollbar-thumb {
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #555; }
+  color: #ddd; }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #555; }
+  color: #ddd; }
 
 :-ms-input-placeholder {
   /* IE 10+ */
-  color: #555; }
+  color: #ddd; }
 
 ::selection {
   background-color: #fff;
@@ -303,6 +303,8 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
   padding-bottom: 25rem; }
+  .signup-result-lot {
+    margin: 5rem 33rem; }
   .signup-form {
     display: flex;
     flex-direction: column;
@@ -326,6 +328,7 @@ body::-webkit-scrollbar-thumb {
     .signup-form-input {
       font-size: 3rem;
       background-color: #042635;
+      color: #ddd;
       padding: 1rem 1.5rem;
       border: none;
       border-radius: 2px;
@@ -429,6 +432,47 @@ body::-webkit-scrollbar-thumb {
           cursor: pointer; }
   .profile-content {
     margin: 6rem auto; }
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  width: 100%; }
+  .profile-stats-nav__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%; }
+    .profile-stats-nav__links-text {
+      padding: 1rem 1.5rem;
+      margin: auto 2rem;
+      color: #ddd;
+      border-radius: 2px;
+      font-size: 2rem;
+      text-transform: uppercase;
+      border-bottom: 2px solid transparent;
+      list-style: none;
+      transition: all .2s ease-in-out; }
+      .profile-stats-nav__links-text:hover {
+        background-color: rgba(6, 21, 27, 0.7);
+        color: #ddd;
+        cursor: pointer; }
+    .profile-stats-nav__links-text-active {
+      padding: 1rem 1.5rem;
+      margin: auto 2rem;
+      border-bottom: 2px solid #2ba7fa;
+      color: #ddd;
+      border-radius: 2px;
+      font-size: 2rem;
+      text-transform: uppercase;
+      list-style: none;
+      transition: all .2s ease-in-out; }
+      .profile-stats-nav__links-text-active:hover {
+        background-color: rgba(6, 21, 27, 0.7);
+        color: #ddd;
+        cursor: pointer; }
+  .profile-stats-chart {
+    width: 600px; }
 
 .popup {
   position: fixed;
@@ -603,44 +647,45 @@ body::-webkit-scrollbar-thumb {
   margin: auto;
   justify-content: center;
   gap: 5rem 5rem; }
-  .trade-ideas-card, .trade-ideas-card:link, .trade-ideas-card:visited {
+  .trade-ideas-card {
     background-color: rgba(153, 153, 153, 0.2);
     border: 1px solid rgba(153, 153, 153, 0.3);
-    text-decoration: none;
-    color: #ddd;
     box-shadow: 0 0.75rem 2rem #0d0d0d;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3rem 1rem;
     word-wrap: break-word;
     position: relative;
     transition: all .3s ease-in-out; }
-  .trade-ideas-card:hover {
-    cursor: pointer;
-    transform: translateY(-0.5rem);
-    box-shadow: 0 1.25rem 3rem #0d0d0d; }
-  .trade-ideas-card-delete {
-    display: block;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
-    transition: all .2s ease-in-out; }
-    .trade-ideas-card-delete:hover {
+    .trade-ideas-card-link, .trade-ideas-card-link:link, .trade-ideas-card-link:visited {
+      padding: 3rem 1rem;
+      text-decoration: none;
+      color: #ddd; }
+    .trade-ideas-card:hover {
       cursor: pointer;
-      color: red; }
-  .trade-ideas-card__item {
-    padding: 1rem;
-    font-size: 2rem;
-    display: flex;
-    justify-content: space-between; }
-    .trade-ideas-card__item-title {
-      text-transform: uppercase;
-      font-weight: 700; }
-    .trade-ideas-card__item-content {
-      font-size: 1.8rem; }
-    .trade-ideas-card__item-date {
-      padding-top: 2rem;
-      font-size: 1.6rem; }
+      transform: translateY(-0.5rem);
+      box-shadow: 0 1.25rem 3rem #0d0d0d; }
+    .trade-ideas-card-delete {
+      display: block;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2rem;
+      transition: all .2s ease-in-out; }
+      .trade-ideas-card-delete:hover {
+        cursor: pointer;
+        color: red; }
+    .trade-ideas-card__item {
+      padding: 1rem;
+      font-size: 2rem;
+      display: flex;
+      justify-content: space-between; }
+      .trade-ideas-card__item-title {
+        text-transform: uppercase;
+        font-weight: 700; }
+      .trade-ideas-card__item-content {
+        font-size: 1.8rem; }
+      .trade-ideas-card__item-date {
+        padding-top: 2rem;
+        font-size: 1.6rem; }

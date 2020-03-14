@@ -45,12 +45,13 @@ export default class ShowIdeas extends Component {
         if(this.state.actualTrades){
             return this.state.actualTrades.data.map(eachTrade=>{
                 return (
-                    
-                    <a href="#popup" onClick={async () => {
+                    <div className="trade-ideas-card">
+                    <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>
+                    <a href="#popup" className="trade-ideas-card-link" onClick={async () => {
                         await this.setState({eachTrade});
                         console.log(this.state);
-                    }} className="trade-ideas-card">
-                        <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>
+                    }} >
+                        
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 {eachTrade.trade.currency} {eachTrade.trade.kind}
@@ -115,6 +116,7 @@ export default class ShowIdeas extends Component {
                         </div>
                         }                        
                     </a>
+                    </div> 
                     
                 )
             })

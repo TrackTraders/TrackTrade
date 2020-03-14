@@ -12,6 +12,10 @@
     align-items: center;
     padding-bottom: 25rem;
 
+    &-result-lot {
+        margin: 5rem 33rem;
+    }
+    
     &-form {
 
         display: flex;
@@ -45,6 +49,7 @@
         &-input {
             font-size: 3rem;
             background-color: $color-blue-1;
+            color:#ddd;
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 2px;

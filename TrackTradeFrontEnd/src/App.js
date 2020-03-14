@@ -9,6 +9,7 @@ import PostIdea from './components/profile/PostIdea'
 import PostTrade from './components/profile/PostTrade'
 import Profile from './components/profile/Profile'
 import actions from './services/index'
+import Tools from './components/tools/Tools';
 
 class App extends Component {
   
@@ -43,6 +44,8 @@ class App extends Component {
 
         <Route exact path="/postTrade" render={(props) => <PostTrade {...props} username={this.state.username} />}></Route>
 
+        <Route exact path="/tools" render={(props) => <Tools {...props} username={this.state.username} />}></Route>
+
         <Route component={NotFound} />
       </Switch>
       :
@@ -60,6 +63,8 @@ class App extends Component {
         <Route exact path="/postIdea" render={(props) => <LogIn {...props} />}></Route>
 
         <Route exact path="/postTrade" render={(props) => <LogIn {...props} />}></Route>
+
+        <Route exact path="/tools" render={(props) => <LogIn {...props} />}></Route>
 
         <Route component={NotFound} />
       </Switch>

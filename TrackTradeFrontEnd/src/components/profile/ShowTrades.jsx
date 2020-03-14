@@ -30,11 +30,11 @@ export default class ShowTrades extends Component {
         if(this.state.actualTrades){
             return this.state.actualTrades.data.map(eachTrade=>{
                 return (
-                    
+                    <div className="trade-ideas-card">
                     <a href="#popup" onClick={async () => {
                         await this.setState({eachTrade});
                         console.log(this.state);
-                    }} className="trade-ideas-card">
+                    }} className="trade-ideas-card-link">
                         {/* <div onClick={() => this.deleteCard(eachTrade._id)} class="trade-ideas-card-delete">&times;</div> */}
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
@@ -82,7 +82,7 @@ export default class ShowTrades extends Component {
                             </div>
                         </div>
                     </a>
-                    
+                    </div>
                 )
             })
         }

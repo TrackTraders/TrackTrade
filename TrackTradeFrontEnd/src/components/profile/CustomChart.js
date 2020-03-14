@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Header from '../partials/Header'
 import Footer from '../partials/Footer'
 import CanvasJSReact from '../../canvasjs.react';

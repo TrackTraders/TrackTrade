@@ -11,7 +11,7 @@ export default class Header extends Component {
     }
 
     render() {
-            console.log(this.props)
+            
             if(!this.props.loggedIn){
             return (<nav>    
                 <div className="navigation">
@@ -24,7 +24,7 @@ export default class Header extends Component {
             </nav>
             )
             } else {
-                console.log(this.props)
+                
                 return (
                 <nav>    
                     <div id="main" className="navigation">
@@ -37,6 +37,7 @@ export default class Header extends Component {
                                     <li><Link className="menu-link" to="/profile">Profile</Link></li>
                                     <li><Link className="menu-link" to="/postIdea">Post Idea</Link></li>
                                     <li><Link className="menu-link" to="/postTrade">Post Trade</Link></li>
+                                    <li><Link className="menu-link" to="/tools">Tools</Link></li>
                                 </ul>
                                 </div>
 
