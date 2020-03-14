@@ -87,7 +87,8 @@ export default class ShowStats extends Component {
         let options = {
             animationEnabled: true,
             zoomEnabled: true,
-			theme: "light1",
+            theme: "dark2",
+            backgroundColor: "#081c24",
 			title: {
 				text: "Stats"
 			},
@@ -112,10 +113,16 @@ export default class ShowStats extends Component {
         if(this.state.currentChart === "allTrades"){
             options = {
                 animationEnabled: true,
+                animationDuration: 3000,
                 zoomEnabled: true,
-                theme: "light1",
+                
+                theme: "dark2",
+                backgroundColor: "#081c24",
+
                 title: {
-                    text: "All Trades"
+                    text: "ALL TRADES",
+                    fontFamily: 'arial',
+                    fontColor: '#dddddd'
                 },
                 axisY: {
                     title: "Profit/Loss",
@@ -129,6 +136,9 @@ export default class ShowStats extends Component {
                 },
                 data: [{
                     type: "spline",
+                    lineColor: "#2ba7fa",
+                    lineThickness: 5,
+                    color: "#dddddd",
                     xValueFormatString: "Trade #",
                     yValueFormatString: "$0",
                     dataPoints: lastFiveDataPoints
@@ -139,7 +149,8 @@ export default class ShowStats extends Component {
             options = {
                 exportEnabled: true,
                 animationEnabled: true,
-                theme: "light1",
+                theme: "dark2",
+                backgroundColor: "#081c24",
                 title: {
                     text: "Win Loss Ratio"
                 },
@@ -157,7 +168,8 @@ export default class ShowStats extends Component {
         }
         else if(this.state.currentChart === "curPerformance") {
             options = {
-                theme: 'light   1',
+                theme: "dark2",
+                backgroundColor: "#081c24",
                 title: {
                     text: "Basic Column Chart"
                 },

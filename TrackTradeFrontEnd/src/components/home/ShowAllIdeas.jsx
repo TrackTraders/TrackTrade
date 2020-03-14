@@ -32,7 +32,8 @@ export default class ShowAllIdeas extends Component {
 
     showIdeas = () => {
         if(this.state.actualTrades){
-            return this.state.actualTrades.data.map(eachTrade=>{
+            let reversedActualTrades = this.state.actualTrades.data.reverse();
+            return reversedActualTrades.map(eachTrade=>{
                 return (
                     <div className="trade-ideas-card">
                     <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>

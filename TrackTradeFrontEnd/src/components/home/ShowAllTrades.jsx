@@ -16,7 +16,8 @@ export default class ShowAllTrades extends Component {
 
     showIdeas = () => {
         if(this.state.actualTrades){
-            return this.state.actualTrades.data.map(eachTrade=>{
+            let reversedActualTrades = this.state.actualTrades.data.reverse();
+            return reversedActualTrades.map(eachTrade=>{
                 return (
                     <div className="trade-ideas-card">
                     <a href="#popup" onClick={async () => {
@@ -99,7 +100,7 @@ export default class ShowAllTrades extends Component {
                             <h2 class="heading-secondary u-margin-bottom-small">
                             {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
                             </h2>
-                            
+                            <p class="popup__text">Created by: {this.state.eachTrade.trade.trader}</p>
                         </div>
                     </div>
                 </div> : null}

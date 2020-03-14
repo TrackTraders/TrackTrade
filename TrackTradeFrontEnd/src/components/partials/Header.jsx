@@ -32,7 +32,7 @@ export default class Header extends Component {
                         <ul className="navigation--right">
                             <li id="profile-dropdown">
                                 <div href="#click" class="menu">
-                                <h2 class="menu-title"><span className="menu-title-text" >{this.props.username}</span><span className="menu-title-arrow">&#10151;</span></h2>
+                                <h2 class="menu-title"><span className="menu-title-text" >{this.props.username}</span><i class="fas fa-chevron-down menu-title-arrow"></i></h2>
                                 <ul class="menu-dropdown">
                                     <li><Link className="menu-link" to="/home">Home</Link></li>
                                     <li><Link className="menu-link" to="/profile">Profile</Link></li>

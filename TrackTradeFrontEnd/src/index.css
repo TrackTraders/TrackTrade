@@ -141,7 +141,7 @@ body::-webkit-scrollbar-thumb {
     margin-bottom: 10rem; }
   .menu-title-arrow {
     font-size: 2rem;
-    transform: translate(1rem, 0.3rem) rotate(90deg) scaleX(2);
+    transform: translate(1rem, 0.3rem) rotate(0deg);
     transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
     display: inline-block; }
 
@@ -154,10 +154,13 @@ body::-webkit-scrollbar-thumb {
   transition: 0.2s border-bottom-width ease; }
 
 .menu:hover .menu-title-arrow {
-  transform: translate(1rem, 0.1rem) rotate(-90deg) scaleX(2); }
+  transform: translate(1rem, 0.1rem) rotate(-180deg); }
+
+.menu:hover .menu-title {
+  background-color: #15242b; }
 
 .menu-dropdown {
-  min-width: 100%;
+  width: 200px;
   position: absolute;
   background: #15242b;
   z-index: 100;

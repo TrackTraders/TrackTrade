@@ -117,7 +117,7 @@
     &-arrow {
         
         font-size: 2rem;
-        transform: translate(1rem,0.3rem) rotate(90deg) scaleX(2);
+        transform: translate(1rem,0.3rem) rotate(0deg);
         transition: all .7s cubic-bezier(0.19, 1, 0.22, 1);
         display: inline-block;
     }
@@ -136,11 +136,15 @@
 }
 
 .menu:hover .menu-title-arrow {
-    transform: translate(1rem,.1rem) rotate(-90deg) scaleX(2);
+    transform: translate(1rem,.1rem) rotate(-180deg);
+}
+
+.menu:hover .menu-title {
+  background-color: $color-blue-gray-1;
 }
 
 .menu-dropdown {
-  min-width: 100%;
+  width: 200px;
 //   padding: 1rem 0;
   position: absolute;
   background: $color-blue-gray-1;
