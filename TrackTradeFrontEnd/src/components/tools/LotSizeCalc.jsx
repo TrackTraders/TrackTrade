@@ -8,7 +8,7 @@ export default class Tools extends Component {
 
   handleSubmit = async e => {
     e.preventDefault()
-    let res = (this.state.balance * (this.state.risk / 100)) / (this.state.stoploss * 10)
+    let res = ((this.state.balance * (this.state.risk / 100)) / (this.state.stoploss * 10)).toFixed(3)
     await this.setState({result: res})
     console.log("-=-=-", this.state)
   };

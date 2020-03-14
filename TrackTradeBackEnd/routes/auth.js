@@ -105,10 +105,34 @@ router.get('/get-trades', (req,res,next)=>{
   })
 })
 
+router.get('/get-all-trades', (req,res,next)=>{
+  console.log('profile');
+  console.log(req.user)
+  Trade.find({}, (err,trades)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(trades)
+    }
+  })
+})
+
 router.get('/get-ideas', (req,res,next)=>{
   console.log('profile');
   console.log(req.user)
   TradeIdea.find({"trade.trader": req.user.username}, (err,trades)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(trades)
+    }
+  })
+})
+
+router.get('/get-all-ideas', (req,res,next)=>{
+  console.log('profile');
+  console.log(req.user)
+  TradeIdea.find({}, (err,trades)=>{
     if(err){
       console.log(err)
     } else {

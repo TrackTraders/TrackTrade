@@ -34,6 +34,7 @@ export default class Header extends Component {
                                 <div href="#click" class="menu">
                                 <h2 class="menu-title"><span className="menu-title-text" >{this.props.username}</span><span className="menu-title-arrow">&#10151;</span></h2>
                                 <ul class="menu-dropdown">
+                                    <li><Link className="menu-link" to="/home">Home</Link></li>
                                     <li><Link className="menu-link" to="/profile">Profile</Link></li>
                                     <li><Link className="menu-link" to="/postIdea">Post Idea</Link></li>
                                     <li><Link className="menu-link" to="/postTrade">Post Trade</Link></li>
