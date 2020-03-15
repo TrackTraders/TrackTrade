@@ -30,14 +30,14 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-            <Header {...this.props} loggedIn={true}/>
+            <Header {...this.props} where={"Home"} loggedIn={true}/>
             <div className="home">
                     <div className="home-nav">
                         
                         <ul className="home-nav__links">
-                            <li className={this.state.display === "ideas" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>Ideas</li>
-                            <li className={this.state.display === "trades" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"trades"})}>Trades</li>
-                            <li className={this.state.display === "stats" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"stats"})}>Stats</li>
+                            <li className={this.state.display === "ideas" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>All Ideas</li>
+                            <li className={this.state.display === "trades" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"trades"})}>All Trades</li>
+                            <li className={this.state.display === "stats" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"stats"})}>All Stats</li>
                             {/* <li className={this.state.display === "connections" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"connections"})}>Connections</li> */}
                         </ul>
                     </div>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Header from '../partials/Header'
 import Footer from '../partials/Footer'
 import ShowIdeas from './ShowIdeas'
 import ShowTrades from './ShowTrades'
 import ShowStats from './ShowStats'
 import Connections from './Connections'
-import actions from '../../services/index'
+// import actions from '../../services/index'
 
 export default class Profile extends Component {
 
@@ -65,6 +66,18 @@ export default class Profile extends Component {
                             <h1 className="profile-nav__user-username">{this.props.user.username}</h1>
                         </div>
                         <ul className="profile-nav__links">
+
+                            {(this.state.display === "ideas") ?
+                            <li className= "profile-nav__links-text"><Link className="menu-link" to="/postIdea">Post Idea</Link></li>
+                            :
+                            null
+                            }
+                            {(this.state.display === "trades") ?
+                            <li className= "profile-nav__links-text"><Link className="menu-link" to="/postTrade">Post Trade</Link></li>
+                            :
+                            null
+                            }
+
                             <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>Ideas</li>
                             <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}>Trades</li>
                             <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}>Stats</li>

@@ -36,7 +36,7 @@ export default class ShowAllIdeas extends Component {
             return this.state.actualTrades.map(eachTrade=>{
                 return (
                     <div className="trade-ideas-card">
-                    <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>
+                    
                     <a href="#popup" className="trade-ideas-card-link" onClick={async () => {
                         await this.setState({eachTrade});
                         console.log(this.state);

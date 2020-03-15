@@ -10,7 +10,7 @@
     &-nav {
 
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         padding-bottom: 10rem;
 
         &__links {
@@ -23,7 +23,7 @@
             &-text {
 
                 padding: 1rem 1.5rem;
-                margin: auto 2rem;
+                margin: auto 10rem;
                 
                 color: #ddd;
                 border-radius: 2px;
@@ -41,7 +41,7 @@
             }
             &-text-active {
                 padding: 1rem 1.5rem;
-                margin: auto 2rem;
+                margin: auto 10rem;
                 border-bottom: 2px solid $color-blue-bright-1;
                 color: #ddd;
                 border-radius: 2px;

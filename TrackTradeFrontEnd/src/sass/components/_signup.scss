@@ -12,6 +12,15 @@
     align-items: center;
     padding-bottom: 25rem;
 
+    &-lotcalc {
+        height: 100%;
+        // background-color: $color-blue-dark-1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 25rem;
+    }
+
     &-result-lot {
         margin: 5rem 33rem;
     }

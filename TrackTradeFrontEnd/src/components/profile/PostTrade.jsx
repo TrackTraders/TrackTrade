@@ -28,9 +28,38 @@ export default class PostTrade extends Component {
         <Header {...this.props} loggedIn={true}/>
         <div className="signup">
           <form className="signup-form" onSubmit={this.handleSubmit}>
-              <div className="signup-form-group">
-                  <label for="currency">Currency</label>
-                  <input onChange={this.handleChange} type="text" className="signup-form-input" placeholder="USD/CAD" name="currency" required />
+          <div className="signup-form-group">
+              <label for="currency">Currency</label>
+              <select className="signup-form-input" required onChange={this.handleChange} name="currency">
+                  <option></option>
+                  <option>AUD/CAD</option>
+                  <option>AUD/CHF</option>
+                  <option>AUD/JPY</option>
+                  <option>AUD/NZD</option>
+                  <option>AUD/USD</option>
+                  <option>CAD/CHF</option>
+                  <option>CAD/JPY</option>
+                  <option>CHF/JPY</option>
+                  <option>EUR/AUD</option>
+                  <option>EUR/CAD</option>
+                  <option>EUR/CHF</option>
+                  <option>EUR/GBP</option>
+                  <option>EUR/JPY</option>
+                  <option>EUR/NZD</option>
+                  <option>EUR/USD</option>
+                  <option>GBP/AUD</option>
+                  <option>GBP/CAD</option>
+                  <option>GBP/CHF</option>
+                  <option>GBP/JPY</option>
+                  <option>GBP/NZD</option>
+                  <option>GBP/USD</option>
+                  <option>NZD/CAD</option>
+                  <option>NZD/CHF</option>
+                  <option>NZD/JPY</option>
+                  <option>NZD/USD</option>
+                  <option>USD/CAD</option>
+                  <option>USD/JPY</option>
+                </select>
               </div>
               <div className="signup-form-group">
                   <label for="type">Sell or Buy</label>

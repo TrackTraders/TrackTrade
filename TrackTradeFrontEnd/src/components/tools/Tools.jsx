@@ -32,9 +32,9 @@ export default class Tools extends Component {
     render() {
         return (
             <div>
-            <Header {...this.props} isProfile={true} loggedIn={true}/>
+            <Header {...this.props} where={"Tools"} loggedIn={true}/>
             <div className="profile">
-                <div className="profile-nav">
+                <div className="tools-nav">
                     <ul className="profile-nav__links">
                         <li className={this.state.display === "lotSizeCalc" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"lotSizeCalc"})}>Lot Size Calculator</li>
                         <li className={this.state.display === "newsAlert" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"newsAlert"})}>News Alert</li>

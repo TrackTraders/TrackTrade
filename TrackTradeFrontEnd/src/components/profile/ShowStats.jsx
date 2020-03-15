@@ -6,12 +6,13 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 let allTradesDataPoints = [];
 let winLossDataPoints = [];
-let currencyPerformance = [
-    { label: "USD/JPY",  y: -3, color: "#d21"  },
-    { label: "EUR/USD", y: 4, color: "#2c1"  },
-    { label: "EUR/GBP", y: -2, color: "#d21"  },
-    { label: "CHF/JPY",  y: 3, color: "#2c1"  },
-    { label: "USD/CAD",  y: 6, color: "#2c1"  }];
+let currencyPerformance = [];
+// let currencyPerformance = [
+//     { label: "USD/JPY",  y: -3, color: "#d21"  },
+//     { label: "EUR/USD", y: 4, color: "#2c1"  },
+//     { label: "EUR/GBP", y: -2, color: "#d21"  },
+//     { label: "CHF/JPY",  y: 3, color: "#2c1"  },
+//     { label: "USD/CAD",  y: 6, color: "#2c1"  }];
 
 export default class ShowStats extends Component {
 
@@ -20,6 +21,10 @@ export default class ShowStats extends Component {
     }
     
     async componentDidMount() {
+
+        allTradesDataPoints = [];
+        winLossDataPoints = [];
+        currencyPerformance = [];
 
         let actualTrades = await actions.getTrades();
         this.setState({actualTrades})
@@ -65,7 +70,6 @@ export default class ShowStats extends Component {
             else if(trades[i].trade.kind === 'buy' && trades[i].trade.currency.includes("JPY")){
                 pips = Math.ceil((trades[i].trade.close * 100) - (trades[i].trade.entry * 100))
             }
-            // console.log(pips)
             
             if(pips > 0){
                 wins++;
@@ -75,17 +79,8 @@ export default class ShowStats extends Component {
                 obj[trades[i].trade.currency] -= 1
 
             }
-            console.log(obj)
-
-            // trades.map(eachTrade=>{
-            //     return eachTrade.trade.currency
-                
-            // })
-
-           
             
             allTradesDataPoints.push({
-                // x: new Date(this.state.actualTrades.data[i].created_at),
                 x: num,
                 y: pips * trades[i].trade.lot * 10
             });
@@ -95,11 +90,17 @@ export default class ShowStats extends Component {
                 { y: losses, label: "Losses", color: '#d21' }
             ]
 
-            // curPerformCalc
+            
 
             num++;
             
-			}
+        }
+            
+
+        for(var one in obj){
+            currencyPerformance.push({label: one, y: obj[one], color: `${obj[one] > 0 ? "#2c1" : "#d21"}` })
+        }
+
 		chart.render();
     }
     
@@ -115,7 +116,8 @@ export default class ShowStats extends Component {
     }
 
     render() {
-        // dataPoints = [];
+        
+        
         let options = {
             animationEnabled: true,
             zoomEnabled: true,
@@ -235,7 +237,7 @@ export default class ShowStats extends Component {
                     <li className={this.state.currentChart === "allTrades" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"allTrades"})}>All Trades</li>
                     <li className={this.state.currentChart === "winLoss" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"winLoss"})}>Win Loss Ratio</li>
                     <li className={this.state.currentChart === "curPerformance" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"curPerformance"})}>Currency Performance</li>
-                    <li className={this.state.currentChart === "connections" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"connections"})}>Connections</li>
+                    <li className={this.state.currentChart === "leaderboard" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"leaderboard"})}>Leaderboard</li>
                 </ul>
                 <div className="profile-stats-chart">
                     <CanvasJSChart options = {options} 

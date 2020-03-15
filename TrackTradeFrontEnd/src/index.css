@@ -20,6 +20,8 @@ ORDER: Base + typography > general layout + grid >  page layout > components
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+  *:focus {
+    outline: none; }
 
 html {
   font-size: 62.5%; }
@@ -306,6 +308,12 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
   padding-bottom: 25rem; }
+  .signup-lotcalc {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 25rem; }
   .signup-result-lot {
     margin: 5rem 33rem; }
   .signup-form {
@@ -457,7 +465,7 @@ body::-webkit-scrollbar-thumb {
   padding: 5rem 25rem; }
   .home-nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     padding-bottom: 10rem; }
     .home-nav__links {
       display: flex;
@@ -465,7 +473,7 @@ body::-webkit-scrollbar-thumb {
       padding-right: 1rem; }
       .home-nav__links-text {
         padding: 1rem 1.5rem;
-        margin: auto 2rem;
+        margin: auto 10rem;
         color: #ddd;
         border-radius: 2px;
         font-size: 2rem;
@@ -478,7 +486,7 @@ body::-webkit-scrollbar-thumb {
           cursor: pointer; }
       .home-nav__links-text-active {
         padding: 1rem 1.5rem;
-        margin: auto 2rem;
+        margin: auto 10rem;
         border-bottom: 2px solid #2ba7fa;
         color: #ddd;
         border-radius: 2px;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "../partials/Header";
 
 export default class Tools extends Component {
   state = {};
@@ -35,7 +34,7 @@ export default class Tools extends Component {
             </div>
             <div className="signup-form-group">
               <label for="currency">Currency Pair</label>
-              <select required onChange={this.handleChange} name="currency">
+              <select className="signup-form-input" required onChange={this.handleChange} name="currency">
                 <option></option>
                 <option>AUD/CAD</option>
                 <option>AUD/CHF</option>

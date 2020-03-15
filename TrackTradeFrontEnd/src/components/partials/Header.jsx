@@ -4,6 +4,8 @@ import actions from '../../services/index'
 
 export default class Header extends Component {
 
+    state = {}
+
     logOut = async () => {
         let res = await actions.logOut()
         this.props.history.push('/')
@@ -30,7 +32,10 @@ export default class Header extends Component {
                     <div id="main" className="navigation">
                         <Link to="/" className="navigation--brand">Track Trade</Link>
                         <ul className="navigation--right">
-                            <li id="profile-dropdown">
+                            
+                            
+                            {/* GOTTA ACTIVE THIS FOR MOBILE ONLY */}
+                            {/* <li id="profile-dropdown">
                                 <div href="#click" class="menu">
                                 <h2 class="menu-title"><span className="menu-title-text" >{this.props.username}</span><i class="fas fa-chevron-down menu-title-arrow"></i></h2>
                                 <ul class="menu-dropdown">
@@ -41,9 +46,13 @@ export default class Header extends Component {
                                     <li><Link className="menu-link" to="/tools">Tools</Link></li>
                                 </ul>
                                 </div>
+                            </li> */}
 
 
-                            </li>
+                            <li className={this.props.where === "Home" ? "profile-nav__links-text-active" : "profile-nav__links-text"} ><Link className="navigation--link" to="/home">Home</Link></li>
+                            <li className={this.props.where === "Tools" ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/tools">Tools</Link></li>
+                            <li className={this.props.isProfile ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/profile">Profile</Link></li>
+
                             <li id="contact"><Link onClick={this.logOut} className="navigation--link navigation--signup" to="/">Log Out</Link></li>
                         </ul>
                     </div>
