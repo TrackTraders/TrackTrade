@@ -26,6 +26,9 @@ const actions = {
   postIdea: async (trade) => {
     return await service.post('/postIdea', trade);
   },
+  updateIdea: async (trade) => {
+    return await service.post('/updateIdea', trade);
+  },
   postTrade: async (trade) => {
     return await service.post('/postTrade', trade);
   },

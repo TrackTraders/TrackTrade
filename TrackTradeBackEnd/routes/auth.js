@@ -56,6 +56,22 @@ router.post('/postIdea', (req, res, next) => {
 }
 )
 
+router.post('/updateIdea', (req, res, next) => {
+  console.log("--------id:", req.body._id)
+  console.log("--------currency:", req.body.currency)
+  console.log("--------kind:", req.body.kind)
+  console.log("--------entry:", req.body.entry)
+  console.log("--------stop loss:", req.body.stoploss)
+  console.log("--------take profit:", req.body.takeprofit)
+  console.log("--------lot:", req.body.lot)
+  
+  TradeIdea.updateOne({_id: req.body.tradeID}, {trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, stoploss: req.body.stoploss, takeprofit: req.body.takeprofit, lot: req.body.lot, description: req.body.description}}).then(tradeIdea => {
+    console.log(tradeIdea);
+    res.json(tradeIdea);
+  }).catch(err => console.log(err))
+}
+)
+
 router.post('/postTrade', (req, res, next) => {
   console.log("--------id:", req.body._id)
   console.log("--------currency:", req.body.currency)
