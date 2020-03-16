@@ -3,15 +3,15 @@ import actions from '../../services/index'
 
 export default class Login extends Component {
 
-    state = {
-
-    } 
+    state = {}
+     
     handleChange = e => this.setState({[e.target.name]: e.target.value})
 
     handleSubmit = async e => {
         e.preventDefault()
         try{
             let user = await actions.logIn(this.state);
+            console.log(user.data)
             this.props.setUser({...user.data})  
             // this.props.doFlashMessage('Logged In Successfully', true)
             this.props.history.push('/home')

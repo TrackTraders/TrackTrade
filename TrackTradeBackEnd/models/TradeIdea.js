@@ -9,7 +9,8 @@ const tradeIdeaSchema = new Schema({
         stoploss: Number,
         takeprofit: Number,
         lot: Number,
-        description: String
+        description: String,
+        imageURL: String
     }
 }, { timestamps: { createdAt: 'created_at' } })
 

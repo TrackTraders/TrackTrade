@@ -46,7 +46,11 @@ export default class ShowIdeas extends Component {
             return this.state.actualTrades.data.map(eachTrade=>{
                 return (
                     <div className="trade-ideas-card">
-                    <div onClick={() => this.deleteCard(eachTrade._id)} className="trade-ideas-card-delete">&times;</div>
+
+                    <a href="#popup" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
+                    }} className="trade-ideas-card-more">click for more info</a>
                     <a href="#popup" className="trade-ideas-card-link" onClick={async () => {
                         await this.setState({eachTrade});
                         console.log(this.state);
@@ -57,14 +61,14 @@ export default class ShowIdeas extends Component {
                                 {eachTrade.trade.currency} {eachTrade.trade.kind}
                             </div>
                         </div>
-                        <div className="trade-ideas-card__item">
+                        {/* <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 Lot Size:
                             </div>
                             <div className="trade-ideas-card__item-content">
                                 {eachTrade.trade.lot}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 Entry:
@@ -170,7 +174,8 @@ export default class ShowIdeas extends Component {
                             {!this.state.edit ?
                             <div class="popup__right">
                             <a href="#main" class="popup__close">&times;</a>
-                            <button onClick={this.editIdeas} class="popup__edit popup__edit">EDIT IDEA</button>
+                            <button onClick={this.editIdeas} class="popup__edit">EDIT IDEA</button>
+                            <a href="#main" onClick={() => this.deleteCard(this.state.eachTrade._id)} class="popup__delete">DELETE IDEA</a>
                             
                             <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
                             <h2 class="heading-secondary u-margin-bottom-small">Lot size: {this.state.eachTrade.trade.lot}</h2>

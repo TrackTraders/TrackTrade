@@ -6,13 +6,17 @@ import ShowIdeas from './ShowIdeas'
 import ShowTrades from './ShowTrades'
 import ShowStats from './ShowStats'
 import Connections from './Connections'
-// import actions from '../../services/index'
+import actions from '../../services/index'
 
 export default class Profile extends Component {
 
     state = {
         display: "ideas"
     }
+
+    // async componentDidMount(){
+    //     await this.setState({avatarImg: this.props.user.avatar})
+    // }
 
     displayStuff = () => {
         if(this.state.display){
@@ -34,21 +38,31 @@ export default class Profile extends Component {
     handleSubmit = async e => {
         
         console.log("SUBMITTED BABY!!!!!!!!!",  e.target.files[0])
+        const uploadData = new FormData();
+        await uploadData.append("imageUrl", e.target.files[0]);
+        
+        try{
+            await actions.updateAvatar(uploadData);
+            window.location.reload()
+        } catch(err){
+            console.log('*****',err.message)
+        }
+    }
 
-        // e.preventDefault()
-        // try{
-        //     let user = await actions.changeAvatar(this.state);
-        //     this.props.setUser({...user.data})  
-        //     this.props.history.push('/home')
-        // } catch(err){
-        //     console.log('*****',err.message)
-        // }
+    imageLoad = () => {
+        console.log(this.props.avatar)
+        return this.props.avatar ?
+        <img className="profile-nav__user-avatar__image" src={this.props.avatar} alt="Avatar"/>
+        :
+        <div className="profile-nav__user-avatar__image-default"></div>
+               
     }
 
 
     // changeProfileState = ()
 
     render() {
+        console.log(this.props.user)
         return (
             <div>
                 <Header {...this.props} isProfile={true} loggedIn={true}/>
@@ -56,6 +70,8 @@ export default class Profile extends Component {
                     <div className="profile-nav">
                         <div className="profile-nav__user">
                             <div className="profile-nav__user-avatar">
+                                {this.imageLoad()}
+                                
                                 <div className="profile-nav__user-avatar__change">
                                 <form className="profile-nav__user-avatar__change-form">
                                     <label className="profile-nav__user-avatar__change-form--label" for="img">Change Avatar</label>

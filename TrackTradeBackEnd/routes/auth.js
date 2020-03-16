@@ -5,6 +5,9 @@ const TradeIdea = require('../models/TradeIdea')
 const passport = require('../config/passport')
 
 
+const uploader = require('../config/cloudinary-setup');
+
+
 router.post('/sign-up', (req, res, next) => {
   User.register({username: req.body.username}, req.body.password)
   .then(user => {
@@ -27,11 +30,11 @@ router.get('/is-logged-in', (req,res,next)=>{
 
 router.post('/log-in', passport.authenticate("local"), (req,res, next)=>{
     console.log('-==-=-=-=-=-=-=-=-=wdfs=d-c-=sdc=-sdc-=sdc')
-  const user = new User({
-      username: req.body.username,
-      password: req.body.password
-  })
-  res.status(200).json(user)
+  // const user = new User({
+  //     username: req.body.username,
+  //     password: req.body.password
+  // })
+  res.status(200).json(req.user)
   
 })
 
@@ -72,6 +75,31 @@ router.post('/updateIdea', (req, res, next) => {
 }
 )
 
+router.post('/ideaUpload', uploader.single("imageUrl"), (req, res, next) => {
+  // console.log('file is: ', req.file)
+
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+  console.log(req.file, ' req dot file')
+  // get secure_url from the file object and save it in the 
+  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
+  res.json({ secure_url: req.file.secure_url });
+})
+
+router.post('/updateAvatar', uploader.single("imageUrl"), (req, res, next) => {
+
+  console.log("--------file:", req.file)
+  console.log(req.user)
+  
+  User.updateOne({_id: req.user._id}, {avatar: req.file.secure_url}).then(whatever => {
+    console.log(whatever);
+    res.json({ secure_url: req.file.secure_url });
+  }).catch(err => console.log(err))
+}
+)
+
 router.post('/postTrade', (req, res, next) => {
   console.log("--------id:", req.body._id)
   console.log("--------currency:", req.body.currency)
@@ -80,12 +108,25 @@ router.post('/postTrade', (req, res, next) => {
   console.log("--------close:", req.body.close)
   console.log("--------lot:", req.body.lot)
   
-  Trade.create({trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, close: req.body.close, lot: req.body.lot}}).then(trade => {
+  Trade.create({trade: {trader: req.user.username,currency: req.body.currency, kind: req.body.kind, entry: req.body.entry, close: req.body.close, lot: req.body.lot, money: req.body.money}}).then(trade => {
     console.log(trade);
     res.json(trade);
   }).catch(err => console.log(err))
 }
 )
+
+router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
+  // console.log('file is: ', req.file)
+
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+  console.log(req.file, ' req dot file')
+  // get secure_url from the file object and save it in the 
+  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
+  res.json({ secure_url: req.file.secure_url });
+})
 
 router.post('/delete-ideas', (req,res,next)=>{
 

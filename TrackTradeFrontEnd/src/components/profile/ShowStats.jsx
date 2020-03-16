@@ -34,6 +34,8 @@ export default class ShowStats extends Component {
         let wins = 0;
         let losses = 0;
         let obj = {};
+        let totalProfits = 0;
+        let totalLosses = 0;
 
         for (let i = 0; i < trades.length; i++) {
             obj[trades[i].trade.currency] = 0
@@ -64,7 +66,7 @@ export default class ShowStats extends Component {
             }
             //buy not jpy
             else if(trades[i].trade.kind === 'buy' && !trades[i].trade.currency.includes("JPY")){
-                pips = trades[i].trade.close - trades[i].trade.entry
+                pips = Math.ceil((trades[i].trade.close * 10000) - (trades[i].trade.entry * 10000))
             }
             //buy jpy
             else if(trades[i].trade.kind === 'buy' && trades[i].trade.currency.includes("JPY")){
@@ -90,29 +92,21 @@ export default class ShowStats extends Component {
                 { y: losses, label: "Losses", color: '#d21' }
             ]
 
-            
-
             num++;
             
         }
             
 
-        for(var one in obj){
+        for(let one in obj){
             currencyPerformance.push({label: one, y: obj[one], color: `${obj[one] > 0 ? "#2c1" : "#d21"}` })
         }
 
+        for(let eachOne of allTradesDataPoints){
+            eachOne.y > 0 ? totalProfits += eachOne.y : totalLosses += eachOne.y
+        }
+
+        this.setState({wlr: Math.ceil((wins / (wins + losses)) * 100), totalProfits: totalProfits.toFixed(2), totalLosses: totalLosses.toFixed(2), net: Number(totalProfits.toFixed(2)) + Number(totalLosses.toFixed(2))})
 		chart.render();
-    }
-    
-    deleteCard = async id => {
-        try {
-            await actions.deleteIdeas({cardId: id});
-            let actualTrades = await actions.getIdeas();
-            this.setState({actualTrades})
-        }
-        catch(err) {
-            console.log('--=-=-=-=-=-=-=', err)
-        }
     }
 
     render() {
@@ -129,7 +123,7 @@ export default class ShowStats extends Component {
 			axisY: {
                 title: "Profit/Loss",
                 prefix: "$",
-				includeZero: false
+				includeZero: true
             },
             axisX: {
                 title: "Number of Trade",
@@ -158,6 +152,10 @@ export default class ShowStats extends Component {
                     fontFamily: 'arial',
                     fontColor: '#dddddd'
                 },
+                subtitles: [{
+                    text: "Total gain: $" + this.state.totalProfits + " | Total lost: $" + this.state.totalLosses + " | Net: $" + this.state.net,
+                    padding: 10
+                }],
                 axisY: {
                     title: "Profit/Loss",
                     prefix: "$",
@@ -190,6 +188,10 @@ export default class ShowStats extends Component {
                     fontFamily: 'arial',
                     fontColor: '#dddddd'
                 },
+                subtitles: [{
+                    text:this.state.wlr + "%",
+                    padding: 10
+                }],
                 data: [{
                     type: "pie",
                     startAngle: 0,
@@ -237,7 +239,6 @@ export default class ShowStats extends Component {
                     <li className={this.state.currentChart === "allTrades" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"allTrades"})}>All Trades</li>
                     <li className={this.state.currentChart === "winLoss" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"winLoss"})}>Win Loss Ratio</li>
                     <li className={this.state.currentChart === "curPerformance" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"curPerformance"})}>Currency Performance</li>
-                    <li className={this.state.currentChart === "leaderboard" ? "profile-stats-nav__links-text-active" : "profile-stats-nav__links-text"} onClick={() => this.setState({currentChart:"leaderboard"})}>Leaderboard</li>
                 </ul>
                 <div className="profile-stats-chart">
                     <CanvasJSChart options = {options} 

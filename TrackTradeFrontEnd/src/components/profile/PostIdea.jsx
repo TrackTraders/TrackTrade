@@ -9,6 +9,25 @@ export default class PostTrade extends Component {
 
   handleChange = e => this.setState({[e.target.name]: e.target.value})
 
+  handleFileUpload = e => {
+      console.log("The file to be uploaded is: ", e.target.files[0]);
+
+      const uploadData = new FormData();
+      // imageUrl => this name has to be the same as in the model since we pass
+      // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+      uploadData.append("imageUrl", e.target.files[0]);
+      
+      actions.handleIdeaUpload(uploadData) //This is where we will go cloudinary.com and save our pic 
+      .then(response => {
+          console.log('response is: ', response);
+          // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
+          this.setState({ imageUrl: response.secure_url }); //This is the url we got back from cloudinary
+        })
+        .catch(err => {
+          console.log("Error while uploading the file: ", err);
+        });
+    }
+
   handleSubmit = async e => {
       e.preventDefault()
       //console.log(e)
@@ -70,6 +89,10 @@ export default class PostTrade extends Component {
                   </select>
               </div>
               <div className="signup-form-group">
+                  <label for="lot">Lot size</label>
+                  <input onChange={this.handleChange} type="number" className="signup-form-input" name="lot"  step="0.01" min="0" max="100" required />
+              </div>
+              <div className="signup-form-group">
                   <label for="entry">Entry price</label>
                   <input onChange={this.handleChange} type="number" className="signup-form-input" name="entry" step="0.0001" min="0" max="1000" required />
               </div>
@@ -82,12 +105,12 @@ export default class PostTrade extends Component {
                   <input onChange={this.handleChange} type="number" className="signup-form-input" name="takeprofit"  step="0.0001" min="0" max="1000" required />
               </div>
               <div className="signup-form-group">
-                  <label for="lot">Lot size</label>
-                  <input onChange={this.handleChange} type="number" className="signup-form-input" name="lot"  step="0.01" min="0" max="100" required />
-              </div>
-              <div className="signup-form-group">
                   <label for="lot">Description</label>
                   <textarea onChange={this.handleChange} type="text" className="signup-form-input" name="description" />
+              </div>
+              <div className="signup-form-group">
+                  <label for="screenshot">Screenshot</label>
+                  <input onChange={(e) => this.handleFileUpload(e)} type="file" className="signup-form-input-file" name="screenshot" required />
               </div>
               <button type="submit" className="signup-form-btn">Post Idea</button>
           </form>

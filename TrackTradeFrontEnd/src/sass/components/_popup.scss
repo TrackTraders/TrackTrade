@@ -206,7 +206,34 @@
         }
     }
 
+    &__delete {
+        &,
+        &:link,
+        &:visited {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 1.6rem;
+            position: absolute;
+            bottom: 3rem;
+            right: 30rem;
+            margin-left: 2rem;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            color: #eee;
+            background-color: #c21;
+            border-radius: 3px;
+            border: none;
+            transition: all .2s ease-in-out;
+        }
+
+        &:hover {
+            background-color: #d21;
+            cursor: pointer;
+        }
+    }
+
     &__edit {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 1.6rem;
         position: absolute;
         bottom: 3rem;
         right: 4rem;
@@ -221,6 +248,7 @@
 
         &:hover {
             background-color: $color-blue-bright-2;
+            cursor: pointer;
         }
     }
 
@@ -239,6 +267,7 @@
 
         &:hover {
             background-color: $color-blue-bright-2;
+            cursor: pointer;
         }
     }
 

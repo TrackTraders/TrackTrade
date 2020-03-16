@@ -18,7 +18,7 @@ class App extends Component {
   async componentDidMount() {
     let user = await actions.isLoggedIn()
     this.setState({...user.data})
-    console.log('cool', user.data)
+    // this.setState({avatar: user.data})
   }
 
   setUser = (user) => this.setState(user)
@@ -38,7 +38,7 @@ class App extends Component {
 
         <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
 
-        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} username={this.state.username} />}></Route>
+        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} avatar={this.state.avatar} username={this.state.username} />}></Route>
         
         <Route exact path="/postIdea" render={(props) => <PostIdea {...props} username={this.state.username} />}></Route>
 

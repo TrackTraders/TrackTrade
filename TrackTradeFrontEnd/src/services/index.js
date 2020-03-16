@@ -12,7 +12,9 @@ const service = axios.create({ withCredentials: true, baseURL });
 
 const actions = {
   isLoggedIn: async () => {
-    return await service.get('/is-logged-in');
+    let user = await service.get('/is-logged-in');
+    console.log(user)
+    return user
   },
   signUp: async (user) => {
     return await service.post('/sign-up', user);
@@ -50,8 +52,20 @@ const actions = {
   deleteTrades: async (id) => {
     return await service.post('/delete-trades', id);
   },
-  changeAvatar: async (trade) => {
-    return await service.post('/postTrade', trade);
+  updateAvatar: async (theFile) => {
+    return await service.post('/updateAvatar', theFile)
+      .then(res => res.data)
+      .catch(err => console.error(err));
+  },
+  handleIdeaUpload: async (theFile) => {
+    return await service.post('/ideaUpload', theFile)
+      .then(res => res.data)
+      .catch(err => console.error(err));
+  },
+  handleTradeUpload: async (theFile) => {
+    return await service.post('/tradeUpload', theFile)
+      .then(res => res.data)
+      .catch(err => console.error(err));
   },
 };
 

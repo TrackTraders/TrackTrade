@@ -34,8 +34,20 @@ export default class ShowTrades extends Component {
                     <a href="#popup" onClick={async () => {
                         await this.setState({eachTrade});
                         console.log(this.state);
+                    }} className="trade-ideas-card-more">click for more info</a>
+                    <a href="#popup" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
                     }} className="trade-ideas-card-link">
-                        {/* <div onClick={() => this.deleteCard(eachTrade._id)} class="trade-ideas-card-delete">&times;</div> */}
+
+                        {eachTrade.trade.money > 0 ?
+                            <div className="trade-ideas-card-win">${eachTrade.trade.money.toFixed(2)}</div>
+                        :
+                            <div className="trade-ideas-card-loss">-${Math.abs(eachTrade.trade.money).toFixed(2)}</div>
+                        }
+                        
+
+
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 {eachTrade.trade.currency} {eachTrade.trade.kind}
@@ -46,7 +58,7 @@ export default class ShowTrades extends Component {
                                 Lot Size:
                             </div>
                             <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.lot}
+                                {eachTrade.trade.lot.toFixed(2)}
                             </div>
                         </div>
                         <div className="trade-ideas-card__item">
@@ -109,7 +121,7 @@ export default class ShowTrades extends Component {
                             
                             
                             <h2 class="heading-secondary u-margin-bottom-small">
-                            {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
+                            {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text"></p>}
                             </h2>
                             
                         </div>

@@ -308,12 +308,6 @@ body::-webkit-scrollbar-thumb {
   justify-content: center;
   align-items: center;
   padding-bottom: 25rem; }
-  .signup-lotcalc {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 25rem; }
   .signup-result-lot {
     margin: 5rem 33rem; }
   .signup-form {
@@ -379,14 +373,26 @@ body::-webkit-scrollbar-thumb {
       display: flex;
       align-items: center; }
       .profile-nav__user-avatar {
-        background-image: url("./images/VET_logo.png");
-        background-size: contain;
         border-radius: 50%;
         border: none;
         height: 100px;
         width: 100px;
         background-color: #ccc;
         overflow: hidden; }
+        .profile-nav__user-avatar:hover > .profile-nav__user-avatar__change {
+          transform: translateY(-6rem);
+          z-index: 3; }
+        .profile-nav__user-avatar__image {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+          z-index: -20; }
+          .profile-nav__user-avatar__image-default {
+            background-image: url("./images/userdefault.png");
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            z-index: -20; }
         .profile-nav__user-avatar__change {
           background-color: rgba(34, 34, 34, 0.8);
           color: #fff;
@@ -395,7 +401,7 @@ body::-webkit-scrollbar-thumb {
           padding: 2rem auto;
           transform: translateY(10rem);
           transition: all .2s ease-in-out;
-          z-index: -1; }
+          z-index: 100; }
           .profile-nav__user-avatar__change-form {
             padding: 1rem 2.5rem 3rem; }
             .profile-nav__user-avatar__change-form--input {
@@ -404,9 +410,6 @@ body::-webkit-scrollbar-thumb {
                 cursor: pointer; }
             .profile-nav__user-avatar__change-form--label:hover {
               cursor: pointer; }
-        .profile-nav__user-avatar:hover .profile-nav__user-avatar__change {
-          transform: translateY(5rem);
-          z-index: 3; }
       .profile-nav__user-username {
         padding-left: 4rem;
         font-size: 3rem; }
@@ -669,7 +672,26 @@ body::-webkit-scrollbar-thumb {
         padding: 0; } }
   .popup__close:hover {
     color: red; }
+  .popup__delete, .popup__delete:link, .popup__delete:visited {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.6rem;
+    position: absolute;
+    bottom: 3rem;
+    right: 30rem;
+    margin-left: 2rem;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    color: #eee;
+    background-color: #c21;
+    border-radius: 3px;
+    border: none;
+    transition: all .2s ease-in-out; }
+  .popup__delete:hover {
+    background-color: #d21;
+    cursor: pointer; }
   .popup__edit {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.6rem;
     position: absolute;
     bottom: 3rem;
     right: 4rem;
@@ -682,7 +704,8 @@ body::-webkit-scrollbar-thumb {
     border: none;
     transition: all .2s ease-in-out; }
     .popup__edit:hover {
-      background-color: #1985d8; }
+      background-color: #1985d8;
+      cursor: pointer; }
   .popup__save {
     position: absolute;
     bottom: 3rem;
@@ -696,7 +719,8 @@ body::-webkit-scrollbar-thumb {
     border: none;
     transition: all .2s ease-in-out; }
     .popup__save:hover {
-      background-color: #1985d8; }
+      background-color: #1985d8;
+      cursor: pointer; }
   .popup-form {
     display: flex;
     flex-direction: column;
@@ -749,6 +773,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    height: 450px;
     word-wrap: break-word;
     position: relative;
     transition: all .3s ease-in-out; }
@@ -760,6 +785,62 @@ body::-webkit-scrollbar-thumb {
       cursor: pointer;
       transform: translateY(-0.5rem);
       box-shadow: 0 1.25rem 3rem #0d0d0d; }
+      .trade-ideas-card:hover .trade-ideas-card-more {
+        opacity: 1; }
+      .trade-ideas-card:hover .trade-ideas-card-win, .trade-ideas-card:hover .trade-ideas-card-win-all {
+        color: rgba(13, 93, 13, 0.8); }
+      .trade-ideas-card:hover .trade-ideas-card-loss, .trade-ideas-card:hover .trade-ideas-card-loss-all {
+        color: rgba(93, 13, 13, 0.8); }
+    .trade-ideas-card-more, .trade-ideas-card-more:link, .trade-ideas-card-more:visited {
+      display: block;
+      opacity: 0;
+      position: absolute;
+      height: 101%;
+      width: 101%;
+      padding-top: 55%;
+      margin-left: -.75px;
+      text-align: center;
+      font-size: 2rem;
+      transition: all .2s ease-in-out;
+      color: #fff;
+      text-decoration: none;
+      background-color: rgba(13, 13, 13, 0.8); }
+    .trade-ideas-card-win-all {
+      display: block;
+      position: absolute;
+      top: 111px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: 700;
+      transition: all .2s ease-in-out;
+      color: #2c1; }
+    .trade-ideas-card-loss-all {
+      display: block;
+      position: absolute;
+      top: 111px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: 700;
+      transition: all .2s ease-in-out;
+      color: #d21; }
+    .trade-ideas-card-win {
+      display: block;
+      position: absolute;
+      top: 87px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: 700;
+      transition: all .2s ease-in-out;
+      color: #2c1; }
+    .trade-ideas-card-loss {
+      display: block;
+      position: absolute;
+      top: 87px;
+      right: 20px;
+      font-size: 2rem;
+      font-weight: 700;
+      transition: all .2s ease-in-out;
+      color: #f20; }
     .trade-ideas-card-delete {
       display: block;
       position: absolute;
@@ -769,7 +850,7 @@ body::-webkit-scrollbar-thumb {
       transition: all .2s ease-in-out; }
       .trade-ideas-card-delete:hover {
         cursor: pointer;
-        color: red; }
+        color: #d21; }
     .trade-ideas-card__item {
       padding: 1rem;
       font-size: 2rem;

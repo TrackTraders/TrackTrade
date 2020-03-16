@@ -23,21 +23,32 @@ export default class ShowAllTrades extends Component {
                     <a href="#popup" onClick={async () => {
                         await this.setState({eachTrade});
                         console.log(this.state);
+                    }} className="trade-ideas-card-more">click for more info</a>
+                    <a href="#popup" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
                     }} className="trade-ideas-card-link">
                         {/* <div onClick={() => this.deleteCard(eachTrade._id)} class="trade-ideas-card-delete">&times;</div> */}
+
+                        {eachTrade.trade.money > 0 ?
+                            <div className="trade-ideas-card-win-all">WIN</div>
+                        :
+                            <div className="trade-ideas-card-loss-all">LOSS</div>
+                        }
+
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 {eachTrade.trade.currency} {eachTrade.trade.kind}
                             </div>
                         </div>
-                        <div className="trade-ideas-card__item">
+                        {/* <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 Lot Size:
                             </div>
                             <div className="trade-ideas-card__item-content">
                                 {eachTrade.trade.lot}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 Entry:
