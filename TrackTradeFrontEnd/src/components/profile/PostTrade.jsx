@@ -128,7 +128,7 @@ export default class PostTrade extends Component {
               </div>
               <div className="signup-form-group">
                   <label for="screenshot">Screenshot</label>
-                  <input onChange={(e) => this.handleFileUpload(e)} type="file" className="signup-form-input-file" name="screenshot" required />
+                  <input onChange={(e) => this.handleFileUpload(e)} type="file" className="signup-form-input-file" name="screenshot" />
               </div>
               <button type="submit" className="signup-form-btn">Post Trade</button>
           </form>

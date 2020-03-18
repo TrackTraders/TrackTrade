@@ -28,7 +28,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 450px;
+            height: 375px;
             // align-items: start;
             
             word-wrap: break-word;
@@ -83,7 +83,7 @@
             &-win-all {
                 display: block;
                 position: absolute;
-                top: 111px;
+                top: 73.5px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
@@ -94,7 +94,7 @@
             &-loss-all {
                 display: block;
                 position: absolute;
-                top: 111px;
+                top: 73.5px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
@@ -106,7 +106,7 @@
             &-win {
                 display: block;
                 position: absolute;
-                top: 87px;
+                top: 49.5px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
@@ -117,7 +117,7 @@
             &-loss {
                 display: block;
                 position: absolute;
-                top: 87px;
+                top: 49.5px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
@@ -146,9 +146,39 @@
                 display: flex;
                 justify-content: space-between;
     
+
                 &-title {
                     text-transform: uppercase;
                     font-weight: 700;
+
+                    &-home {
+                        display: flex;
+                        align-items: center;
+
+                        &-text {
+                            padding-left: 2rem;
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+                &__image {
+                    object-fit: cover;
+                    height: 100px;
+                    width: 100px;
+                    z-index: -20;
+                    border-radius: 50%;
+                    border: none;
+
+                    &-default {
+                        background-image: url("./images/userdefault.png");
+                        background-size: cover;
+                        border-radius: 50%;
+                        border: none;
+                        height: 100px;
+                        width: 100px;
+                        z-index: -20;
+                    }
                 }
 
                 &-content {

@@ -8,6 +8,7 @@ import LogIn from './components/auth/LogIn';
 import PostIdea from './components/profile/PostIdea'
 import PostTrade from './components/profile/PostTrade'
 import Profile from './components/profile/Profile'
+import OtherProfile from './components/profile/OtherProfile'
 import actions from './services/index'
 import Tools from './components/tools/Tools';
 
@@ -18,7 +19,6 @@ class App extends Component {
   async componentDidMount() {
     let user = await actions.isLoggedIn()
     this.setState({...user.data})
-    // this.setState({avatar: user.data})
   }
 
   setUser = (user) => this.setState(user)
@@ -37,6 +37,8 @@ class App extends Component {
         <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
 
         <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+
+        <Route exact path="/profile/:otheruser" render={(props) => <OtherProfile {...props} username={this.state.username} />}></Route>
 
         <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} avatar={this.state.avatar} username={this.state.username} />}></Route>
         
@@ -57,6 +59,8 @@ class App extends Component {
         <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
 
         <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+
+        <Route exact path="/profile/:otheruser" render={(props) => <LogIn {...props}  />}></Route>
 
         <Route exact path="/profile" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
         

@@ -5,8 +5,12 @@ const findOrCreate = require('mongoose-findorcreate')
 const userSchema = new Schema({
     username: String,
     password: String,
-    avatar: String
-})
+    avatar: String,
+    connections: [{
+        type: Schema.Types.ObjectId, 
+        ref: "User"
+    }]
+}, { timestamps: { createdAt: 'created_at' } })
 
 userSchema.plugin(PLM);
 userSchema.plugin(findOrCreate);

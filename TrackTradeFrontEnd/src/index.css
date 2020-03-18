@@ -77,7 +77,7 @@ body::-webkit-scrollbar-thumb {
 .navigation {
   display: flex;
   justify-content: space-between;
-  padding: 2rem 25rem;
+  padding: 2rem 10%;
   align-items: center;
   width: 100%;
   background-color: #06151b;
@@ -365,7 +365,7 @@ body::-webkit-scrollbar-thumb {
   background-color: #081c24;
   border-top: 2px solid #040e13;
   color: #ddd;
-  padding: 5rem 25rem; }
+  padding: 5rem 10%; }
   .profile-nav {
     display: flex;
     justify-content: space-between; }
@@ -411,7 +411,7 @@ body::-webkit-scrollbar-thumb {
             .profile-nav__user-avatar__change-form--label:hover {
               cursor: pointer; }
       .profile-nav__user-username {
-        padding-left: 4rem;
+        padding: 0 4rem;
         font-size: 3rem; }
     .profile-nav__links {
       display: flex;
@@ -430,6 +430,20 @@ body::-webkit-scrollbar-thumb {
           background-color: rgba(6, 21, 27, 0.7);
           color: #ddd;
           cursor: pointer; }
+        .profile-nav__links-text-profile {
+          padding: 1rem 1.5rem;
+          margin: 1rem 2rem;
+          background-color: rgba(6, 21, 27, 0.7);
+          color: #ddd;
+          border-radius: 2px;
+          font-size: 2rem;
+          text-transform: uppercase;
+          list-style: none;
+          transition: all .2s ease-in-out; }
+          .profile-nav__links-text-profile:hover {
+            background-color: #040e13;
+            color: #ddd;
+            cursor: pointer; }
       .profile-nav__links-text-active {
         padding: 1rem 1.5rem;
         margin: auto 2rem;
@@ -465,11 +479,14 @@ body::-webkit-scrollbar-thumb {
   background-color: #081c24;
   border-top: 2px solid #040e13;
   color: #ddd;
-  padding: 5rem 25rem; }
+  padding: 5rem 10%; }
+  .home-card, .home-card:link, .home-card:visited {
+    text-decoration: none;
+    color: #ddd; }
   .home-nav {
     display: flex;
     justify-content: space-evenly;
-    padding-bottom: 10rem; }
+    padding-bottom: 7rem; }
     .home-nav__links {
       display: flex;
       justify-content: space-evenly;
@@ -501,6 +518,32 @@ body::-webkit-scrollbar-thumb {
           background-color: rgba(6, 21, 27, 0.7);
           color: #ddd;
           cursor: pointer; }
+  .home-content {
+    display: flex;
+    flex-direction: column; }
+    .home-content-section1 {
+      text-align: center; }
+    .home-content--search {
+      width: 30rem;
+      margin: -2rem auto 5rem;
+      background-color: #06151b;
+      color: #ddd;
+      border: 2px solid #040e13;
+      padding: 1rem 1.5rem;
+      border-radius: 2px;
+      margin: 0 5rem 0 0; }
+    .home-content--select {
+      width: 20rem;
+      margin: -2rem auto 5rem;
+      background-color: #06151b;
+      color: #ddd;
+      border: 2px solid #040e13;
+      padding: 1rem 1.5rem;
+      border-radius: 2px; }
+    .home-content--label {
+      color: #ddd;
+      font-size: 2rem;
+      padding-right: 1rem; }
 
 .profile-stats {
   display: flex;
@@ -773,7 +816,7 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 450px;
+    height: 375px;
     word-wrap: break-word;
     position: relative;
     transition: all .3s ease-in-out; }
@@ -808,7 +851,7 @@ body::-webkit-scrollbar-thumb {
     .trade-ideas-card-win-all {
       display: block;
       position: absolute;
-      top: 111px;
+      top: 73.5px;
       right: 20px;
       font-size: 2rem;
       font-weight: 700;
@@ -817,7 +860,7 @@ body::-webkit-scrollbar-thumb {
     .trade-ideas-card-loss-all {
       display: block;
       position: absolute;
-      top: 111px;
+      top: 73.5px;
       right: 20px;
       font-size: 2rem;
       font-weight: 700;
@@ -826,7 +869,7 @@ body::-webkit-scrollbar-thumb {
     .trade-ideas-card-win {
       display: block;
       position: absolute;
-      top: 87px;
+      top: 49.5px;
       right: 20px;
       font-size: 2rem;
       font-weight: 700;
@@ -835,7 +878,7 @@ body::-webkit-scrollbar-thumb {
     .trade-ideas-card-loss {
       display: block;
       position: absolute;
-      top: 87px;
+      top: 49.5px;
       right: 20px;
       font-size: 2rem;
       font-weight: 700;
@@ -859,6 +902,27 @@ body::-webkit-scrollbar-thumb {
       .trade-ideas-card__item-title {
         text-transform: uppercase;
         font-weight: 700; }
+        .trade-ideas-card__item-title-home {
+          display: flex;
+          align-items: center; }
+          .trade-ideas-card__item-title-home-text {
+            padding-left: 2rem;
+            font-weight: 700; }
+      .trade-ideas-card__item__image {
+        object-fit: cover;
+        height: 100px;
+        width: 100px;
+        z-index: -20;
+        border-radius: 50%;
+        border: none; }
+        .trade-ideas-card__item__image-default {
+          background-image: url("./images/userdefault.png");
+          background-size: cover;
+          border-radius: 50%;
+          border: none;
+          height: 100px;
+          width: 100px;
+          z-index: -20; }
       .trade-ideas-card__item-content {
         font-size: 1.8rem; }
       .trade-ideas-card__item-date {

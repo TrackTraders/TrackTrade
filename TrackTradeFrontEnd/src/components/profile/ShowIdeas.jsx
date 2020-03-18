@@ -77,7 +77,7 @@ export default class ShowIdeas extends Component {
                                 {eachTrade.trade.entry}
                             </div>
                         </div>
-                        <div className="trade-ideas-card__item">
+                        {/* <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 Stoploss:
                             </div>
@@ -92,7 +92,97 @@ export default class ShowIdeas extends Component {
                             <div className="trade-ideas-card__item-content">
                                 {eachTrade.trade.takeprofit}
                             </div>
+                        </div> */}
+                        <div className="trade-ideas-card__item">
+                            <div className="trade-ideas-card__item-title">
+                                By:
+                            </div>
+                            <div className="trade-ideas-card__item-content">
+                                {eachTrade.trade.trader}
+                            </div>
                         </div>
+                        <div className="trade-ideas-card__item-date">
+                            <div className="trade-ideas-card__item-date-title">
+                                Created at:
+                            </div>
+                            <div className="trade-ideas-card__item-date-content">
+                                {this.formatTime(eachTrade.created_at)}
+                            </div>
+                        </div>
+                        {(eachTrade.updatedAt === eachTrade.created_at) ? null :
+                         <div className="trade-ideas-card__item-date">
+                            <div className="trade-ideas-card__item-date-title">
+                                Updated at:
+                            </div>
+                            <div className="trade-ideas-card__item-date-content">
+                                {this.formatTime(eachTrade.updatedAt)}
+                            </div>
+                        </div>
+                        }                        
+                    </a>
+                    </div> 
+                    
+                )
+            })
+        }
+        else {
+            return null
+        }
+    }
+
+    showOtherIdeas = () => {
+        
+        if(this.props.tradeIdeas){
+            return this.props.tradeIdeas.map(eachTrade=>{
+                return (
+                    <div className="trade-ideas-card">
+
+                    <a href="#popup" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
+                    }} className="trade-ideas-card-more">click for more info</a>
+                    <a href="#popup" className="trade-ideas-card-link" onClick={async () => {
+                        await this.setState({eachTrade});
+                        console.log(this.state);
+                    }} >
+                        
+                        <div className="trade-ideas-card__item">
+                            <div className="trade-ideas-card__item-title">
+                                {eachTrade.trade.currency} {eachTrade.trade.kind}
+                            </div>
+                        </div>
+                        {/* <div className="trade-ideas-card__item">
+                            <div className="trade-ideas-card__item-title">
+                                Lot Size:
+                            </div>
+                            <div className="trade-ideas-card__item-content">
+                                {eachTrade.trade.lot}
+                            </div>
+                        </div> */}
+                        <div className="trade-ideas-card__item">
+                            <div className="trade-ideas-card__item-title">
+                                Entry:
+                            </div>
+                            <div className="trade-ideas-card__item-content">
+                                {eachTrade.trade.entry}
+                            </div>
+                        </div>
+                        {/* <div className="trade-ideas-card__item">
+                            <div className="trade-ideas-card__item-title">
+                                Stoploss:
+                            </div>
+                            <div className="trade-ideas-card__item-content">
+                                {eachTrade.trade.stoploss}
+                            </div>
+                        </div>
+                        <div className="trade-ideas-card__item">
+                            <div className="trade-ideas-card__item-title">
+                                Takeprofit:
+                            </div>
+                            <div className="trade-ideas-card__item-content">
+                                {eachTrade.trade.takeprofit}
+                            </div>
+                        </div> */}
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 By:
@@ -160,41 +250,44 @@ export default class ShowIdeas extends Component {
 
     render() {
         console.log(this.state)
-        return (
+        if(!this.props.otherProfile){
+            return (
             <div className="trade-ideas">
                 {this.showIdeas()}
                 {/* {this.exitPopup()} */}
 
-                {this.state.eachTrade ? <div class="popup" id="popup">
-                    <div class="popup__content" id="content">
-                        <div class="popup__left">
+                {this.state.eachTrade ? <div className="popup" id="popup">
+                    <div className="popup__content" id="content">
+                        <div className="popup__left">
                             
                         </div>
                         
                             {!this.state.edit ?
-                            <div class="popup__right">
-                            <a href="#main" class="popup__close">&times;</a>
-                            <button onClick={this.editIdeas} class="popup__edit">EDIT IDEA</button>
-                            <a href="#main" onClick={() => this.deleteCard(this.state.eachTrade._id)} class="popup__delete">DELETE IDEA</a>
+                            <div className="popup__right">
+                            <a href="#main" className="popup__close">&times;</a>
+                            <button onClick={this.editIdeas} className="popup__edit">EDIT IDEA</button>
+                            <a href="#main" onClick={() => this.deleteCard(this.state.eachTrade._id)} className="popup__delete">DELETE IDEA</a>
                             
-                            <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
-                            <h2 class="heading-secondary u-margin-bottom-small">Lot size: {this.state.eachTrade.trade.lot}</h2>
-                            <h2 class="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
-                            <h2 class="heading-secondary u-margin-bottom-small">Stoploss: {this.state.eachTrade.trade.stoploss}</h2>
-                            <h2 class="heading-secondary u-margin-bottom-small">Takeprofit: {this.state.eachTrade.trade.takeprofit}</h2>
+                            <h2 className="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
+
+                            <h2 className="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
+                            <h2 className="heading-secondary u-margin-bottom-small">Stoploss: {this.state.eachTrade.trade.stoploss}</h2>
+                            <h2 className="heading-secondary u-margin-bottom-small">Takeprofit: {this.state.eachTrade.trade.takeprofit}</h2>
                             
                             
-                            <h2 class="heading-secondary u-margin-bottom-small">
-                            {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
+                            <h2 className="heading-secondary u-margin-bottom-small">
+                            {this.state.eachTrade.trade.description ? <p className="popup__text">{this.state.eachTrade.trade.description}</p> : null}
                             </h2>
                             </div>
                             
                             :
-                            <div class="popup__right">
-                            <a href="#main" class="popup__close" onClick={this.exitPopup}>&times;</a>
+                            //THIS PART IS FOR THE EDITING OF IDEAS
+                            
+                            <div className="popup__right">
+                            <a href="#main" className="popup__close" onClick={this.exitPopup}>&times;</a>
 
                             <form className="popup-form" onSubmit={this.handleSubmit}>
-                                <button type="submit" onClick={this.saveEdit} class="popup__save popup__save">SAVE</button>
+                                <button type="submit" onClick={this.saveEdit} className="popup__save popup__save">SAVE</button>
 
                                 <div className="popup-form-group">
                                     <label for="currency">Currency</label>
@@ -265,6 +358,45 @@ export default class ShowIdeas extends Component {
                 </div> : null}
                 
             </div>
-        )
+            )
+        } else {
+            return (
+                <div className="trade-ideas">
+                    {this.showOtherIdeas()}
+                    {/* {this.exitPopup()} */}
+    
+                    {this.state.eachTrade ? <div className="popup" id="popup">
+                        <div className="popup__content" id="content">
+                            <div className="popup__left">
+                                
+                            </div>
+                            
+                                
+                                <div className="popup__right">
+                                <a href="#main" className="popup__close">&times;</a>
+                                {/* <button onClick={this.editIdeas} className="popup__edit">EDIT IDEA</button>
+                                <a href="#main" onClick={() => this.deleteCard(this.state.eachTrade._id)} className="popup__delete">DELETE IDEA</a>
+                                 */}
+                                <h2 className="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
+                                
+                                <h2 className="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
+                                <h2 className="heading-secondary u-margin-bottom-small">Stoploss: {this.state.eachTrade.trade.stoploss}</h2>
+                                <h2 className="heading-secondary u-margin-bottom-small">Takeprofit: {this.state.eachTrade.trade.takeprofit}</h2>
+                                
+                                
+                                <h2 className="heading-secondary u-margin-bottom-small">
+                                {this.state.eachTrade.trade.description ? <p className="popup__text">{this.state.eachTrade.trade.description}</p> : null}
+                                </h2>
+                                </div>
+                                
+                                
+                                }
+                            
+                        </div>
+                    </div> : null}
+                    
+                </div>
+                )
+            }
     }
 }

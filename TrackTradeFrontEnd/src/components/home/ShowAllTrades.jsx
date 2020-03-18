@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import actions from '../../services/index'
 
 export default class ShowAllTrades extends Component {
@@ -111,7 +112,11 @@ export default class ShowAllTrades extends Component {
                             <h2 class="heading-secondary u-margin-bottom-small">
                             {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
                             </h2>
-                            <p class="popup__text">Created by: {this.state.eachTrade.trade.trader}</p>
+                            <p class="popup__text">Created by:
+                            <Link to={`/profile/${this.state.eachTrade.trade.trader}`} >
+                            {this.state.eachTrade.trade.trader}
+                            </Link>
+                            </p>
                         </div>
                     </div>
                 </div> : null}

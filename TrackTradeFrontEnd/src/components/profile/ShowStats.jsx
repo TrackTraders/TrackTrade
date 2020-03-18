@@ -106,6 +106,7 @@ export default class ShowStats extends Component {
         }
 
         this.setState({wlr: Math.ceil((wins / (wins + losses)) * 100), totalProfits: totalProfits.toFixed(2), totalLosses: totalLosses.toFixed(2), net: Number(totalProfits.toFixed(2)) + Number(totalLosses.toFixed(2))})
+
 		chart.render();
     }
 

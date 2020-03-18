@@ -75,25 +75,13 @@ router.post('/updateIdea', (req, res, next) => {
 }
 )
 
-router.post('/ideaUpload', uploader.single("imageUrl"), (req, res, next) => {
-  // console.log('file is: ', req.file)
-
-  if (!req.file) {
-    next(new Error('No file uploaded!'));
-    return;
-  }
-  console.log(req.file, ' req dot file')
-  // get secure_url from the file object and save it in the 
-  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
-  res.json({ secure_url: req.file.secure_url });
-})
-
 router.post('/updateAvatar', uploader.single("imageUrl"), (req, res, next) => {
 
   console.log("--------file:", req.file)
   console.log(req.user)
   
-  User.updateOne({_id: req.user._id}, {avatar: req.file.secure_url}).then(whatever => {
+  User.findByIdAndUpdate(req.user._id, //{$pushToSet {connections: req.body.id}}
+    {avatar: req.file.secure_url}, { new: true }).then(whatever => {
     console.log(whatever);
     res.json({ secure_url: req.file.secure_url });
   }).catch(err => console.log(err))
@@ -115,6 +103,19 @@ router.post('/postTrade', (req, res, next) => {
 }
 )
 
+router.post('/ideaUpload', uploader.single("imageUrl"), (req, res, next) => {
+  // console.log('file is: ', req.file)
+
+  if (!req.file) {
+    next(new Error('No file uploaded!'));
+    return;
+  }
+  console.log(req.file, ' req dot file')
+  // get secure_url from the file object and save it in the 
+  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
+  res.json({ secure_url: req.file.secure_url });
+})
+
 router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
   // console.log('file is: ', req.file)
 
@@ -128,15 +129,11 @@ router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
   res.json({ secure_url: req.file.secure_url });
 })
 
-router.post('/delete-ideas', (req,res,next)=>{
-
-  TradeIdea.deleteOne({_id: req.body.cardId}, (err,trades)=>{
-    if(err){
-      console.log(err)
-    } else {
-      res.json(trades)
-    }
-  })
+router.post('/delete-ideas', async (req,res,next)=>{
+  try {
+  trades = await TradeIdea.deleteOne({_id: req.body.cardId})
+  res.json(trades)
+  } catch(err){ console.log(err) }
 })
 
 router.post('/delete-trades', (req,res,next)=>{
@@ -151,8 +148,7 @@ router.post('/delete-trades', (req,res,next)=>{
 })
 
 router.get('/get-trades', (req,res,next)=>{
-  console.log('profile');
-  console.log(req.user)
+
   Trade.find({"trade.trader": req.user.username}, (err,trades)=>{
     if(err){
       console.log(err)
@@ -163,8 +159,7 @@ router.get('/get-trades', (req,res,next)=>{
 })
 
 router.get('/get-all-trades', (req,res,next)=>{
-  console.log('profile');
-  console.log(req.user)
+
   Trade.find({}, (err,trades)=>{
     if(err){
       console.log(err)
@@ -175,8 +170,7 @@ router.get('/get-all-trades', (req,res,next)=>{
 })
 
 router.get('/get-ideas', (req,res,next)=>{
-  console.log('profile');
-  console.log(req.user)
+
   TradeIdea.find({"trade.trader": req.user.username}, (err,trades)=>{
     if(err){
       console.log(err)
@@ -187,8 +181,7 @@ router.get('/get-ideas', (req,res,next)=>{
 })
 
 router.get('/get-all-ideas', (req,res,next)=>{
-  console.log('profile');
-  console.log(req.user)
+
   TradeIdea.find({}, (err,trades)=>{
     if(err){
       console.log(err)
@@ -197,5 +190,48 @@ router.get('/get-all-ideas', (req,res,next)=>{
     }
   })
 })
+
+router.get('/get-all-traders', (req,res,next)=>{
+
+  User.find({}, (err,users)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(users)
+    }
+  })
+})
+
+router.post('/find-other-profile', (req,res,next)=>{
+  // console.log('+_++_+_+__+_+_+_+ other profile');
+  // console.log(req.user)
+  // console.log(req.body)
+  
+  User.find({username: req.body.username}, (err,userdata)=>{
+    if(err){
+      console.log(err)
+    } else {
+      console.log('+_++_+_+__+_+_+_+ other profile', userdata)
+      Trade.find({"trade.trader": userdata[0].username}, (err, trades)=>{
+        if(err){
+          console.log(err)
+        } else {
+          TradeIdea.find({"trade.trader": userdata[0].username}, (err, tradeIdeas)=>{
+            if(err){
+              console.log(err)
+            } else {
+              res.json({ trades, tradeIdeas, userdata });
+            }
+          })
+        }
+      })
+    }
+  })
+  
+})
+
+
+
+
 
 module.exports = router;

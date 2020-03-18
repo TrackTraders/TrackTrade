@@ -67,6 +67,12 @@ const actions = {
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+  findOtherProfile: async (username) => {
+    return await service.post('/find-other-profile', username);
+  },
+  getAllTraders: async () => {
+    return await service.get('/get-all-traders');
+  },
 };
 
 export default actions;

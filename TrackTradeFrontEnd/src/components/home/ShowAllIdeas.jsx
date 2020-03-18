@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import actions from '../../services/index'
+import { Link } from 'react-router-dom';
 
 export default class ShowAllIdeas extends Component {
     state = {}
@@ -66,7 +67,7 @@ export default class ShowAllIdeas extends Component {
                                 {eachTrade.trade.entry}
                             </div>
                         </div>
-                        <div className="trade-ideas-card__item">
+                        {/* <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 Stoploss:
                             </div>
@@ -81,7 +82,7 @@ export default class ShowAllIdeas extends Component {
                             <div className="trade-ideas-card__item-content">
                                 {eachTrade.trade.takeprofit}
                             </div>
-                        </div>
+                        </div> */}
                         <div className="trade-ideas-card__item">
                             <div className="trade-ideas-card__item-title">
                                 By:
@@ -133,7 +134,7 @@ export default class ShowAllIdeas extends Component {
                         <div class="popup__right">
                             <a href="#main" class="popup__close">&times;</a>
                             <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
-                            <h2 class="heading-secondary u-margin-bottom-small">Lot size: {this.state.eachTrade.trade.lot}</h2>
+                            
                             <h2 class="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
                             <h2 class="heading-secondary u-margin-bottom-small">Stoploss: {this.state.eachTrade.trade.stoploss}</h2>
                             <h2 class="heading-secondary u-margin-bottom-small">Takeprofit: {this.state.eachTrade.trade.takeprofit}</h2>
@@ -142,7 +143,11 @@ export default class ShowAllIdeas extends Component {
                             <h2 class="heading-secondary u-margin-bottom-small">
                             {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
                             </h2>
-                            <p class="popup__text">Created by: {this.state.eachTrade.trade.trader}</p>
+                            <p class="popup__text">Created by:
+                            <Link to={`/profile/${this.state.eachTrade.trade.trader}`} >
+                            {this.state.eachTrade.trade.trader}
+                            </Link>
+                            </p>
                             
                         </div>
                     </div>

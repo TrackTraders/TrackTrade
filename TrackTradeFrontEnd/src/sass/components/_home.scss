@@ -4,14 +4,22 @@
     background-color: $color-blue-dark-3;
     border-top: 2px solid $color-blue-dark-2;
     color: #ddd;
-    padding: 5rem 25rem;
+    padding: 5rem 10%;
     
+    &-card {
+        &,
+        &:link,
+        &:visited {
+            text-decoration: none;
+            color: #ddd;
+        }
+    }
 
     &-nav {
 
         display: flex;
         justify-content: space-evenly;
-        padding-bottom: 10rem;
+        padding-bottom: 7rem;
 
         &__links {
             
@@ -58,5 +66,44 @@
                 }
             }
         }
+    }
+
+    &-content {
+
+        display: flex;
+        flex-direction: column;
+
+        &-section1 {
+            // align-self: center;
+            text-align: center;
+        }
+
+        &--search {
+            width: 30rem;
+            margin: -2rem auto 5rem;
+            background-color: $color-blue-dark-1;
+            color: #ddd;
+            border: 2px solid $color-blue-dark-2;
+            padding: 1rem 1.5rem;
+            border-radius: 2px;
+            margin: 0 5rem 0 0;
+        }
+
+        &--select {
+            width: 20rem;
+            margin: -2rem auto 5rem;
+            background-color: $color-blue-dark-1;
+            color: #ddd;
+            border: 2px solid $color-blue-dark-2;
+            padding: 1rem 1.5rem;
+            border-radius: 2px;
+        }
+
+        &--label {
+            color: #ddd;
+            font-size: 2rem;
+            padding-right: 1rem;
+        }
+
     }
 }

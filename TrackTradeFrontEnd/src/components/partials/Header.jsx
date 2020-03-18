@@ -7,7 +7,7 @@ export default class Header extends Component {
     state = {}
 
     logOut = async () => {
-        let res = await actions.logOut()
+        await actions.logOut()
         this.props.history.push('/')
         window.location.reload()
     }
@@ -47,7 +47,6 @@ export default class Header extends Component {
                                 </ul>
                                 </div>
                             </li> */}
-
 
                             <li className={this.props.where === "Home" ? "profile-nav__links-text-active" : "profile-nav__links-text"} ><Link className="navigation--link" to="/home">Home</Link></li>
                             <li className={this.props.where === "Tools" ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/tools">Tools</Link></li>
