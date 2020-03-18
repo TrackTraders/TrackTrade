@@ -73,6 +73,11 @@ const actions = {
   getAllTraders: async () => {
     return await service.get('/get-all-traders');
   },
+  addConnection: async (userID) => {
+    return await service.post('/addConnection', userID)
+      .then(res => res.data)
+      .catch(err => console.error(err));
+  },
 };
 
 export default actions;

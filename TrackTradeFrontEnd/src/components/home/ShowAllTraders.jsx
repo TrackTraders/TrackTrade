@@ -33,11 +33,12 @@ export default class ShowAllTraders extends Component {
             // console.log(userTrades)
             userTrades.forEach(eachOne => {
                 eachOne.trade.money > 0 ? wins++ : losses++
-                
             })
             let percent = Math.ceil((wins / (wins + losses)) * 100)
             // console.log(wins, "--=-=-=-==--=-=-", losses)
+
             if(percent) {
+                // this.setState({traders.: {wlr: percent}})
                 return percent.toString() + "%"
             } else return null
         }
@@ -50,6 +51,8 @@ export default class ShowAllTraders extends Component {
                 return eachTrade.trade.trader === user
             })
             if(userTrades.length > 0){
+                // this.setState({traders: {totalTrades: userTrades.length}})
+                //console.log(this.state)
                 return userTrades.length
             }
         }
@@ -71,7 +74,11 @@ export default class ShowAllTraders extends Component {
     sortTraders = (e) => {
         console.log(e.target.value)
         if(e.target.value === "wlr-best"){
-
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((a,b) => {
+                return null
+                //console.log(a, " ----------- ", b)
+            })
         }
     }
 

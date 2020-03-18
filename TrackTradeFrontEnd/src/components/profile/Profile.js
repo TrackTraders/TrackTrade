@@ -27,7 +27,7 @@ export default class Profile extends Component {
             } else if(this.state.display === "stats"){
                 return <ShowStats />
             } else if(this.state.display === "connections"){
-                return <Connections />
+                return <Connections user={this.state} />
             }
         }
         else {
@@ -37,7 +37,7 @@ export default class Profile extends Component {
 
     handleSubmit = async e => {
         
-        console.log("SUBMITTED BABY!!!!!!!!!",  e.target.files[0])
+        //console.log("SUBMITTED BABY!!!!!!!!!",  e.target.files[0])
         const uploadData = new FormData();
         await uploadData.append("imageUrl", e.target.files[0]);
         

@@ -30,12 +30,7 @@ router.get('/is-logged-in', (req,res,next)=>{
 
 router.post('/log-in', passport.authenticate("local"), (req,res, next)=>{
     console.log('-==-=-=-=-=-=-=-=-=wdfs=d-c-=sdc=-sdc-=sdc')
-  // const user = new User({
-  //     username: req.body.username,
-  //     password: req.body.password
-  // })
-  res.status(200).json(req.user)
-  
+    res.status(200).json(req.user)
 })
 
 router.get("/log-out", (req,res, next)=>{
@@ -88,6 +83,34 @@ router.post('/updateAvatar', uploader.single("imageUrl"), (req, res, next) => {
 }
 )
 
+router.post('/addConnection', (req, res, next) => {
+  console.log("-=-= ",req.body)
+  
+  User.findByIdAndUpdate(req.user._id, {$addToSet: {connections: req.body.userID}}, { new: true })
+  .then(whatever => {
+    console.log("-=-=-=-=-=-=-=-=-=-=-=-= ",whatever);
+    res.json({connections: req.body.userID});
+  }).catch(err => console.log(err))
+}
+)
+
+// Slight blocker: how can i get the data for each user from
+// req.user.connections... i guess same way i did for home
+// maybe i could do a.... loop
+// //-----------------------------------------------------------
+// router.get('/get-all-connections', (req,res,next)=>{
+
+//   User.find({"trade.trader": req.user.username}, (err,trades)=>{
+//     if(err){
+//       console.log(err)
+//     } else {
+//       res.json(trades)
+//     }
+//   })
+// })
+//-----------------------------------------------------------
+
+
 router.post('/postTrade', (req, res, next) => {
   console.log("--------id:", req.body._id)
   console.log("--------currency:", req.body.currency)
@@ -104,28 +127,18 @@ router.post('/postTrade', (req, res, next) => {
 )
 
 router.post('/ideaUpload', uploader.single("imageUrl"), (req, res, next) => {
-  // console.log('file is: ', req.file)
-
   if (!req.file) {
     next(new Error('No file uploaded!'));
     return;
   }
-  console.log(req.file, ' req dot file')
-  // get secure_url from the file object and save it in the 
-  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
   res.json({ secure_url: req.file.secure_url });
 })
 
 router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
-  // console.log('file is: ', req.file)
-
   if (!req.file) {
     next(new Error('No file uploaded!'));
     return;
   }
-  console.log(req.file, ' req dot file')
-  // get secure_url from the file object and save it in the 
-  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
   res.json({ secure_url: req.file.secure_url });
 })
 

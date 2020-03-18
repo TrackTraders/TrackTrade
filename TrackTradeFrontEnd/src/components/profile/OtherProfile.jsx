@@ -45,6 +45,14 @@ export default class OtherProfile extends Component {
                
     }
 
+    connectUser = async (userID) => {
+        console.log(userID)
+        try {
+            await actions.addConnection({userID});
+        }
+        catch(err) {console.log(err)}
+    }
+
 
     // changeProfileState = ()
 
@@ -62,16 +70,10 @@ export default class OtherProfile extends Component {
                             <div className="profile-nav__user-avatar">
                                 {this.imageLoad()}
                                 <div className="profile-nav__user-avatar__image-default"></div>
-                                <div className="profile-nav__user-avatar__change">
-                                <form className="profile-nav__user-avatar__change-form">
-                                    <label className="profile-nav__user-avatar__change-form--label" htmlFor="img">Change Avatar</label>
-                                    <input className="profile-nav__user-avatar__change-form--input" onChange={this.handleSubmit} type="file" id="img" name="img" accept="image/*"/>
-                                </form>
-                                </div>
                             </div>
                             <h1 className="profile-nav__user-username">{this.state.userdata[0].username}</h1>
-                            <li className= "profile-nav__links-text-profile">Connect</li>
-                            <li className= "profile-nav__links-text-profile">Message</li>
+                            <div onClick={() => this.connectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Connect</div>
+                            <div onClick={null} className= "profile-nav__links-text-profile">Message</div>
                         </div>
                         <ul className="profile-nav__links">
 
