@@ -27,7 +27,7 @@ export default class Profile extends Component {
             } else if(this.state.display === "stats"){
                 return <ShowStats />
             } else if(this.state.display === "connections"){
-                return <Connections user={this.state} />
+                return <Connections user={this.props.user} />
             }
         }
         else {

@@ -1,15 +1,26 @@
 .connections {
 
+    display: flex;
+    justify-content: center;
+    &-card {
+        margin-left: 10rem;
+    }
     &-container {
         font-size: 2rem;
         height: 500px;
         width: 250px;
-        padding: 1rem 1.5rem;
+        padding: 2rem 1.5rem;
         overflow-y: scroll;
-        background-color: #222;
+        background-color: $color-blue-dark-1;
 
         & > * {
-            padding: .75rem 0 1rem;
+            padding: .75rem 1.5rem 1rem;
+            background-color: $color-blue-dark-1;
+            transition: all .2s ease-in-out;
+            &:hover {
+                cursor: pointer;
+                background-color: $color-blue-dark-2;
+            }
 
             &:not(:last-child) {
                 border-bottom: 1px solid black;

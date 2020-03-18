@@ -2,6 +2,8 @@ const router = require('express').Router();
 const User = require('../models/User')
 const Trade = require('../models/Trade')
 const TradeIdea = require('../models/TradeIdea')
+const Chat = require('../models/Chat')
+const Message = require('../models/Message')
 const passport = require('../config/passport')
 
 
@@ -87,6 +89,17 @@ router.post('/addConnection', (req, res, next) => {
   console.log("-=-= ",req.body)
   
   User.findByIdAndUpdate(req.user._id, {$addToSet: {connections: req.body.userID}}, { new: true })
+  .then(whatever => {
+    console.log("-=-=-=-=-=-=-=-=-=-=-=-= ",whatever);
+    res.json({connections: req.body.userID});
+  }).catch(err => console.log(err))
+}
+)
+
+router.post('/removeConnection', (req, res, next) => {
+  console.log("-=-= ",req.body)
+  
+  User.findByIdAndUpdate(req.user._id, {$pull: {connections: req.body.userID}}, { new: true })
   .then(whatever => {
     console.log("-=-=-=-=-=-=-=-=-=-=-=-= ",whatever);
     res.json({connections: req.body.userID});
@@ -241,6 +254,17 @@ router.post('/find-other-profile', (req,res,next)=>{
     }
   })
   
+})
+
+
+router.post("/addMessage", (req,res,next) => {
+  console.log("-=-= ",req.body)
+  
+  Message.create({content: req.body.message, receiver: req.body.otherProfile, sender: req.user._id})
+  .then(message => {
+    console.log(message);
+    res.json(message);
+  }).catch(err => console.log(err))
 })
 
 

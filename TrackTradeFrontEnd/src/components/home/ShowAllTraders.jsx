@@ -15,10 +15,7 @@ export default class ShowAllTraders extends Component {
         this.setState({actualTrades: actualTrades.data})
     }
 
-    formatTime = (time) => {
-        return String(new Date(time)).substring(0,24)
-    }
-
+    formatTime = (time) => String(new Date(time)).substring(0,24)
 
     winLossRatio = (user) => {
 
@@ -39,6 +36,11 @@ export default class ShowAllTraders extends Component {
 
             if(percent) {
                 // this.setState({traders.: {wlr: percent}})
+                this.state.traders.map(eachTrader => {
+                    if(eachTrader.username === user){
+                        eachTrader["wlr"] = percent
+                    }
+                })
                 return percent.toString() + "%"
             } else return null
         }
@@ -51,8 +53,11 @@ export default class ShowAllTraders extends Component {
                 return eachTrade.trade.trader === user
             })
             if(userTrades.length > 0){
-                // this.setState({traders: {totalTrades: userTrades.length}})
-                //console.log(this.state)
+                this.state.traders.map(eachTrader => {
+                    if(eachTrader.username === user){
+                        eachTrader["totalTrades"] = userTrades.length
+                    }
+                })
                 return userTrades.length
             }
         }
@@ -73,18 +78,69 @@ export default class ShowAllTraders extends Component {
 
     sortTraders = (e) => {
         console.log(e.target.value)
-        if(e.target.value === "wlr-best"){
+        if(e.target.value === ""){
+            this.setState({traders:this.state.allTraders})
+        }
+        else if(e.target.value === "wlr-best"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((b,a) => {
+                
+                return a.wlr - b.wlr
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "wlr-worst"){
             let tradersList = [...this.state.allTraders]
             tradersList.sort((a,b) => {
-                return null
-                //console.log(a, " ----------- ", b)
+                
+                return a.wlr - b.wlr
+                
             })
+            this.setState({traders: tradersList})            
         }
+        else if(e.target.value === "total-most"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((b,a) => {
+                
+                return a.totalTrades - b.totalTrades
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "total-least"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((a,b) => {
+                
+                return a.totalTrades - b.totalTrades
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "joined-newest"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((b,a) => {
+                // console.log(a.created_at, "-----", b.created_at)
+                return a.created_at.localeCompare(b.created_at)
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "joined-oldest"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((a,b) => {
+                // console.log(a.created_at, "-----", b.created_at)
+                return a.created_at.localeCompare(b.created_at)
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        
     }
 
     showTraders = () => {
         if(this.state.traders){
-            
+            // console.log(this.state.traders)
             return this.state.traders.map(eachTrader=>{
                 return (
                     <Link className="home-card" to={`/profile/${eachTrader.username}`} >

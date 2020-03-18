@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import actions from '../../services/index'
 import { Link } from 'react-router-dom';
 
@@ -17,19 +17,80 @@ export default class ShowAllIdeas extends Component {
         return String(new Date(time)).substring(0,24)
     }
 
-    // exitPopup = () => {
-    //     if(this.state.eachTrade){
-    //         var popup = document.querySelector('.popup');
-    
-    //         popup.addEventListener('click', e => {
-    //             if(e.target.matches('.popup *')) return;
-    //             else {
-    //                 window.location.hash = "#tours"
-    //             }
-    //           });
+    searchTraders = (e) => {
+        let tradersList = [...this.state.allTraders]
+        let filteredTraders = tradersList.filter(eachTrader=>{
+          return eachTrader.username.toLowerCase().includes(e.target.value.toLowerCase())      
+        })
+        console.log(filteredTraders)
+        if(filteredTraders){
+          this.setState({
+            traders:filteredTraders
+          })
+        }
+    }
 
-    //     }
-    // }
+    sortTraders = (e) => {
+        console.log(e.target.value)
+        if(e.target.value === ""){
+            this.setState({traders:this.state.allTraders})
+        }
+        else if(e.target.value === "wlr-best"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((b,a) => {
+                
+                return a.wlr - b.wlr
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "wlr-worst"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((a,b) => {
+                
+                return a.wlr - b.wlr
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "total-most"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((b,a) => {
+                
+                return a.totalTrades - b.totalTrades
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "total-least"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((a,b) => {
+                
+                return a.totalTrades - b.totalTrades
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "joined-newest"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((b,a) => {
+                // console.log(a.created_at, "-----", b.created_at)
+                return a.created_at.localeCompare(b.created_at)
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        else if(e.target.value === "joined-oldest"){
+            let tradersList = [...this.state.allTraders]
+            tradersList.sort((a,b) => {
+                // console.log(a.created_at, "-----", b.created_at)
+                return a.created_at.localeCompare(b.created_at)
+                
+            })
+            this.setState({traders: tradersList})            
+        }
+        
+    }
 
     showIdeas = () => {
         if(this.state.actualTrades){
@@ -122,6 +183,20 @@ export default class ShowAllIdeas extends Component {
 
     render() {
         return (
+            <Fragment>
+            <div className="home-content-section1">
+                <input onChange={this.searchTraders} className="home-content--search" type="text" placeholder="Search for trade ideas by their currency" />
+                <label className="home-content--label" htmlFor="sort">Sort By:</label>
+                <select name="sort" className="home-content--select" onChange={this.sortTraders}>
+                    <option value="">-</option>
+                    <option value="wlr-best">Win Loss Ratio: best</option>
+                    <option value="wlr-worst">Win Loss Ratio: worst</option>
+                    <option value="total-most">Total Trades: most</option>
+                    <option value="total-least">Total Trades: least</option>
+                    <option value="joined-newest">Joined: newest</option>
+                    <option value="joined-oldest">Joined: oldest</option>
+                </select>
+            </div>  
             <div className="trade-ideas">
                 {this.showIdeas()}
                 {/* {this.exitPopup()} */}
@@ -154,6 +229,7 @@ export default class ShowAllIdeas extends Component {
                 </div> : null}
                 
             </div>
+            </Fragment>
         )
     }
 }

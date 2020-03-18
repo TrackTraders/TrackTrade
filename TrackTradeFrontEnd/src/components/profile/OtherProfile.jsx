@@ -5,20 +5,42 @@ import Footer from '../partials/Footer'
 import ShowIdeas from './ShowIdeas'
 import ShowTrades from './ShowTrades'
 import ShowStats from './ShowStats'
-import Connections from './Connections'
 import actions from '../../services/index'
 
 export default class OtherProfile extends Component {
 
-    state = {
-        display: "ideas"
+    constructor(props){
+        super(props)
+            this.input=React.createRef()
+            this.state = {
+                display: "ideas"
+            }
     }
 
     async componentDidMount(){
         
         let otheruser = await actions.findOtherProfile({username: this.props.match.params.otheruser})
         this.setState({...otheruser.data})
+
+        let user = await actions.isLoggedIn()
+        this.setState({actualUser: user.data})
+
         console.log('-==-=-=-=-=-=-', this.state)
+        
+        if(this.props.match.params.otheruser !== this.props.username){
+            if(this.state.userdata[0] && this.state.actualUser){
+                if(this.state.actualUser.connections.includes(this.state.userdata[0]._id)){
+                    this.setState({connected:true})
+                } else {
+                    this.setState({connected:false})
+                }
+                console.log(this.state.connected)
+            }
+            else {
+                this.setState({connected: false})
+            }
+
+        }
     }
 
     displayStuff = () => {
@@ -48,16 +70,44 @@ export default class OtherProfile extends Component {
     connectUser = async (userID) => {
         console.log(userID)
         try {
-            await actions.addConnection({userID});
+            await actions.addConnection({userID})
+            // window.location.reload()
+            this.setState({connected: true})
         }
         catch(err) {console.log(err)}
     }
 
+    disconnectUser = async (userID) => {
+        console.log(userID)
+        try {
+            await actions.removeConnection({userID});
+            // window.location.reload()
+            this.setState({connected: false})
+        }
+        catch(err) {console.log(err)}
+    }
+
+    handleChange = (e) =>{
+        this.setState({
+          [e.target.name] : e.target.value
+        })
+    }
+
+    sendMessage = async (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        this.input.current.value = '';
+        try {
+            await actions.sendMessage({message: this.state.message, otherProfile: this.state.userdata[0]._id});
+        }
+        catch(err) {console.log(err)}
+    }
 
     // changeProfileState = ()
 
     render() {
         console.log(this.state)
+        // this.checkConnection()
         if(this.props.match.params.otheruser !== this.props.username){
         return this.state.userdata ?
          (
@@ -72,8 +122,15 @@ export default class OtherProfile extends Component {
                                 <div className="profile-nav__user-avatar__image-default"></div>
                             </div>
                             <h1 className="profile-nav__user-username">{this.state.userdata[0].username}</h1>
-                            <div onClick={() => this.connectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Connect</div>
-                            <div onClick={null} className= "profile-nav__links-text-profile">Message</div>
+
+                            {this.state.connected ?
+                                <div onClick={() => this.disconnectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Disconnect</div>
+                            :
+                                <div onClick={() => this.connectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Connect</div>
+                            }
+
+                            <a href="#chatbox" className= "profile-nav__links-text-profile">Message</a>
+
                         </div>
                         <ul className="profile-nav__links">
 
@@ -86,6 +143,60 @@ export default class OtherProfile extends Component {
                     </div>
                     <div className="profile-content">
                         {this.displayStuff()}
+                        <div className="chatbox" id="chatbox">
+                        <div className="chatbox__content" id="content">
+                            <div className="chatbox__top">
+                            <div className="chatbox__top-avatar profile-nav__user-avatar">
+                                {this.imageLoad()}
+                                <div className="profile-nav__user-avatar__image-default"></div>
+                            </div>
+                            <h1 className="profile-nav__user-username">{this.state.userdata[0].username}</h1>
+                            </div>
+                            <div className="chatbox__middle">
+                                <div className="chatbox__middle-content">
+                                <a href="#main" className="chatbox__close">&times;</a>
+
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
+                                        Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! 
+                                    </div>
+
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
+                                        How are you?
+                                    </div>
+                                    
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
+                                        Hello!
+                                    </div>
+
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
+                                        How are you?
+                                    </div>
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
+                                        Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! 
+                                    </div>
+
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
+                                        How are you?
+                                    </div>
+                                    
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
+                                        Hello!
+                                    </div>
+
+                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
+                                        How are you?
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div className="chatbox__bottom">
+                                <form onSubmit={this.sendMessage} className="chatbox__bottom-form">
+                                    <textarea onChange={this.handleChange} ref={this.input} type="text" name="message" className="chatbox__bottom-form-message" placeholder="Type your message" required />
+                                    <button className="chatbox__bottom-form-submit" type="submit">Send</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
                 <Footer/>

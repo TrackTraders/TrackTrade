@@ -78,6 +78,16 @@ const actions = {
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+  removeConnection: async (userID) => {
+    return await service.post('/removeConnection', userID)
+      .then(res => res.data)
+      .catch(err => console.error(err));
+  },
+  sendMessage: async (data) => {
+    return await service.post('/addMessage', data)
+      .then(res => res.data)
+      .catch(err => console.error(err));
+  },
 };
 
 export default actions;
