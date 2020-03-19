@@ -267,6 +267,16 @@ router.post("/addMessage", (req,res,next) => {
   }).catch(err => console.log(err))
 })
 
+router.get('/get-all-messages', (req,res,next)=>{
+
+  Message.find({}, (err,messages)=>{
+    if(err){
+      console.log(err)
+    } else {
+      res.json(messages)
+    }
+  })
+})
 
 
 

@@ -4,7 +4,11 @@
     background-color: $color-blue-dark-3;
     border-top: 2px solid $color-blue-dark-2;
     color: #ddd;
-    padding: 5rem 10%;
+    padding: 5rem 5%;
+
+    @include respond(tab-port){
+        padding: 5rem 0;
+    }
     
     &-card {
         &,
@@ -25,20 +29,25 @@
             
             display: flex;
             justify-content: space-evenly;
-            padding-right: 1rem;
-
 
             &-text {
 
                 padding: 1rem 1.5rem;
-                margin: auto 10rem;
-                
+                margin: auto 8rem;
+                text-align: center;
                 color: #ddd;
                 border-radius: 2px;
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
                 transition: all .2s ease-in-out;
+
+                @include respond(tab-land){
+                    margin: auto 5rem;
+                }
+                @include respond(tab-port){
+                    margin: auto 1rem;
+                }
 
                 &:hover {
                     background-color: rgba($color-blue-dark-1, 0.7);
@@ -49,14 +58,22 @@
             }
             &-text-active {
                 padding: 1rem 1.5rem;
-                margin: auto 10rem;
+                margin: auto 8rem;
                 border-bottom: 2px solid $color-blue-bright-1;
+                text-align: center;
                 color: #ddd;
                 border-radius: 2px;
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
                 transition: all .2s ease-in-out;
+
+                @include respond(tab-land){
+                    margin: auto 5rem;
+                }
+                @include respond(tab-port){
+                    margin: auto 1rem;
+                }
 
                 &:hover {
                     background-color: rgba($color-blue-dark-1, 0.7);
@@ -73,9 +90,22 @@
         display: flex;
         flex-direction: column;
 
+        &-search-sort {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+
         &-section1 {
             // align-self: center;
             text-align: center;
+
+
+            @include respond(phone){
+                display: flex;                flex-direction: column;
+                
+            }
         }
 
         &--search {

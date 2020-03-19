@@ -7,7 +7,8 @@ export default class ShowAllTrades extends Component {
     
     async componentDidMount() {
         let actualTrades = await actions.getAllTrades();
-        this.setState({actualTrades: actualTrades.data.reverse()})
+        this.setState({allTrades: actualTrades.data.reverse()})
+        this.setState({trades: actualTrades.data.reverse()})
         console.log(this.state)
     }
 
@@ -15,85 +16,77 @@ export default class ShowAllTrades extends Component {
         return String(new Date(time)).substring(0,24)
     }
 
-    searchTraders = (e) => {
-        let tradersList = [...this.state.allTraders]
-        let filteredTraders = tradersList.filter(eachTrader=>{
-          return eachTrader.username.toLowerCase().includes(e.target.value.toLowerCase())      
+    searchTrades = (e) => {
+        let tradersList = [...this.state.allTrades]
+        let filteredTrades = tradersList.filter(eachTrade=>{
+          return eachTrade.trade.currency.split("/").join('').toLowerCase().includes(e.target.value.split("/").join('').toLowerCase())      
         })
-        console.log(filteredTraders)
-        if(filteredTraders){
+        console.log(filteredTrades)
+        if(filteredTrades){
           this.setState({
-            traders:filteredTraders
+            trades:filteredTrades
           })
         }
     }
 
-    sortTraders = (e) => {
+    sortTrades = (e) => {
         console.log(e.target.value)
         if(e.target.value === ""){
-            this.setState({traders:this.state.allTraders})
+            this.setState({trades:this.state.allTrades})
         }
-        else if(e.target.value === "wlr-best"){
-            let tradersList = [...this.state.allTraders]
-            tradersList.sort((b,a) => {
-                
-                return a.wlr - b.wlr
-                
+        else if(e.target.value === "sell"){
+            let tradesList = [...this.state.allTrades]
+            let filteredTrades = tradesList.filter(eachTrade => {
+                return eachTrade.trade.kind === "sell"
             })
-            this.setState({traders: tradersList})            
+            this.setState({trades: filteredTrades})            
         }
-        else if(e.target.value === "wlr-worst"){
-            let tradersList = [...this.state.allTraders]
-            tradersList.sort((a,b) => {
-                
-                return a.wlr - b.wlr
-                
+        else if(e.target.value === "buy"){
+            let tradesList = [...this.state.allTrades]
+            let filteredTrades = tradesList.filter(eachTrade => {
+                return eachTrade.trade.kind === "buy"
             })
-            this.setState({traders: tradersList})            
+            this.setState({trades: filteredTrades})            
         }
-        else if(e.target.value === "total-most"){
-            let tradersList = [...this.state.allTraders]
-            tradersList.sort((b,a) => {
-                
-                return a.totalTrades - b.totalTrades
-                
+        else if(e.target.value === "wins"){
+            let tradesList = [...this.state.allTrades]
+            let filteredTrades = tradesList.filter(eachTrade => {
+                return eachTrade.trade.money > 0
             })
-            this.setState({traders: tradersList})            
+            this.setState({trades: filteredTrades})            
         }
-        else if(e.target.value === "total-least"){
-            let tradersList = [...this.state.allTraders]
-            tradersList.sort((a,b) => {
-                
-                return a.totalTrades - b.totalTrades
-                
+        else if(e.target.value === "losses"){
+            let tradesList = [...this.state.allTrades]
+            let filteredTrades = tradesList.filter(eachTrade => {
+                return eachTrade.trade.money < 0
             })
-            this.setState({traders: tradersList})            
+            this.setState({trades: filteredTrades})            
         }
-        else if(e.target.value === "joined-newest"){
-            let tradersList = [...this.state.allTraders]
-            tradersList.sort((b,a) => {
+        else if(e.target.value === "created-newest"){
+            let tradesList = [...this.state.allTrades]
+            tradesList.sort((b,a) => {
                 // console.log(a.created_at, "-----", b.created_at)
                 return a.created_at.localeCompare(b.created_at)
                 
             })
-            this.setState({traders: tradersList})            
+            this.setState({trades: tradesList})            
         }
-        else if(e.target.value === "joined-oldest"){
-            let tradersList = [...this.state.allTraders]
-            tradersList.sort((a,b) => {
+        else if(e.target.value === "created-oldest"){
+            let tradesList = [...this.state.allTrades]
+            tradesList.sort((a,b) => {
                 // console.log(a.created_at, "-----", b.created_at)
                 return a.created_at.localeCompare(b.created_at)
                 
             })
-            this.setState({traders: tradersList})            
+            this.setState({trades: tradesList})            
         }
         
     }
 
-    showIdeas = () => {
-        if(this.state.actualTrades){
+    showTrades = () => {
+        if(this.state.trades){
             
-            return this.state.actualTrades.map(eachTrade=>{
+            return this.state.trades.map(eachTrade=>{
                 return (
                     <div className="trade-ideas-card">
                     <a href="#popup" onClick={async () => {
@@ -171,20 +164,20 @@ export default class ShowAllTrades extends Component {
         return (
             <Fragment>
             <div className="home-content-section1">
-                <input onChange={this.searchTraders} className="home-content--search" type="text" placeholder="Search for trades by their currency" />
+                <input onChange={this.searchTrades} className="home-content--search" type="text" placeholder="Search for trades by their currency" />
                 <label className="home-content--label" htmlFor="sort">Sort By:</label>
-                <select name="sort" className="home-content--select" onChange={this.sortTraders}>
+                <select name="sort" className="home-content--select" onChange={this.sortTrades}>
                     <option value="">-</option>
-                    <option value="wlr-best">Win Loss Ratio: best</option>
-                    <option value="wlr-worst">Win Loss Ratio: worst</option>
-                    <option value="total-most">Total Trades: most</option>
-                    <option value="total-least">Total Trades: least</option>
-                    <option value="joined-newest">Joined: newest</option>
-                    <option value="joined-oldest">Joined: oldest</option>
+                    <option value="sell">Sells</option>
+                    <option value="buy">Buys</option>
+                    <option value="wins">Wins</option>
+                    <option value="losses">Losses</option>
+                    <option value="created-newest">Created: newest</option>
+                    <option value="created-oldest">Created: oldest</option>
                 </select>
             </div>
             <div class="trade-ideas">
-                {this.showIdeas()}
+                {this.showTrades()}
                 {this.state.eachTrade ? <div class="popup" id="popup">
                     <div class="popup__content" id="content">
                         <div class="popup__left">

@@ -215,18 +215,20 @@ export default class ShowAllTraders extends Component {
     render() {
         return (
             <Fragment>
-            <div className="home-content-section1">
-                <input onChange={this.searchTraders} className="home-content--search" type="text" placeholder="Search for traders by their username" />
-                <label className="home-content--label" htmlFor="sort">Sort By:</label>
-                <select name="sort" className="home-content--select" onChange={this.sortTraders}>
-                    <option value="">-</option>
-                    <option value="wlr-best">Win Loss Ratio: best</option>
-                    <option value="wlr-worst">Win Loss Ratio: worst</option>
-                    <option value="total-most">Total Trades: most</option>
-                    <option value="total-least">Total Trades: least</option>
-                    <option value="joined-newest">Joined: newest</option>
-                    <option value="joined-oldest">Joined: oldest</option>
-                </select>
+            <div className="home-content-search-sort">
+                <div className="home-content-section1">
+                    <input onChange={this.searchTraders} className="home-content--search" type="text" placeholder="Search for traders by their username" />
+                    <label className="home-content--label" htmlFor="sort">Sort By:</label>
+                    <select name="sort" className="home-content--select" onChange={this.sortTraders}>
+                        <option value="">-</option>
+                        <option value="wlr-best">Win Loss Ratio: best</option>
+                        <option value="wlr-worst">Win Loss Ratio: worst</option>
+                        <option value="total-most">Total Trades: most</option>
+                        <option value="total-least">Total Trades: least</option>
+                        <option value="joined-newest">Joined: newest</option>
+                        <option value="joined-oldest">Joined: oldest</option>
+                    </select>
+                </div>
             </div>            
             <div className="trade-ideas">
                 {this.showTraders()}

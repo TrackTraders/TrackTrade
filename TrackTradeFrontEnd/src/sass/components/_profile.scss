@@ -12,6 +12,16 @@
         display: flex;
         justify-content: space-between;
 
+        &-link {
+
+            &,
+            &:link,
+            &:visited {
+                text-decoration: none;
+                color: #ddd;
+            }
+        }
+
         &__user {
             
             display: flex;
@@ -89,7 +99,7 @@
             
             display: flex;
             justify-content: space-evenly;
-            padding-right: 1rem;
+            padding-right: 3rem;
 
 
             &-text {
@@ -104,6 +114,9 @@
                 list-style: none;
                 transition: all .2s ease-in-out;
 
+                @include respond(tab-port){
+                    margin: auto 0rem;
+                }
                 &:hover {
                     background-color: rgba($color-blue-dark-1, 0.7);
                     color: #ddd;

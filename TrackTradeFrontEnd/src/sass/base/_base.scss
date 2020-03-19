@@ -10,6 +10,19 @@
 
 html {
     font-size: 62.5%;
+
+    // @include respond(big-desktop){ //width > 1800px
+    //     font-size: 75%;
+    // }
+    @include respond(tab-land){ //width < 1200px
+        font-size: 56.25%;
+    }
+    @include respond(tab-port){ //width < 900px
+        font-size: 50%;
+    }
+    @include respond(phone){ //width < 900px
+        font-size: 40%;
+    }
 }
 
 body {
@@ -59,3 +72,42 @@ body::-webkit-scrollbar-thumb
     background-color: #fff;
     color: #111;
 }
+
+
+
+
+// /* Element | http://localhost:3000/tools */
+
+// .signup-lotcalc {
+//     width: 100%;
+//     display: flex;
+//     justify-content: center;
+//   }
+  
+//   /* Inline #3 | http://localhost:3000/tools */
+  
+//   .signup-form {
+//     /* align-items: initial; */
+//     /* width: 700px; */
+//     /* margin: 0 25rem 0 0; */
+//     align-items: center;
+//     width: 900px;
+//   }
+  
+//   .signup-form-group {
+//     /* width: 700px; */
+//     width: 800px;
+//   }
+  
+//   .signup-form-btn {
+//     /* margin: 5rem -1rem 0 7.5rem; */
+//     margin: 5rem -1rem 0 15.5rem;
+//     width: 50%;
+//   }
+  
+//   /* Element | http://localhost:3000/tools */
+  
+//   div.signup-form-group:nth-child(2) > label:nth-child(1) {
+//     margin-left: -6rem;
+//   }
+  

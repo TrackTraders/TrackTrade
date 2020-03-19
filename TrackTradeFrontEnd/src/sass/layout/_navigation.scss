@@ -10,6 +10,10 @@
     font-size: 3rem;
     font-weight: 700;
 
+    @include respond(tab-port){
+      padding: 1rem 3%;
+    }
+
     &--brand {
         &,
         &:link,
@@ -21,11 +25,20 @@
             text-transform: uppercase;
             color: #ddd;
             text-decoration: none;
+            
+            @include respond(tab-port){
+              padding: 3rem 5rem
+            }
+    
+            @include respond(phone){
+              padding: 3rem 2rem
+            }
         }
 
         &:hover {
             cursor: pointer;
         }
+
     }
 
     &--right {
@@ -37,6 +50,26 @@
             font-size: 2rem;
         }
 
+        @include respond(tab-port){
+          padding-right: 1rem;
+        }
+
+        &__links {
+
+          &-phone {
+            display: none;
+            margin-bottom: 3rem;
+            @include respond(phone){
+              display: inline;
+            }
+          }
+          &-desktop {
+            display: flex;
+            @include respond(phone){
+              display: none;
+            }
+          }
+        }
     }
 
     &--link {
@@ -72,139 +105,189 @@
         }
     }
 
+    &--logout {
+        &,
+        &:link,
+        &:visited {
+            margin-top: 20rem;
+            margin-left: 2rem;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            color: #000;
+            background-color: $color-blue-bright-1;
+            border-radius: 3px;
+            transition: all .2s ease-in-out;
+        }
+
+        &:hover {
+            background-color: $color-blue-bright-2;
+        }
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 .menu {
-  display: block;
-  position: relative;
-  
 
-    &-link {
+  &-link {
 
-        &,
-        &:visited,
-        &:link {
-            color: #ddd;
-            text-decoration: none;
-            font-weight: 400;
-            padding: 4rem;
-        }
-
-        &:hover {
-            cursor: pointer;
-        }
-
+    &,
+    &:link,
+    &:visited {
+      text-decoration: none;
+      color: #ddd;
+      font-size: 5rem;
     }
+  }
 
-    
-}
+  &__checkbox {
+      display: none;
+  }
 
-.menu-title {
-  display: block;
-  width: 200px;
-  height: 50px;
-  
-  text-align: center;
-  color: #ffffff;
-  font-weight: bold;
-  transition: 0.3s background-color;
+  &__button {
+      background-color: $color-white;
+      height: 7rem;
+      width: 7rem;
+      position: fixed;
+      top: 7rem;
+      right: 6rem;
+      border-radius: 50%;
+      z-index: 2000;
+      box-shadow: 0 1rem 3rem rgba($color-black, .1);
+      text-align: center;
+      cursor: pointer;
 
-    &-text {
-        font-size: 1.6rem;
-        margin-bottom: 10rem;
+      @include respond(tab-port){
+          top: 4rem;
+          right: 4rem;
+      }
+  }
 
-    }
-    &-arrow {
-        
-        font-size: 2rem;
-        transform: translate(1rem,0.3rem) rotate(0deg);
-        transition: all .7s cubic-bezier(0.19, 1, 0.22, 1);
-        display: inline-block;
-    }
-}
+  &__background {
+      height: 6rem;
+      width: 6rem;
+      border-radius: 50%;
+      position: fixed;
+      top: 7.5rem;
+      right: 6.5rem;
+      background-image: radial-gradient($color-blue-dark-1, $color-blue-dark-2);
+      z-index: 1000;
+      transition: all .7s cubic-bezier(0.86, 0, 0.07, 1);
 
-.menu:hover > .menu-title:before {
-  border-top-width: 0;
-  transition:
-    0.2s border-top-width ease-in,
-    0.3s border-top-color;
-}
+      @include respond(tab-port){
+          top: 4.5rem;
+          right: 4.5rem;
+      }
+  }
 
-.menu:hover > .menu-title:after {
-  border-bottom-width: 5px;
-  transition: 0.2s border-bottom-width ease;
-}
+  &__nav {
+      height: 100vh;
+      width: 0%;
+      position: fixed;
+      top: 1rem;
+      right: 0;
+      z-index: 1500;
+      opacity: 0;
+      transition: all .7s cubic-bezier(0.86, 0, 0.07, 1);
+  }
 
-.menu:hover .menu-title-arrow {
-    transform: translate(1rem,.1rem) rotate(-180deg);
-}
+  &__list {
+      @include centerHorVer;
+      list-style: none;
+      text-align: center;
 
-.menu:hover .menu-title {
-  background-color: $color-blue-gray-1;
-}
+  }
 
-.menu-dropdown {
-  width: 200px;
-//   padding: 1rem 0;
-  position: absolute;
-  background: $color-blue-gray-1;
-  z-index: 100;
-  transition:
-    0.3s padding
-}
+  &__item {
+      padding: 2rem;
+      
+  }
 
-.menu:not(:hover) > .menu-dropdown {
-  padding: 0;
-  background: $color-blue-dark-3;
-  z-index: 99;
-}
+  &__link {
+      &:link,
+      &:visited {
+          display: inline-block;
+          font-size: 3rem;
+          padding: 1rem 2rem;
+          font-weight: 300;
+          color: $color-white;
+          text-decoration: none;
+          text-transform: uppercase;
+          background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+          background-size: 225%;
+          transition: all .4s;
 
-.menu-dropdown > * {
-  overflow: hidden;
-  height: 50px;
-  padding: 10px 10px 0;
-  background-image: linear-gradient(rgba($color-blue-2, 1) 0%, rgba($color-blue-2, 1) 95%, rgba(12,12,12, 1) 100%);
-  white-space: nowrap;
-  transition: 
-    0.5s height ease-in-out,
-    0.5s padding ease-in-out,
-    0.5s margin ease-in-out,
-    0.5s 0.2s color,
-    0.2s background-color;
+          @include respond(phone){
+              background-image: linear-gradient(120deg, transparent 0%, transparent 60%, $color-white 60%);
+          }
+      }
+      &:hover,
+      &:active {
+          background-position: 100%;
+          color: $color-blue-bright-1;
+          transform: translateX(1rem);
 
-    
-}
+          @include respond(phone){
+              background-size: 300%;
+          }
+      }
+  }
 
-.menu-dropdown > *:hover {
-  background: rgba(0,0,0,0.1);
-}
+  &__checkbox:checked ~ &__background {
+      transform: scale(80);
+  }
+  &__checkbox:checked ~ &__nav {
+      opacity: 1;
+      width: 100%;
+  }
 
-.menu:not(:hover) > .menu-dropdown > * {
-  visibility: hidden;
-  height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin: 0;
-  color: rgba(25,25,25,0);
-  transition: 
-    0.3s height,
-    0.3s padding,
-    0.3s margin,
-    0.3s color,
-    0.3s visibility;
-  z-index: 99;
+
+  &__icon {
+      position: relative;
+      margin-top: 3.5rem;
+              
+      &,
+      &::before,
+      &::after {
+          width: 3rem;
+          height: 2px;
+          background-color: $color-blue-gray-1;
+          display: inline-block;
+      }
+
+      &::before,
+      &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          transition: all .2s;
+      }
+
+      &::before { top: -.8rem; }
+      &::after { top: .8rem; }
+  }
+
+  &__button:hover &__icon::before {
+      top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+      top: 1rem;
+  }
+
+  &__checkbox:checked + &__button &__icon {
+      background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon:before {
+      transform: rotate(135deg);
+      top: 0;
+  }
+
+  &__checkbox:checked + &__button &__icon:after {
+      transform: rotate(-135deg);
+      top: 0;
+  }
 }

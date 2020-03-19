@@ -5,6 +5,7 @@ import Footer from '../partials/Footer'
 import ShowIdeas from './ShowIdeas'
 import ShowTrades from './ShowTrades'
 import ShowStats from './ShowStats'
+import Messages from './Messages'
 import Connections from './Connections'
 import actions from '../../services/index'
 
@@ -26,6 +27,8 @@ export default class Profile extends Component {
                 return <ShowTrades />
             } else if(this.state.display === "stats"){
                 return <ShowStats />
+            } else if(this.state.display === "messages"){
+                return <Messages />
             } else if(this.state.display === "connections"){
                 return <Connections user={this.props.user} />
             }
@@ -84,12 +87,12 @@ export default class Profile extends Component {
                         <ul className="profile-nav__links">
 
                             {(this.state.display === "ideas") ?
-                            <li className= "profile-nav__links-text"><Link className="menu-link" to="/postIdea">Post Idea</Link></li>
+                            <li className= "profile-nav__links-text"><Link className="profile-nav-link" to="/postIdea">Post Idea</Link></li>
                             :
                             null
                             }
                             {(this.state.display === "trades") ?
-                            <li className= "profile-nav__links-text"><Link className="menu-link" to="/postTrade">Post Trade</Link></li>
+                            <li className= "profile-nav__links-text"><Link className="profile-nav-link" to="/postTrade">Post Trade</Link></li>
                             :
                             null
                             }
@@ -97,6 +100,7 @@ export default class Profile extends Component {
                             <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>Ideas</li>
                             <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}>Trades</li>
                             <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}>Stats</li>
+                            <li className={this.state.display === "messages" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"messages"})}>Messages</li>
                             <li className={this.state.display === "connections" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"connections"})}>Connections</li>
                         </ul>
                     </div>

@@ -1,12 +1,78 @@
 .footer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #333;
-    padding: 2rem;
+    background-color: $color-blue-dark-1;
+    padding: 6rem 0rem 6rem 10rem;
+    font-size: 1.4rem;
+    color: #ccc;
 
-    &--text {
-        color: #eee;
-        font-size: 3rem;
+    @include respond(tab-port){
+        padding: 8rem 0;
+    }
+    
+
+    &__logo-box {
+        text-align: center;
+        margin-bottom: 8rem;
+
+        @include respond(tab-port){
+            margin-bottom: 6rem;
+        }
+    }
+
+    &__logo {
+        width: 15rem;
+        height: auto;
+    }
+
+    &__navigation {
+        border-top: 1px solid $color-blue-dark-1;
+        padding-top: 2rem;
+        display: inline-block;
+
+        @include respond(tab-port){
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    &__list {
+        list-style: none;
+    }
+
+    &__item {
+        display: inline-block;
+    
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+
+    &__link {
+        &,
+        &:link,
+        &:visited {
+            color: #ccc;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: all .2s ease-in-out;
+        }
+        &:hover,
+        &:active {
+            color: #fff;
+            text-shadow: 0rem .5rem .4rem $color-black;
+            transform: translateY(-.1rem);
+        }
+    }
+
+    &__copyright {
+        border-top: 1px solid $color-blue-dark-1;
+        padding-top: 2rem;
+        width: 85%;
+        float: right;
+
+        @include respond(tab-port){
+            width: 100%;
+            float: none;
+        }
     }
 }

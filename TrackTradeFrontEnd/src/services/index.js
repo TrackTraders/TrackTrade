@@ -88,6 +88,9 @@ const actions = {
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+  getAllMessages: async () => {
+    return await service.get('/get-all-messages');
+  },
 };
 
 export default actions;

@@ -32,27 +32,49 @@ export default class Header extends Component {
                     <div id="main" className="navigation">
                         <Link to="/" className="navigation--brand">Track Trade</Link>
                         <ul className="navigation--right">
-                            
-                            
-                            {/* GOTTA ACTIVE THIS FOR MOBILE ONLY */}
-                            {/* <li id="profile-dropdown">
-                                <div href="#click" class="menu">
-                                <h2 class="menu-title"><span className="menu-title-text" >{this.props.username}</span><i class="fas fa-chevron-down menu-title-arrow"></i></h2>
-                                <ul class="menu-dropdown">
-                                    <li><Link className="menu-link" to="/home">Home</Link></li>
-                                    <li><Link className="menu-link" to="/profile">Profile</Link></li>
-                                    <li><Link className="menu-link" to="/postIdea">Post Idea</Link></li>
-                                    <li><Link className="menu-link" to="/postTrade">Post Trade</Link></li>
-                                    <li><Link className="menu-link" to="/tools">Tools</Link></li>
-                                </ul>
-                                </div>
-                            </li> */}
 
-                            <li className={this.props.where === "Home" ? "profile-nav__links-text-active" : "profile-nav__links-text"} ><Link className="navigation--link" to="/home">Home</Link></li>
-                            <li className={this.props.where === "Tools" ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/tools">Tools</Link></li>
-                            <li className={this.props.isProfile ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/profile">Profile</Link></li>
+                            
+                            <div className="navigation--right__links-phone">
 
-                            <li id="contact"><Link onClick={this.logOut} className="navigation--link navigation--signup" to="/">Log Out</Link></li>
+                                <input type="checkbox" class="menu__checkbox" id="navi-toggle"/>
+
+                                <label for="navi-toggle" class="menu__button">
+                                    <span class="menu__icon">&nbsp;</span>
+                                </label>
+
+                                <div class="menu__background">&nbsp;</div>
+
+                                <nav class="menu__nav">
+                                    <ul class="menu__list">
+                                        <li class="menu__item">
+                                            <Link className="menu-link" to="/home">Home</Link>
+                                        </li>
+
+                                        <li class="menu__item">
+                                            <Link className="menu-link" to="/tools">Tools</Link>
+                                        </li>
+
+                                        <li class="menu__item">
+                                            <Link className="menu-link" to="/profile">Profile</Link>
+                                        </li>
+
+                                        <li class="menu__item">
+                                            <Link onClick={this.logOut} className="menu-link menu-link-logout" to="/">Log Out</Link>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                
+                            </div>
+
+
+
+                            <div className="navigation--right__links-desktop">
+                                <li className={this.props.where === "Home" ? "profile-nav__links-text-active" : "profile-nav__links-text"} ><Link className="navigation--link" to="/home">Home</Link></li>
+                                <li className={this.props.where === "Tools" ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/tools">Tools</Link></li>
+                                <li className={this.props.isProfile ? "profile-nav__links-text-active" : "profile-nav__links-text"}><Link className="navigation--link" to="/profile">Profile</Link></li>
+                                <li className="profile-nav__links-text"><Link onClick={this.logOut} className="navigation--link navigation--logout" to="/">Log Out</Link></li>
+                            </div>
+
                         </ul>
                     </div>
                 </nav>

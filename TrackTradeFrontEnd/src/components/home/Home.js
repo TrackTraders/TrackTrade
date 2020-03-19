@@ -4,8 +4,6 @@ import Footer from '../partials/Footer';
 import ShowTraders from './ShowAllTraders'
 import ShowIdeas from './ShowAllIdeas'
 import ShowTrades from './ShowAllTrades'
-import ShowStats from './ShowAllStats'
-// import Connections from '../profile/Connections'
 
 export default class Home extends Component {
     state = {
@@ -19,8 +17,6 @@ export default class Home extends Component {
                 return <ShowIdeas />
             } else if(this.state.display === "trades"){
                 return <ShowTrades />
-            } else if(this.state.display === "stats"){
-                return <ShowStats />
             }
         }
         else {
@@ -38,8 +34,7 @@ export default class Home extends Component {
                             <li className={this.state.display === "traders" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"traders"})}>All Traders</li>
                             <li className={this.state.display === "ideas" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>All Ideas</li>
                             <li className={this.state.display === "trades" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"trades"})}>All Trades</li>
-                            <li className={this.state.display === "stats" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"stats"})}>All Stats</li>
-                            {/* <li className={this.state.display === "connections" ? "home-nav__links-text-active" : "home-nav__links-text"} onClick={() => this.setState({display:"connections"})}>Connections</li> */}
+                            
                         </ul>
                     </div>
                     <div className="home-content">
