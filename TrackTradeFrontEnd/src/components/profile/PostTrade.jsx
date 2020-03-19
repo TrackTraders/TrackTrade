@@ -126,10 +126,10 @@ export default class PostTrade extends Component {
                   <label for="lot">Description</label>
                   <textarea onChange={this.handleChange} type="text" className="signup-form-input" name="description" />
               </div>
-              <div className="signup-form-group">
+              {/* <div className="signup-form-group">
                   <label for="screenshot">Screenshot</label>
                   <input onChange={(e) => this.handleFileUpload(e)} type="file" className="signup-form-input-file" name="screenshot" />
-              </div>
+              </div> */}
               <button type="submit" className="signup-form-btn">Post Trade</button>
           </form>
         </div>

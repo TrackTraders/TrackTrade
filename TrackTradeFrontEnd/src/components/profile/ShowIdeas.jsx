@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import actions from '../../services/index'
-
+import {
+    FacebookShareButton,
+    FacebookIcon,
+    TelegramShareButton,
+    TelegramIcon,
+    TwitterShareButton,
+    TwitterIcon,
+    WhatsappShareButton,
+    WhatsappIcon
+  } from "react-share";
     
 export default class ShowIdeas extends Component {
 
@@ -258,9 +267,7 @@ export default class ShowIdeas extends Component {
 
                 {this.state.eachTrade ? <div className="popup" id="popup">
                     <div className="popup__content" id="content">
-                        <div className="popup__left">
-                            
-                        </div>
+                       
                         
                             {!this.state.edit ?
                             <div className="popup__right">
@@ -278,6 +285,38 @@ export default class ShowIdeas extends Component {
                             <h2 className="heading-secondary u-margin-bottom-small">
                             {this.state.eachTrade.trade.description ? <p className="popup__text">{this.state.eachTrade.trade.description}</p> : null}
                             </h2>
+
+                            <div className="popup_right-sharing-icons">
+                                    <FacebookShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <FacebookIcon size={32} round />
+                                    </FacebookShareButton>
+                                    <TwitterShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TwitterIcon size={32} round />
+                                    </TwitterShareButton>
+                                    <TelegramShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TelegramIcon size={32} round />
+                                    </TelegramShareButton>
+                                    <WhatsappShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <WhatsappIcon size={32} round />
+                                    </WhatsappShareButton>
+                                </div>
+
                             </div>
                             
                             :
@@ -287,8 +326,9 @@ export default class ShowIdeas extends Component {
                             <a href="#main" className="popup__close" onClick={this.exitPopup}>&times;</a>
 
                             <form className="popup-form" onSubmit={this.handleSubmit}>
-                                <button type="submit" onClick={this.saveEdit} className="popup__save popup__save">SAVE</button>
-
+                                
+                                <div>
+                                <button type="submit" onClick={this.saveEdit} className="popup__save">SAVE</button>
                                 <div className="popup-form-group">
                                     <label for="currency">Currency</label>
                                     <select placeholder={this.state.eachTrade.trade.currency} className="popup-form-input" required onChange={this.handleChange} name="currency">
@@ -346,9 +386,13 @@ export default class ShowIdeas extends Component {
                                     <label for="lot">Lot size</label>
                                     <input placeholder={this.state.eachTrade.trade.lot} onChange={this.handleChange} type="number" className="popup-form-input" name="lot"  step="0.01" min="0" max="100" required />
                                 </div>
+                                </div>
+
+                                <div>
                                 <div className="popup-form-group">
                                     <label for="lot">Description</label>
                                     <textarea placeholder={this.state.eachTrade.trade.description} onChange={this.handleChange} type="text" className="popup-form-input" name="description" />
+                                </div>
                                 </div>
                             </form>
                             </div> 
@@ -366,13 +410,9 @@ export default class ShowIdeas extends Component {
                     {/* {this.exitPopup()} */}
     
                     {this.state.eachTrade ? <div className="popup" id="popup">
-                        <div className="popup__content" id="content">
-                            <div className="popup__left">
+                        <div className="popup__content" id="content">                            
                                 
-                            </div>
-                            
-                                
-                                <div className="popup__right">
+                            <div className="popup__right">
                                 <a href="#main" className="popup__close">&times;</a>
                                 {/* <button onClick={this.editIdeas} className="popup__edit">EDIT IDEA</button>
                                 <a href="#main" onClick={() => this.deleteCard(this.state.eachTrade._id)} className="popup__delete">DELETE IDEA</a>
@@ -383,11 +423,41 @@ export default class ShowIdeas extends Component {
                                 <h2 className="heading-secondary u-margin-bottom-small">Stoploss: {this.state.eachTrade.trade.stoploss}</h2>
                                 <h2 className="heading-secondary u-margin-bottom-small">Takeprofit: {this.state.eachTrade.trade.takeprofit}</h2>
                                 
-                                
-                                <h2 className="heading-secondary u-margin-bottom-small">
-                                {this.state.eachTrade.trade.description ? <p className="popup__text">{this.state.eachTrade.trade.description}</p> : null}
+                                <h2 class="heading-secondary u-margin-bottom-small">
+                                    {this.state.eachTrade.trade.description ? <p class="popup__text">Description: {this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
                                 </h2>
+                                
+                                <div className="popup_right-sharing-icons">
+                                    <FacebookShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <FacebookIcon size={32} round />
+                                    </FacebookShareButton>
+                                    <TwitterShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TwitterIcon size={32} round />
+                                    </TwitterShareButton>
+                                    <TelegramShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TelegramIcon size={32} round />
+                                    </TelegramShareButton>
+                                    <WhatsappShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE IDEA:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nStoploss: ${this.state.eachTrade.trade.stoploss}\nTakeprofit: ${this.state.eachTrade.trade.takeprofit}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <WhatsappIcon size={32} round />
+                                    </WhatsappShareButton>
                                 </div>
+                            </div>
                                 
                                 
                                 }

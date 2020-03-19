@@ -77,7 +77,7 @@ router.post('/updateAvatar', uploader.single("imageUrl"), (req, res, next) => {
   console.log("--------file:", req.file)
   console.log(req.user)
   
-  User.findByIdAndUpdate(req.user._id, //{$pushToSet {connections: req.body.id}}
+  User.findByIdAndUpdate(req.user._id,
     {avatar: req.file.secure_url}, { new: true }).then(whatever => {
     console.log(whatever);
     res.json({ secure_url: req.file.secure_url });
@@ -139,21 +139,34 @@ router.post('/postTrade', (req, res, next) => {
 }
 )
 
-router.post('/ideaUpload', uploader.single("imageUrl"), (req, res, next) => {
-  if (!req.file) {
-    next(new Error('No file uploaded!'));
-    return;
-  }
-  res.json({ secure_url: req.file.secure_url });
-})
 
-router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
-  if (!req.file) {
-    next(new Error('No file uploaded!'));
-    return;
-  }
-  res.json({ secure_url: req.file.secure_url });
-})
+
+
+// router.post('/ideaUpload', uploader.single("imageUrl"), (req, res, next) => {
+//   if (!req.file) {
+//     next(new Error('No file uploaded!'));
+//     return;
+//   }
+//   res.json({ secure_url: req.file.secure_url });
+// })
+
+
+// router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
+//   if (!req.file) {
+//     next(new Error('No file uploaded!'));
+//     return;
+//   }
+//   Trade.updateOne("trade.trader": req.user.username,
+//     {imageURL: req.file.secure_url}, { new: true }).then(whatever => {
+//     console.log(whatever);
+//     res.json({ secure_url: req.file.secure_url });
+//   }).catch(err => console.log(err))
+// })
+
+
+
+
+
 
 router.post('/delete-ideas', async (req,res,next)=>{
   try {

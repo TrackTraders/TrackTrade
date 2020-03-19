@@ -28,6 +28,23 @@ export default class Messages extends Component {
         console.log(this.state)
     }
 
+    // updateMessages = async () => {
+    //     if(this.state.userData){
+    //         setInterval(async ()=>{
+    //             let allMessages = await actions.getAllMessages();
+    //             this.setState({allMessages: allMessages.data})
+        
+    //             let actualMessages = this.state.allMessages.filter(eachMessage =>{
+    //                 return eachMessage.sender === this.state.userData._id || eachMessage.receiver === this.state.userData._id
+    //             })
+    //             this.setState({actualMessages})
+    
+    //         }, 500)
+
+    //     }
+
+    // }
+
     formatTime = (time) => String(new Date(time)).substring(0,24)
 
     handleChange = (e) =>{
@@ -52,7 +69,6 @@ export default class Messages extends Component {
                 return eachMessage.sender === this.state.userData._id || eachMessage.receiver === this.state.userData._id
             })
             this.setState({actualMessages})
-
         }
     }
 
@@ -66,7 +82,7 @@ export default class Messages extends Component {
             })
             return filteredTraders.map(eachOne=>{
                 return (
-                    <a href="#chatbox" onClick={() => {
+                    <a className="connections-container-each" href="#chatbox" onClick={() => {
                         this.setState({selectedProfile: eachOne})
                         console.log(this.state.selectedProfile)
                     }}>{eachOne.username}</a>
@@ -89,14 +105,7 @@ export default class Messages extends Component {
 
     showMessages = () => {
         if(this.state.selectedProfile){
-            // let sentMessages = this.state.actualMessages.filter(eachMessage => {
-            //     return eachMessage.sender === this.state.userData._id && eachMessage.receiver === this.state.selectedProfile._id
-            // })
-            // let receivedMessages = this.state.actualMessages.filter(eachMessage => {
-            //     return eachMessage.receiver === this.state.userData._id && eachMessage.sender === this.state.selectedProfile._id
-            // })
-            // console.log("SENT: ", sentMessages)
-            // console.log("RECEIVED: ", receivedMessages)
+        
             return (
                     <div className="chatbox" id="chatbox">
                         <div className="chatbox__content" id="content">
@@ -138,6 +147,7 @@ export default class Messages extends Component {
                                 </form>
                             </div>
                         </div>
+                        
                     </div>
                 )
 
@@ -145,19 +155,18 @@ export default class Messages extends Component {
     }
 
     render() {
+        // this.updateMessages()
         return (
             <div className="connections">
                 <div className="connections-container">
                     {this.selectProfile()}
                 </div>
                 <div className="connections-card">
-                <div className="trade-ideas">
-                {this.showMessages()}
-                
+                    <div className="trade-ideas">
+                        {this.showMessages()}            
+                    </div>
                 </div>
-
-                </div>
-        </div>
+            </div>
         )
     }
 }

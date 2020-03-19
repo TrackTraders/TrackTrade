@@ -57,16 +57,21 @@ const actions = {
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+
+
   handleIdeaUpload: async (theFile) => {
     return await service.post('/ideaUpload', theFile)
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+  
   handleTradeUpload: async (theFile) => {
     return await service.post('/tradeUpload', theFile)
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+
+
   findOtherProfile: async (username) => {
     return await service.post('/find-other-profile', username);
   },

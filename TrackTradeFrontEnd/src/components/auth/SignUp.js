@@ -13,12 +13,21 @@ export default class Signup extends Component {
 
     handleSubmit = async e => {
         e.preventDefault()
-        try{
-            let user = await actions.signUp(this.state);
-            this.props.setUser({...user.data})  
-            this.props.history.push('/home')
-        } catch(err){
-            console.log('*****',err.message)
+        if(this.state.username.includes(" ") || this.state.password.includes(" ")){
+            alert("No spaces allowed")
+        }
+        else if(this.state.username.length > 13){
+            alert("Username cannot be bigger than 13 characters, sorry Mr. 'johnSmithTraderAccountTrackTrade123' ")
+        }
+        else{
+            try{
+                let user = await actions.signUp(this.state);
+                this.props.setUser({...user.data})  
+                this.props.history.push('/home')
+            } catch(err){
+                console.log('*****',err.message)
+            }
+
         }
     }
     
@@ -32,7 +41,7 @@ export default class Signup extends Component {
                     <form className="signup-form" onSubmit={this.handleSubmit}
                     >
                         <div className="signup-form-group">
-                            <label for="email">Username</label>
+                            <label for="username">Username</label>
                             <input onChange={this.handleChange} type="text" className="signup-form-input" placeholder="smithjohntrades123" name="username" required />
                         </div>
                         <div className="signup-form-group">

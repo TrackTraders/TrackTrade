@@ -25,7 +25,8 @@ export default class OtherProfile extends Component {
         let user = await actions.isLoggedIn()
         this.setState({actualUser: user.data})
 
-        console.log('-==-=-=-=-=-=-', this.state)
+        let allMessages = await actions.getAllMessages();
+        this.setState({allMessages: allMessages.data})
         
         if(this.props.match.params.otheruser !== this.props.username){
             if(this.state.userdata[0] && this.state.actualUser){
@@ -41,6 +42,14 @@ export default class OtherProfile extends Component {
             }
 
         }
+
+        if(this.state.actualMessages){
+            let actualMessages = this.state.allMessages.filter(eachMessage =>{
+                return eachMessage.sender === this.state.actualUser._id || eachMessage.receiver === this.state.actualUser._id
+            })
+            this.setState({actualMessages})
+
+        }
     }
 
     displayStuff = () => {
@@ -50,7 +59,7 @@ export default class OtherProfile extends Component {
             } else if(this.state.display === "trades"){
                 return <ShowTrades trades={this.state.trades} otherProfile={true} />
             } else if(this.state.display === "stats"){
-                return <ShowStats otherProfile={true} />
+                return <ShowStats trades={this.state.trades} otherProfile={true} />
             }
         }
         else {
@@ -101,6 +110,65 @@ export default class OtherProfile extends Component {
             await actions.sendMessage({message: this.state.message, otherProfile: this.state.userdata[0]._id});
         }
         catch(err) {console.log(err)}
+        if(this.state.actualUser){
+            let allMessages = await actions.getAllMessages();
+            this.setState({allMessages: allMessages.data})
+    
+            let actualMessages = this.state.allMessages.filter(eachMessage =>{
+                return eachMessage.sender === this.state.actualUser._id || eachMessage.receiver === this.state.actualUser._id
+            })
+            this.setState({actualMessages})
+
+        }
+    }
+
+    showMessages = () => {
+        if(this.state.actualMessages){
+            return (
+                    <div className="chatbox" id="chatbox">
+                        <div className="chatbox__content" id="content">
+                            <div className="chatbox__top">
+                                <div className="chatbox__top-avatar profile-nav__user-avatar">
+                                {this.imageLoad()}
+                                <div className="profile-nav__user-avatar__image-default"></div>
+                            </div>
+                            <h1 className="profile-nav__user-username">{this.state.userdata[0].username}</h1>
+                            </div>
+                            <div className="chatbox__middle">
+                                <div className="chatbox__middle-content">
+                                <a href="#main" className="chatbox__close">&times;</a>
+    
+                                    {this.state.actualMessages.map(eachMessage => {
+                                        if(eachMessage.sender === this.state.actualUser._id && eachMessage.receiver === this.state.userdata[0]._id){
+                                            return (
+                                                <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
+                                                    {eachMessage.content}
+                                                </div>
+                                            )
+                                        }
+                                        else if(eachMessage.receiver === this.state.actualUser._id && eachMessage.sender === this.state.userdata[0]._id){
+                                            return (
+                                                <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
+                                                    {eachMessage.content}
+                                                </div>
+                                            )
+                                        }
+                                    })}
+                                    
+                                    
+                                </div>
+                            </div>
+                            <div className="chatbox__bottom">
+                                <form onSubmit={this.sendMessage} className="chatbox__bottom-form">
+                                    <textarea onChange={this.handleChange} ref={this.input} type="text" name="message" className="chatbox__bottom-form-message" placeholder="Type your message" required />
+                                    <button className="chatbox__bottom-form-submit" type="submit">Send</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                )
+
+        }
     }
 
     // changeProfileState = ()
@@ -143,60 +211,7 @@ export default class OtherProfile extends Component {
                     </div>
                     <div className="profile-content">
                         {this.displayStuff()}
-                        <div className="chatbox" id="chatbox">
-                        <div className="chatbox__content" id="content">
-                            <div className="chatbox__top">
-                            <div className="chatbox__top-avatar profile-nav__user-avatar">
-                                {this.imageLoad()}
-                                <div className="profile-nav__user-avatar__image-default"></div>
-                            </div>
-                            <h1 className="profile-nav__user-username">{this.state.userdata[0].username}</h1>
-                            </div>
-                            <div className="chatbox__middle">
-                                <div className="chatbox__middle-content">
-                                <a href="#main" className="chatbox__close">&times;</a>
-
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
-                                        Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! 
-                                    </div>
-
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
-                                        How are you?
-                                    </div>
-                                    
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
-                                        Hello!
-                                    </div>
-
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
-                                        How are you?
-                                    </div>
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
-                                        Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! Hello! 
-                                    </div>
-
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
-                                        How are you?
-                                    </div>
-                                    
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
-                                        Hello!
-                                    </div>
-
-                                    <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
-                                        How are you?
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div className="chatbox__bottom">
-                                <form onSubmit={this.sendMessage} className="chatbox__bottom-form">
-                                    <textarea onChange={this.handleChange} ref={this.input} type="text" name="message" className="chatbox__bottom-form-message" placeholder="Type your message" required />
-                                    <button className="chatbox__bottom-form-submit" type="submit">Send</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                        {this.showMessages()}
                     </div>
                 </div>
                 <Footer/>

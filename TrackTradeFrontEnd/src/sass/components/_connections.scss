@@ -6,6 +6,8 @@
         margin-left: 10rem;
     }
     &-container {
+        display: flex;
+        flex-direction: column;
         font-size: 2rem;
         height: 500px;
         width: 250px;
@@ -24,6 +26,20 @@
 
             &:not(:last-child) {
                 border-bottom: 1px solid black;
+            }
+        }
+
+        &-each {
+
+            &,
+            &:link,
+            &:visited {
+                text-decoration: none;
+                color: #ccc;
+            }
+
+            &:hover {
+                color: #fff;
             }
         }
     }

@@ -6,7 +6,8 @@
 .signup {
 
     height: 100%;
-    background-color: $color-blue-dark-1;
+    background-color: $color-blue-dark-3;
+    border-top: 2px solid $color-blue-dark-2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +26,7 @@
         color: #eee;
         font-size: 3rem;
         width: 700px;
-        margin: 0 25rem 0 0;
+        margin: 0  0 0;
         
         
         &-group {

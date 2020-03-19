@@ -1,5 +1,15 @@
 import React, { Component } from 'react'
 import actions from '../../services/index'
+import {
+    FacebookShareButton,
+    FacebookIcon,
+    TelegramShareButton,
+    TelegramIcon,
+    TwitterShareButton,
+    TwitterIcon,
+    WhatsappShareButton,
+    WhatsappIcon
+  } from "react-share";
 
 export default class ShowTrades extends Component {
 
@@ -180,20 +190,55 @@ export default class ShowTrades extends Component {
                     {this.showIdeas()}
                     {this.state.eachTrade ? <div class="popup" id="popup">
                         <div class="popup__content" id="content">
-                            <div class="popup__left">
+                            {/* <div class="popup__left">
                                 
-                            </div>
+                            </div> */}
                             <div class="popup__right">
                                 <a href="#main" class="popup__close">&times;</a>
                                 <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
                                 <h2 class="heading-secondary u-margin-bottom-small">Lot size: {this.state.eachTrade.trade.lot}</h2>
                                 <h2 class="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
                                 <h2 class="heading-secondary u-margin-bottom-small">Closed at: {this.state.eachTrade.trade.close}</h2>
-                                
+                                {this.state.eachTrade.trade.money > 0 ?
+                                    <div className="trade-ideas-card-win-popup">${this.state.eachTrade.trade.money.toFixed(2)}</div>
+                                :
+                                    <div className="trade-ideas-card-loss-popup">-${Math.abs(this.state.eachTrade.trade.money).toFixed(2)}</div>
+                                }
                                 
                                 <h2 class="heading-secondary u-margin-bottom-small">
                                 {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text"></p>}
                                 </h2>
+
+                                <div className="popup_right-sharing-icons">
+                                    <FacebookShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <FacebookIcon size={32} round />
+                                    </FacebookShareButton>
+                                    <TwitterShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TwitterIcon size={32} round />
+                                    </TwitterShareButton>
+                                    <TelegramShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TelegramIcon size={32} round />
+                                    </TelegramShareButton>
+                                    <WhatsappShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`MY TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <WhatsappIcon size={32} round />
+                                    </WhatsappShareButton>
+                                </div>
                                 
                             </div>
                         </div>
@@ -206,9 +251,9 @@ export default class ShowTrades extends Component {
                     {this.showOtherIdeas()}
                     {this.state.eachTrade ? <div class="popup" id="popup">
                         <div class="popup__content" id="content">
-                            <div class="popup__left">
+                            {/* <div class="popup__left">
                                 
-                            </div>
+                            </div> */}
                             <div class="popup__right">
                                 <a href="#main" class="popup__close">&times;</a>
                                 <h2 class="heading-secondary u-margin-bottom-small">{this.state.eachTrade.trade.currency} {this.state.eachTrade.trade.kind}</h2>
@@ -216,10 +261,40 @@ export default class ShowTrades extends Component {
                                 <h2 class="heading-secondary u-margin-bottom-small">Entry: {this.state.eachTrade.trade.entry}</h2>
                                 <h2 class="heading-secondary u-margin-bottom-small">Closed at: {this.state.eachTrade.trade.close}</h2>
                                 
-                                
                                 <h2 class="heading-secondary u-margin-bottom-small">
-                                {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text"></p>}
+                                    {this.state.eachTrade.trade.description ? <p class="popup__text">{this.state.eachTrade.trade.description}</p> : <p class="popup__text">No description provided</p>}
                                 </h2>
+
+                                <div className="popup_right-sharing-icons">
+                                    <FacebookShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <FacebookIcon size={32} round />
+                                    </FacebookShareButton>
+                                    <TwitterShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TwitterIcon size={32} round />
+                                    </TwitterShareButton>
+                                    <TelegramShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <TelegramIcon size={32} round />
+                                    </TelegramShareButton>
+                                    <WhatsappShareButton
+                                        url={`https://www.tracktrade.co/profile/${this.state.eachTrade.trade.trader}`}
+                                        title={`${this.state.eachTrade.trade.trader}'s TRADE:\n${this.state.eachTrade.trade.currency} ${this.state.eachTrade.trade.kind}\nEntry: ${this.state.eachTrade.trade.entry}\nClose: ${this.state.eachTrade.trade.close}\n${this.state.eachTrade.trade.description ? `Description: ${this.state.eachTrade.trade.description}\n` : '' }`}
+                                        className="popup_right-sharing-icons-button"
+                                    >
+                                        <WhatsappIcon size={32} round />
+                                    </WhatsappShareButton>
+                                </div>
                                 
                             </div>
                         </div>
