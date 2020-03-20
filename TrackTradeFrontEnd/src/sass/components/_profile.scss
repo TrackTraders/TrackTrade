@@ -105,6 +105,19 @@
         }
 
         &__links {
+
+            &-other {
+
+                & > * {
+                    
+                    @include respond(smallphone){
+                        padding: .5rem 1rem !important;
+                    }
+                }
+                @include respond(smallphone){
+                    margin-bottom: 2rem;
+                }
+            }
             
             display: flex;
             justify-content: space-evenly;

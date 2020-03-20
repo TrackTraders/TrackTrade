@@ -191,23 +191,25 @@ export default class OtherProfile extends Component {
                                 <div className="profile-nav__user-avatar__image-default"></div>
                             </div>
                             <h1 className="profile-nav__user-username">{this.state.userdata[0].username}</h1>
+                            <div className="profile-nav__links-other">
+                                {this.state.connected ?
+                                    <div onClick={() => this.disconnectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Disconnect</div>
+                                :
+                                    <div onClick={() => this.connectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Connect</div>
+                                }
 
-                            {this.state.connected ?
-                                <div onClick={() => this.disconnectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Disconnect</div>
-                            :
-                                <div onClick={() => this.connectUser(this.state.userdata[0]._id)} className= "profile-nav__links-text-profile">Connect</div>
-                            }
-
-                            <a href="#chatbox" className= "profile-nav__links-text-profile">Message</a>
-
+                                <a href="#chatbox" className= "profile-nav__links-text-profile">Message</a>
+                            </div>
                         </div>
                         <ul className="profile-nav__links">
 
-                            
-                            <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>Ideas</li>
-                            <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}>Trades</li>
-                            <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}>Stats</li>
+                        <div className="profile-nav__links-flex">
+                            <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}><i className="fas fa-lightbulb profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Ideas</span></li>
 
+                            <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}><i className="fas fa-dollar-sign profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Trades</span></li>
+
+                            <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}><i className="fas fa-chart-line profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Stats</span></li>
+                        </div>
                         </ul>
                     </div>
                     <div className="profile-content">
