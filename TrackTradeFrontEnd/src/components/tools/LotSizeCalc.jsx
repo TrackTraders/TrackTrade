@@ -20,8 +20,8 @@ export default class Tools extends Component {
     return (
       <div className="signup-lotcalc">
         
-          <form className="signup-form" onSubmit={this.handleSubmit}>
-            <div className="signup-form-group">
+          <form className="signup-lotcalc-form" onSubmit={this.handleSubmit}>
+            <div className="signup-lotcalc-form-group">
               <label for="balance">Account Balance, $</label>
               <input
                 onChange={this.handleChange}
@@ -32,7 +32,7 @@ export default class Tools extends Component {
                 required
               />
             </div>
-            <div className="signup-form-group">
+            <div className="signup-lotcalc-form-group">
               <label for="currency">Currency Pair</label>
               <select className="signup-form-input" required onChange={this.handleChange} name="currency">
                 <option></option>
@@ -65,7 +65,7 @@ export default class Tools extends Component {
                 <option>USD/JPY</option>
               </select>
             </div>
-            <div className="signup-form-group">
+            <div className="signup-lotcalc-form-group">
               <label for="risk">Risk Ratio, %</label>
               <input
                 onChange={this.handleChange}
@@ -77,7 +77,7 @@ export default class Tools extends Component {
                 required
               />
             </div>
-            <div className="signup-form-group">
+            <div className="signup-lotcalc-form-group">
               <label for="stoploss">Stop Loss, pips</label>
               <input
                 onChange={this.handleChange}
@@ -89,7 +89,7 @@ export default class Tools extends Component {
                 required
               />
             </div>
-            <button type="submit" className="signup-form-btn">
+            <button type="submit" className="signup-lotcalc-form-btn">
               Calculate
             </button>
           </form>

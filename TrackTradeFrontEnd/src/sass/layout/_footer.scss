@@ -1,13 +1,30 @@
 .footer {
     background-color: $color-blue-dark-1;
-    padding: 6rem 0rem 6rem 10rem;
+    padding: 6rem 0rem 6rem 20rem;
     font-size: 1.4rem;
     color: #ccc;
 
     @include respond(tab-port){
         padding: 8rem 0;
+        display: none;
     }
     
+    &-image {
+        background-image: url("./images/favicon.png");
+        height: 48px;
+        width: 48px;
+
+        @include respond(tab-port){
+            display: none;
+        }
+
+        &-container {
+            width: 48px;
+            position: absolute;
+            right: 48%;
+            margin-top: .5rem;
+        }
+    }
 
     &__logo-box {
         text-align: center;
@@ -36,6 +53,7 @@
 
     &__list {
         list-style: none;
+        
     }
 
     &__item {
@@ -73,6 +91,7 @@
         @include respond(tab-port){
             width: 100%;
             float: none;
+            padding-left: 8rem;
         }
     }
 }

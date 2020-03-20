@@ -13,10 +13,10 @@
         justify-content: space-between;
 
         &-link {
-
             &,
             &:link,
             &:visited {
+                width: 100px;
                 text-decoration: none;
                 color: #ddd;
             }
@@ -36,6 +36,10 @@
                 background-color: #ccc;
                 overflow: hidden;
 
+                @include respond(smallphone){
+                    height: 50px;
+                    width: 50px;
+                }
 
                 &:hover > &__change {
                     transform: translateY(-6rem);
@@ -47,6 +51,7 @@
                     height: 100%;
                     width: 100%;
                     z-index: -20;
+
 
                     &-default {
                         background-image: url("./images/userdefault.png");
@@ -92,6 +97,10 @@
             &-username {
                 padding: 0 4rem;
                 font-size: 3rem;
+
+                @include respond(smallphone){
+                    font-size: 2.5rem;
+                }
             }
         }
 
@@ -101,6 +110,49 @@
             justify-content: space-evenly;
             padding-right: 3rem;
 
+            &-flex {
+                display: flex;
+                
+                @include respond(tab-land){
+                    flex-direction: column;
+                    
+                    & > * {
+                        padding: 1rem;
+                    }
+                }
+
+                @include respond(tab-port){
+                    flex-direction: row;
+                    position: fixed;
+                    z-index: 100000;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    justify-content: center;
+                    background-color: #000;
+                    border-top: 2px solid $color-blue-dark-1;
+                    padding: 5%;
+
+                    & > * {
+                        background-color: rgba($color-blue-dark-3, 1);
+                        padding: 2rem 2.5rem !important;
+                        margin: auto 2% !important;
+                    }
+                }
+
+                @include respond(smallphone){
+                    padding: 0 !important;
+                    
+                    & > * {
+                        
+                        width: 20%;
+                        text-align: center;
+                        border: 2px solid black;
+                        margin: 0 !important;
+                        // padding: 1rem .3rem !important;
+                    }
+                }
+            }
 
             &-text {
 
@@ -117,6 +169,7 @@
                 @include respond(tab-port){
                     margin: auto 0rem;
                 }
+
                 &:hover {
                     background-color: rgba($color-blue-dark-1, 0.7);
                     color: #ddd;
@@ -143,6 +196,12 @@
                         cursor: pointer;
     
                     }    
+
+                    @include respond(smallphone){
+                        
+                        padding: 4rem;
+                        margin: 2rem 0;
+                    }
                 }
             }
             &-text-active {
@@ -168,5 +227,23 @@
 
     &-content {
         margin: 6rem auto;
+    }
+}
+
+
+.profile-nav__links-desktop {
+
+    @include respond(smallphone){
+        display: none;
+    }
+}
+
+.profile-nav__links-phone {
+    display: none;
+
+    @include respond(smallphone){
+        display: inline;
+        font-size: 4    rem;        
+        margin: 2rem 0;
     }
 }

@@ -96,12 +96,21 @@ export default class Profile extends Component {
                             :
                             null
                             }
+                            <div className="profile-nav__links-flex">
+                                <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}><i className="fas fa-lightbulb profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Ideas</span></li>
+                            
 
-                            <li className={this.state.display === "ideas" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"ideas"})}>Ideas</li>
-                            <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}>Trades</li>
-                            <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}>Stats</li>
-                            <li className={this.state.display === "messages" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"messages"})}>Messages</li>
-                            <li className={this.state.display === "connections" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"connections"})}>Connections</li>
+                                <li className={this.state.display === "trades" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"trades"})}><i className="fas fa-dollar-sign profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Trades</span></li>
+
+
+                                <li className={this.state.display === "stats" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"stats"})}><i className="fas fa-chart-line profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Stats</span></li>
+
+
+                                <li className={this.state.display === "messages" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"messages"})}><i className="fas fa-comments profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Messages</span></li>
+
+
+                                <li className={this.state.display === "connections" ? "profile-nav__links-text-active" : "profile-nav__links-text"} onClick={() => this.setState({display:"connections"})}><i className="fas fa-users profile-nav__links-phone"></i><span className="profile-nav__links-desktop">Connections</span></li>
+                            </div>
                         </ul>
                     </div>
                     <div className="profile-content">

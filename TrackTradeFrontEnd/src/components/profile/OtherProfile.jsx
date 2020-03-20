@@ -35,7 +35,7 @@ export default class OtherProfile extends Component {
                 } else {
                     this.setState({connected:false})
                 }
-                console.log(this.state.connected)
+                // console.log(this.state.connected)
             }
             else {
                 this.setState({connected: false})
@@ -43,7 +43,7 @@ export default class OtherProfile extends Component {
 
         }
 
-        if(this.state.actualMessages){
+        if(this.state.allMessages){
             let actualMessages = this.state.allMessages.filter(eachMessage =>{
                 return eachMessage.sender === this.state.actualUser._id || eachMessage.receiver === this.state.actualUser._id
             })
@@ -123,6 +123,7 @@ export default class OtherProfile extends Component {
     }
 
     showMessages = () => {
+        console.log(this.state)
         if(this.state.actualMessages){
             return (
                     <div className="chatbox" id="chatbox">

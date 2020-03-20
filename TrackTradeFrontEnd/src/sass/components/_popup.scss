@@ -11,12 +11,13 @@
     opacity: 0;
     visibility: hidden;
     transition: all .4s;
+    
 
     &__content{
         @include centerHorVer;
 
         height: 50vh;
-        width: 35%;
+        width: 25%;
         box-shadow: 0 1rem 3rem $color-black;
         color: $color-black;
         background-color: $color-white;
@@ -25,6 +26,19 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(.5);
         transition: all .5s;
+
+        @include respond(tab-port){
+            width: 50%;
+            height: 30vh;
+        }
+        @include respond(phone){
+            width: 70%;
+            height: 30vh;
+        }
+        @include respond(smallphone){
+            width: 90%;
+            height: 40vh;
+        }
     }
 
     &__left {
@@ -86,6 +100,7 @@
             display: inline-block;
             padding: 5rem;
             width: 100%;
+            height: 40vh;
             position: relative;
         }
 
@@ -96,6 +111,10 @@
                 font-size: 2rem;
                 letter-spacing: 0;
             }
+        }
+
+        @include respond(smallphone){
+            height: 45vh;
         }
     }
 

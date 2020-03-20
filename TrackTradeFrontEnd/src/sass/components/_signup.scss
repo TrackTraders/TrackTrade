@@ -3,8 +3,13 @@
     height: 100vh;
 }
 
-.signup {
+.trade-idea {
+    height: 100vh;
+    overflow-y: hidden;
+}
 
+.signup {
+    overflow-y: hidden;
     height: 100%;
     background-color: $color-blue-dark-3;
     border-top: 2px solid $color-blue-dark-2;
@@ -13,12 +18,80 @@
     align-items: center;
     padding-bottom: 25rem;
 
+
+    &-lotcalc {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            color: #eee;
+            font-size: 3rem;
+            width: 1000px;
+
+            &-group {
+                & label {
+                    float: right;
+                    text-align: right;
+                    margin-right: 15px;
+                    width: 400px;
+                }
+                
+                width: 800px;
+                display: flex;
+                
+                justify-content: space-between;
+                align-items: center;
+                margin: 2rem 1rem;
+            }
+            
+            &-btn {
+                background-color: $color-blue-3;
+                border: none;
+                border-radius: 3px;
+                font-size: 3rem;
+                float: left;
+                color: #fff;
+                padding: 1rem 1.5rem;
+                width: 50%;
+                margin: 5rem -1rem 0 10rem;
+            }
+        }
+    }
+
     &-result-lot {
         margin: 5rem 33rem;
     }
+
+    &-trade-idea {
+
+        overflow-y: hidden;
+        height: 100%;
+        background-color: $color-blue-dark-3;
+        border-top: 2px solid $color-blue-dark-2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20rem;
+
+        &-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: initial;
+            color: #eee;
+            font-size: 2.6rem;
+            width: 700px;
+            margin: 0 10rem 0 0;
+        }
+    }
     
     &-form {
-
+        
         display: flex;
         flex-direction: column;
         justify-content: space-between;

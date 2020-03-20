@@ -36,6 +36,10 @@
             position: relative;
             transition: all .3s ease-in-out;
 
+            @include respond(tab-port){
+                height: 270px;
+            }
+
             &:hover {
                 cursor: pointer;
                 transform: translateY(-.5rem);
@@ -190,6 +194,11 @@
                     border-radius: 50%;
                     border: none;
 
+                    @include respond(smallphone){
+                        height: 50px;
+                        width: 50px;
+                    }
+
                     &-default {
                         background-image: url("./images/userdefault.png");
                         background-size: cover;
@@ -198,6 +207,11 @@
                         height: 100px;
                         width: 100px;
                         z-index: -20;
+
+                        @include respond(smallphone){
+                            height: 50px;
+                            width: 50px;
+                        }
                     }
                 }
 
