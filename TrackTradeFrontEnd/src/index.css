@@ -908,12 +908,15 @@ body::-webkit-scrollbar-thumb {
       display: flex;
       justify-content: space-evenly;
       padding-right: 3rem; }
-      @media only screen and (max-width: 35em) {
-        .profile-nav__links-other > * {
-          padding: .5rem 1rem !important; } }
-      @media only screen and (max-width: 35em) {
-        .profile-nav__links-other {
-          margin-bottom: 2rem; } }
+      .profile-nav__links-other {
+        display: flex; }
+        @media only screen and (max-width: 35em) {
+          .profile-nav__links-other > * {
+            padding: .5rem 1rem !important; } }
+        @media only screen and (max-width: 35em) {
+          .profile-nav__links-other {
+            margin-bottom: 2rem;
+            flex-direction: column; } }
       .profile-nav__links-flex {
         display: flex; }
         @media only screen and (max-width: 90em) {

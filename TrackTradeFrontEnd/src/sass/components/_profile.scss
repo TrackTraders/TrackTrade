@@ -108,6 +108,8 @@
 
             &-other {
 
+                display: flex;
+
                 & > * {
                     
                     @include respond(smallphone){
@@ -116,6 +118,7 @@
                 }
                 @include respond(smallphone){
                     margin-bottom: 2rem;
+                    flex-direction: column;
                 }
             }
             
