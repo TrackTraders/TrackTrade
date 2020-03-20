@@ -10,7 +10,7 @@ export default class Landing extends Component {
 
                 <main className="landing-main">
                     <div className="landing-main--text">
-                        <h1 className="landing-main--title">A Trading Hub with a touch of social media</h1>
+                        <h1 className="landing-main--title">A Forex Trading Hub with a touch of social media</h1>
                         <p className="landing-main--description">Easily visualize your progress with charts. Connect with your peers and message them about your trade ideas.</p>
                         <a href="/sign-up" className="landing-main--button">Get Started</a>
                     </div>
@@ -69,7 +69,7 @@ export default class Landing extends Component {
                 <section className="landing-about">
                     <div className="landing-about--text">
                         <h1 className="landing-about--title">About</h1>
-                        <p className="landing-about--description">Hello! My name is Victor Fernandez and I created this website because I have always found it inconvenient to share my trades on twitter where you find a huge variety of content. I wanted to create a hub for everything trading related, all free, and simple.</p>
+                        <p className="landing-about--description">Hello! My name is Victor Fernandez and I created this website because I have always found it inconvenient to share my trades on other social media platforms where you find a huge variety of content. I wanted to create a hub for everything trading related, all free, and simple.</p>
                         <a href="https://linkedin.com/in/victor--fernandez" target="_blank" rel="noopener noreferrer" className="landing-about--button">Get In Touch</a>
                     </div>
                     <div className="landing-about--image"></div>

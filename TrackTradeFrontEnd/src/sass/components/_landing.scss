@@ -20,8 +20,8 @@
 
         &--title {
             color: #ddd;
-            width: 75rem;
-            font-size: 5rem;
+            width: 70rem;
+            font-size: 4.5rem;
             padding-top: 10rem;
             line-height: 1.5;
             letter-spacing: 2px;
@@ -66,7 +66,7 @@
             width: 612px;
             margin: 10rem 3rem 0 0;
 
-            animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) 1s infinite;
+            animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) .1s infinite;
 
         }
     }

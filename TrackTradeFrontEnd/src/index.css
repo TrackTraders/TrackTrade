@@ -402,8 +402,8 @@ body::-webkit-scrollbar-thumb {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
     .landing-main--title {
       color: #ddd;
-      width: 75rem;
-      font-size: 5rem;
+      width: 70rem;
+      font-size: 4.5rem;
       padding-top: 10rem;
       line-height: 1.5;
       letter-spacing: 2px; }
@@ -433,7 +433,7 @@ body::-webkit-scrollbar-thumb {
       height: 488px;
       width: 612px;
       margin: 10rem 3rem 0 0;
-      animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) 1s infinite; }
+      animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s infinite; }
   .landing-section-1 {
     background-image: linear-gradient(rgba(4, 14, 19, 0.8), rgba(4, 14, 19, 0.8)), url("./images/chartbglanding.png");
     background-size: cover;
@@ -601,6 +601,8 @@ body::-webkit-scrollbar-thumb {
   .signup-lotcalc {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center; }
     .signup-lotcalc-form {
       display: flex;
@@ -890,6 +892,11 @@ body::-webkit-scrollbar-thumb {
       text-decoration: none;
       color: #ccc; }
     .connections-container-each:hover {
+      color: #fff; }
+    .connections-container-each-active, .connections-container-each-active:link, .connections-container-each-active:visited {
+      text-decoration: none;
+      color: #2ba7fa; }
+    .connections-container-each-active:hover {
       color: #fff; }
 
 .home {
@@ -1280,6 +1287,10 @@ body::-webkit-scrollbar-thumb {
   opacity: 0;
   visibility: hidden;
   transition: all .4s ease-in-out; }
+  @media only screen and (max-width: 35em) {
+    .chatbox {
+      bottom: 77px;
+      left: 30px; } }
   .chatbox__content {
     position: absolute;
     top: 50%;
@@ -1296,6 +1307,10 @@ body::-webkit-scrollbar-thumb {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.5);
     transition: all .3s ease-in-out; }
+    @media only screen and (max-width: 35em) {
+      .chatbox__content {
+        width: 60%;
+        height: 55vh; } }
   .chatbox__top {
     width: 100%;
     height: 10%;
@@ -1309,6 +1324,10 @@ body::-webkit-scrollbar-thumb {
       width: 50px;
       margin-left: 2rem;
       margin-right: -2rem; }
+      @media only screen and (max-width: 35em) {
+        .chatbox__top-avatar {
+          height: 40px;
+          width: 40px; } }
   .chatbox__middle {
     width: 100%;
     height: 100%;
@@ -1366,6 +1385,9 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     justify-content: center; }
+    @media only screen and (max-width: 35em) {
+      .chatbox__bottom {
+        padding: 0 !important; } }
     .chatbox__bottom-form {
       height: 100%;
       width: auto;

@@ -81,12 +81,23 @@ export default class Messages extends Component {
                 //only return those that match you know
             })
             return filteredTraders.map(eachOne=>{
-                return (
-                    <a className="connections-container-each" href="#chatbox" onClick={() => {
-                        this.setState({selectedProfile: eachOne})
-                        console.log(this.state.selectedProfile)
-                    }}>{eachOne.username}</a>
-                )
+                if(this.state.selectedProfile === eachOne){
+                    return (
+                        <a className="connections-container-each-active" href="#chatbox" onClick={() => {
+                            this.setState({selectedProfile: eachOne})
+                            console.log(this.state.selectedProfile)
+                        }}>{eachOne.username}</a>
+                    )
+                }
+                else {
+                    return (
+                        <a className="connections-container-each" href="#chatbox" onClick={() => {
+                            this.setState({selectedProfile: eachOne})
+                            console.log(this.state.selectedProfile)
+                        }}>{eachOne.username}</a>
+                    )
+
+                }
 
             })
             
@@ -118,7 +129,7 @@ export default class Messages extends Component {
                             </div>
                             <div className="chatbox__middle">
                                 <div className="chatbox__middle-content">
-                                <a href="#main" className="chatbox__close">&times;</a>
+                                <a href="#main" onClick={()=>this.setState({selectedProfile: null})} className="chatbox__close">&times;</a>
 
                                     {this.state.actualMessages.map(eachMessage => {
                                         if(eachMessage.sender === this.state.userData._id && eachMessage.receiver === this.state.selectedProfile._id){

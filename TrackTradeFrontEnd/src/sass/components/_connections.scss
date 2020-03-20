@@ -42,5 +42,19 @@
                 color: #fff;
             }
         }
+
+        &-each-active {
+
+            &,
+            &:link,
+            &:visited {
+                text-decoration: none;
+                color: $color-blue-bright-1;
+            }
+
+            &:hover {
+                color: #fff;
+            }
+        }
     }
 }

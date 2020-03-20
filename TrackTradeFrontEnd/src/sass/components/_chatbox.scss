@@ -15,6 +15,11 @@
     visibility: hidden;
     transition: all .4s ease-in-out;
 
+    @include respond(smallphone){
+        bottom: 77px;
+        left: 30px;
+    }
+
     &__content{
         @include centerHorVer;
 
@@ -29,6 +34,12 @@
         opacity: 0;
         transform: translate(-50%, -50%) scale(.5);
         transition: all .3s ease-in-out;
+
+        @include respond(smallphone){
+            width: 60%;
+            height: 55vh;
+            // transform: translate(-50%, -50%) scale(.5);
+        }
     }
 
     &__top {
@@ -45,6 +56,10 @@
             width: 50px;
             margin-left: 2rem;
             margin-right: -2rem;
+            @include respond(smallphone){
+                height: 40px;
+                width: 40px;
+            }
         }
     }
 
@@ -125,6 +140,10 @@
         // padding: 3rem 5rem;
         // vertical-align: middle;
 
+        @include respond(smallphone){
+            padding: 0 !important;
+        }
+
         &-form {
 
             height: 100%;
@@ -144,6 +163,9 @@
                 background-color: $color-blue-dark-3;
                 color: #ddd;
                 outline: none;
+                @include respond(smallphone){
+                    
+                }
             }
 
             &-submit {
