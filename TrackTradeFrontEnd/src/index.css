@@ -400,6 +400,11 @@ body::-webkit-scrollbar-thumb {
     background-color: #081c24;
     border-top: 2px solid #040e13;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+    @media only screen and (max-width: 35em) {
+      .landing-main {
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        padding: 5rem 5rem 20rem;
+        justify-content: center; } }
     .landing-main--title {
       color: #ddd;
       width: 70rem;
@@ -407,6 +412,11 @@ body::-webkit-scrollbar-thumb {
       padding-top: 10rem;
       line-height: 1.5;
       letter-spacing: 2px; }
+      @media only screen and (max-width: 35em) {
+        .landing-main--title {
+          font-size: 3.5rem;
+          padding-top: 5rem;
+          width: 40rem; } }
     .landing-main--description {
       color: #ddd;
       width: 55rem;
@@ -414,6 +424,11 @@ body::-webkit-scrollbar-thumb {
       padding-top: 5rem;
       margin-bottom: 7rem;
       line-height: 1.75; }
+      @media only screen and (max-width: 35em) {
+        .landing-main--description {
+          font-size: 3rem;
+          padding-top: 7rem;
+          width: 45rem; } }
     .landing-main--button, .landing-main--button:link, .landing-main--button:visited {
       font-size: 2.6rem;
       font-weight: 700;
@@ -434,6 +449,9 @@ body::-webkit-scrollbar-thumb {
       width: 612px;
       margin: 10rem 3rem 0 0;
       animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s infinite; }
+      @media only screen and (max-width: 35em) {
+        .landing-main--image {
+          display: none; } }
   .landing-section-1 {
     background-image: linear-gradient(rgba(4, 14, 19, 0.8), rgba(4, 14, 19, 0.8)), url("./images/chartbglanding.png");
     background-size: cover;
@@ -461,6 +479,10 @@ body::-webkit-scrollbar-thumb {
         background-repeat: no-repeat;
         height: 140px;
         width: 135px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__1--image {
+            height: 80px;
+            width: 75px; } }
       .landing-section-1--cards__2--image {
         background-image: url("./images/competition-icon.png");
         background-size: contain;
@@ -468,6 +490,10 @@ body::-webkit-scrollbar-thumb {
         background-repeat: no-repeat;
         height: 140px;
         width: 135px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__2--image {
+            height: 80px;
+            width: 75px; } }
       .landing-section-1--cards__3--image {
         background-image: url("./images/message-icon.png");
         background-size: contain;
@@ -475,6 +501,10 @@ body::-webkit-scrollbar-thumb {
         background-repeat: no-repeat;
         height: 140px;
         width: 135px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__3--image {
+            height: 80px;
+            width: 75px; } }
       .landing-section-1--cards__4--image {
         background-image: url("./images/share-icon.png");
         background-size: contain;
@@ -482,6 +512,10 @@ body::-webkit-scrollbar-thumb {
         background-repeat: no-repeat;
         height: 140px;
         width: 135px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__4--image {
+            height: 80px;
+            width: 75px; } }
       .landing-section-1--cards__5--image {
         background-image: url("./images/tools-icon.png");
         background-size: contain;
@@ -489,6 +523,10 @@ body::-webkit-scrollbar-thumb {
         background-repeat: no-repeat;
         height: 140px;
         width: 135px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__5--image {
+            height: 80px;
+            width: 75px; } }
       .landing-section-1--cards__6--image {
         background-image: url("./images/notification-icon.png");
         background-size: contain;
@@ -496,6 +534,10 @@ body::-webkit-scrollbar-thumb {
         background-repeat: no-repeat;
         height: 140px;
         width: 135px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__6--image {
+            height: 80px;
+            width: 75px; } }
       .landing-section-1--cards__1, .landing-section-1--cards__2, .landing-section-1--cards__3, .landing-section-1--cards__4, .landing-section-1--cards__5, .landing-section-1--cards__6 {
         display: flex;
         flex-direction: column;
@@ -508,6 +550,11 @@ body::-webkit-scrollbar-thumb {
         margin: 2rem;
         height: 500px;
         width: 350px; }
+        @media only screen and (max-width: 35em) {
+          .landing-section-1--cards__1, .landing-section-1--cards__2, .landing-section-1--cards__3, .landing-section-1--cards__4, .landing-section-1--cards__5, .landing-section-1--cards__6 {
+            height: 400px;
+            width: 250px;
+            margin: 2rem auto; } }
         .landing-section-1--cards__1--title, .landing-section-1--cards__2--title, .landing-section-1--cards__3--title, .landing-section-1--cards__4--title, .landing-section-1--cards__5--title, .landing-section-1--cards__6--title {
           font-size: 2.5rem;
           color: #111; }
@@ -533,11 +580,22 @@ body::-webkit-scrollbar-thumb {
     height: 100%;
     background-color: #040e13;
     clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%); }
+    @media only screen and (max-width: 35em) {
+      .landing-about {
+        clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+        flex-direction: column;
+        padding: 15rem 5rem 1rem;
+        justify-content: center; } }
     .landing-about--title {
       color: #ddd;
       width: 75rem;
       font-size: 5rem;
       padding-top: 5rem; }
+      @media only screen and (max-width: 35em) {
+        .landing-about--title {
+          font-size: 3.5rem;
+          padding-top: 5rem;
+          width: 40rem; } }
     .landing-about--description {
       color: #ddd;
       width: 55rem;
@@ -545,6 +603,11 @@ body::-webkit-scrollbar-thumb {
       padding-top: 5rem;
       margin-bottom: 7rem;
       line-height: 1.75; }
+      @media only screen and (max-width: 35em) {
+        .landing-about--description {
+          font-size: 3rem;
+          padding-top: 7rem;
+          width: 45rem; } }
     .landing-about--button, .landing-about--button:link, .landing-about--button:visited {
       font-size: 2rem;
       font-weight: 700;
@@ -564,6 +627,11 @@ body::-webkit-scrollbar-thumb {
       width: 388px;
       height: 512px;
       margin: 10rem 5rem 0 0; }
+      @media only screen and (max-width: 35em) {
+        .landing-about--image {
+          width: 100%;
+          height: 500px;
+          margin: 10rem 0 5rem; } }
 
 @keyframes float {
   0% {
@@ -612,6 +680,9 @@ body::-webkit-scrollbar-thumb {
       color: #eee;
       font-size: 3rem;
       width: 1000px; }
+      @media only screen and (max-width: 35em) {
+        .signup-lotcalc-form {
+          width: 300px !important; } }
       .signup-lotcalc-form-group {
         width: 800px;
         display: flex;
@@ -623,6 +694,12 @@ body::-webkit-scrollbar-thumb {
           text-align: right;
           margin-right: 15px;
           width: 400px; }
+          @media only screen and (max-width: 35em) {
+            .signup-lotcalc-form-group label {
+              width: 100px; } }
+        @media only screen and (max-width: 35em) {
+          .signup-lotcalc-form-group {
+            width: 300px; } }
       .signup-lotcalc-form-btn {
         background-color: #003952;
         border: none;
@@ -633,6 +710,11 @@ body::-webkit-scrollbar-thumb {
         padding: 1rem 1.5rem;
         width: 50%;
         margin: 5rem -1rem 0 10rem; }
+        @media only screen and (max-width: 35em) {
+          .signup-lotcalc-form-btn {
+            padding: 1rem 1.5rem;
+            width: 70%;
+            margin: 5rem auto 0; } }
   .signup-result-lot {
     margin: 5rem 33rem; }
   .signup-trade-idea {
@@ -662,6 +744,9 @@ body::-webkit-scrollbar-thumb {
     font-size: 3rem;
     width: 700px;
     margin: 0  0 0; }
+    @media only screen and (max-width: 35em) {
+      .signup-form {
+        width: 300px !important; } }
     .signup-form-group {
       width: 700px;
       display: flex;
@@ -673,6 +758,12 @@ body::-webkit-scrollbar-thumb {
         text-align: right;
         margin-right: 15px;
         width: 400px; }
+        @media only screen and (max-width: 35em) {
+          .signup-form-group label {
+            width: 100px; } }
+      @media only screen and (max-width: 35em) {
+        .signup-form-group {
+          width: 200px; } }
     .signup-form-input {
       font-size: 3rem;
       background-color: #042635;
@@ -681,6 +772,9 @@ body::-webkit-scrollbar-thumb {
       border: none;
       border-radius: 2px;
       transition: all .2s ease-in-out; }
+      @media only screen and (max-width: 35em) {
+        .signup-form-input {
+          width: 180px; } }
       .signup-form-input:hover {
         background-color: #053042; }
       .signup-form-input:active, .signup-form-input:focus {
@@ -695,6 +789,11 @@ body::-webkit-scrollbar-thumb {
       color: #fff;
       padding: 1rem 1.5rem;
       margin: 5rem -1rem 0 7.5rem; }
+      @media only screen and (max-width: 35em) {
+        .signup-form-btn {
+          padding: 1rem 1.5rem;
+          width: 70%;
+          margin: 5rem auto 0; } }
 
 .separator {
   width: 5px;
