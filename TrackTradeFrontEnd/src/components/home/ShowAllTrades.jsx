@@ -173,18 +173,20 @@ export default class ShowAllTrades extends Component {
     render() {
         return (
             <Fragment>
-            <div className="home-content-section1">
-                <input onChange={this.searchTrades} className="home-content--search" type="text" placeholder="Search for trades by their currency" />
-                <label className="home-content--label" htmlFor="sort">Sort By:</label>
-                <select name="sort" className="home-content--select" onChange={this.sortTrades}>
-                    <option value="">-</option>
-                    <option value="sell">Sells</option>
-                    <option value="buy">Buys</option>
-                    <option value="wins">Wins</option>
-                    <option value="losses">Losses</option>
-                    <option value="created-newest">Created: newest</option>
-                    <option value="created-oldest">Created: oldest</option>
-                </select>
+            <div className="home-content-search-sort">
+                <div className="home-content-section1">
+                    <input onChange={this.searchTrades} className="home-content--search" type="text" placeholder="Search for trades by their currency" />
+                    <label className="home-content--label" htmlFor="sort">Sort By:</label>
+                    <select name="sort" className="home-content--select" onChange={this.sortTrades}>
+                        <option value="">-</option>
+                        <option value="sell">Sells</option>
+                        <option value="buy">Buys</option>
+                        <option value="wins">Wins</option>
+                        <option value="losses">Losses</option>
+                        <option value="created-newest">Created: newest</option>
+                        <option value="created-oldest">Created: oldest</option>
+                    </select>
+                </div>
             </div>
             <div class="trade-ideas">
                 {this.showTrades()}

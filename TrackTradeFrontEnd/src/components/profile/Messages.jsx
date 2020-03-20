@@ -86,7 +86,7 @@ export default class Messages extends Component {
                         <a className="connections-container-each-active" href="#chatbox" onClick={() => {
                             this.setState({selectedProfile: eachOne})
                             console.log(this.state.selectedProfile)
-                        }}>{eachOne.username}</a>
+                        }}>{this.imageMessagesLoad(eachOne)}{eachOne.username}</a>
                     )
                 }
                 else {
@@ -94,7 +94,7 @@ export default class Messages extends Component {
                         <a className="connections-container-each" href="#chatbox" onClick={() => {
                             this.setState({selectedProfile: eachOne})
                             console.log(this.state.selectedProfile)
-                        }}>{eachOne.username}</a>
+                        }}>{this.imageMessagesLoad(eachOne)}<span>{eachOne.username}</span></a>
                     )
 
                 }
@@ -102,6 +102,16 @@ export default class Messages extends Component {
             })
             
         }
+    }
+
+    imageMessagesLoad = (profile) => {
+        if(profile){
+            return profile.avatar ?
+            <img className="connections-container-each-avatar" src={profile.avatar} alt="Avatar"/>
+            :
+            <div className="connections-container-each-avatar-default"></div>
+        }
+               
     }
 
     imageLoad = () => {

@@ -2,18 +2,30 @@
 
     display: flex;
     justify-content: center;
+    
     &-card {
         margin-left: 10rem;
+
+        @include respond(smallphone){
+            margin-left: 0;
+        }
     }
     &-container {
         display: flex;
         flex-direction: column;
         font-size: 2rem;
         height: 500px;
-        width: 250px;
+        width: 400px;
+        margin-right: 40rem;
         padding: 2rem 1.5rem;
         overflow-y: scroll;
         background-color: $color-blue-dark-1;
+
+        @include respond(smallphone){
+            margin-right: 0rem;
+            width: 90%;
+            height: 100%;
+        }
 
         & > * {
             padding: .75rem 1.5rem 1rem;
@@ -31,6 +43,9 @@
 
         &-each {
 
+            display: flex;
+            align-items: center;
+
             &,
             &:link,
             &:visited {
@@ -41,9 +56,41 @@
             &:hover {
                 color: #fff;
             }
+
+            &-avatar {
+                border-radius: 50%;
+                object-fit: cover;
+                height: 50px;
+                width: 50px;
+                z-index: 20;
+                margin-right: 2rem;
+
+                @include respond(smallphone){
+                    height: 40px;
+                    width: 40px;
+                }
+
+                &-default {
+                    background-image: url("./images/userdefault.png");
+                    background-size: cover;
+                    border-radius: 50%;
+                    height: 50px;
+                    width: 50px;
+                    z-index: 20;
+                    margin-right: 2rem;
+
+                    @include respond(smallphone){
+                        height: 40px;
+                        width: 40px;
+                    }
+                }
+            }
         }
 
         &-each-active {
+
+            display: flex;
+            align-items: center;
 
             &,
             &:link,
@@ -53,7 +100,7 @@
             }
 
             &:hover {
-                color: #fff;
+                color: $color-blue-bright-2;
             }
         }
     }

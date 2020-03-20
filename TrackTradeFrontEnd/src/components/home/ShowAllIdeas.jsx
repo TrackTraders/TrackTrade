@@ -173,17 +173,19 @@ export default class ShowAllIdeas extends Component {
     render() {
         return (
             <Fragment>
-            <div className="home-content-section1">
-                <input onChange={this.searchTradeIdeas} className="home-content--search" type="text" placeholder="Search for trade ideas by their currency" />
-                <label className="home-content--label" htmlFor="sort">Sort By:</label>
-                <select name="sort" className="home-content--select" onChange={this.sortTradeIdeas}>
-                    <option value="">-</option>
-                    <option value="sell">Sells</option>
-                    <option value="buy">Buys</option>
-                    <option value="created-newest">Created: newest</option>
-                    <option value="created-oldest">Created: oldest</option>
-                </select>
-            </div>  
+            <div className="home-content-search-sort">
+                <div className="home-content-section1">
+                    <input onChange={this.searchTradeIdeas} className="home-content--search" type="text" placeholder="Search for trade ideas by their currency" />
+                    <label className="home-content--label" htmlFor="sort">Sort By:</label>
+                    <select name="sort" className="home-content--select" onChange={this.sortTradeIdeas}>
+                        <option value="">-</option>
+                        <option value="sell">Sells</option>
+                        <option value="buy">Buys</option>
+                        <option value="created-newest">Created: newest</option>
+                        <option value="created-oldest">Created: oldest</option>
+                    </select>
+                </div>  
+            </div>
             <div className="trade-ideas">
                 {this.showIdeas()}
                 {/* {this.exitPopup()} */}

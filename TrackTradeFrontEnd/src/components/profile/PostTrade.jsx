@@ -67,8 +67,8 @@ export default class PostTrade extends Component {
     return (
       <div className="trade-idea">
         <Header {...this.props} loggedIn={true}/>
-        <div className="signup-trade-idea">
-          <form className="signup-trade-idea-form" onSubmit={this.handleSubmit}>
+        <div className="signup-trade">
+          <form className="signup-trade-form" onSubmit={this.handleSubmit}>
           <div className="signup-form-group">
               <label for="currency">Currency</label>
               <select className="signup-form-input" required onChange={this.handleChange} name="currency">
