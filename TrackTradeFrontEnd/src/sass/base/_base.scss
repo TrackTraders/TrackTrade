@@ -73,41 +73,19 @@ body::-webkit-scrollbar-thumb
     color: #111;
 }
 
+.coming-soon-text {
+    width: auto;
+    height: 30vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 10px;
 
-
-
-// /* Element | http://localhost:3000/tools */
-
-// .signup-lotcalc {
-//     width: 100%;
-//     display: flex;
-//     justify-content: center;
-//   }
-  
-//   /* Inline #3 | http://localhost:3000/tools */
-  
-//   .signup-form {
-//     /* align-items: initial; */
-//     /* width: 700px; */
-//     /* margin: 0 25rem 0 0; */
-//     align-items: center;
-//     width: 900px;
-//   }
-  
-//   .signup-form-group {
-//     /* width: 700px; */
-//     width: 800px;
-//   }
-  
-//   .signup-form-btn {
-//     /* margin: 5rem -1rem 0 7.5rem; */
-//     margin: 5rem -1rem 0 15.5rem;
-//     width: 50%;
-//   }
-  
-//   /* Element | http://localhost:3000/tools */
-  
-//   div.signup-form-group:nth-child(2) > label:nth-child(1) {
-//     margin-left: -6rem;
-//   }
-  
+    background: linear-gradient(to right,rgba(200,50,0,1), rgba(50,0,200,1));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

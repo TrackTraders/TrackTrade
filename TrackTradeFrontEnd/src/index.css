@@ -75,6 +75,21 @@ body::-webkit-scrollbar-thumb {
   background-color: #fff;
   color: #111; }
 
+.coming-soon-text {
+  width: auto;
+  height: 30vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 10px;
+  background: linear-gradient(to right, #c83200, #3200c8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+
 .container {
   background-color: #3223ff30; }
 
