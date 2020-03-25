@@ -46,21 +46,21 @@ export default class Landing extends Component {
                         <div className="landing-section-1--cards__4">
                             <div className="landing-section-1--cards__4--image"></div>
                             <h2 className="landing-section-1--cards__4--title">Share any trade on your favorite social media</h2>
-                            <p className="landing-section-1--cards__4--text">Keep all of your trading ideas in one place and share them with others so they can hold you accountable.</p>
+                            <p className="landing-section-1--cards__4--text">Don't let your friends that are not using this website behind.</p>
                             {/* <a href="#" className="landing-section-1--cards__4--button">Learn more</a> */}
                         </div>
 
                         <div className="landing-section-1--cards__5">
                             <div className="landing-section-1--cards__5--image"></div>
                             <h2 className="landing-section-1--cards__5--title">Calculate your lot size for proper risk management</h2>
-                            <p className="landing-section-1--cards__5--text">Keep all of your trading ideas in one place and share them with others so they can hold you accountable.</p>
+                            <p className="landing-section-1--cards__5--text">Be methodical on your trades, keep yourself accountable by always using this tool.</p>
                             {/* <a href="#" className="landing-section-1--cards__5--button">Learn more</a> */}
                         </div>
 
                         <div className="landing-section-1--cards__6">
                             <div className="landing-section-1--cards__6--image"></div>
                             <h2 className="landing-section-1--cards__6--title">Get email alert on currency prices and news</h2>
-                            <p className="landing-section-1--cards__6--text">Keep all of your trading ideas in one place and share them with others so they can hold you accountable.</p>
+                            <p className="landing-section-1--cards__6--text">Stop trying to remember to check the news for any big events or to check if the market is at a specific price, let us help you ease your mind.</p>
                             {/* <a href="#" className="landing-section-1--cards__6--button">Learn more</a> */}
                         </div>
 
