@@ -64,6 +64,11 @@ const actions = {
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+  handleIdeaUpdate: async (theFile) => {
+    return await service.post('/ideaUpdate', theFile)
+      .then(res => res.data)
+      .catch(err => console.error(err));
+  },
   
   handleTradeUpload: async (theFile) => {
     return await service.post('/tradeUpload', theFile)

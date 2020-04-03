@@ -1,0 +1,153 @@
+.trade-idea {
+    height: 100vh;
+    overflow-y: hidden;
+
+&-top {
+    display: flex;
+    flex-direction: row;
+}
+
+&-container {
+
+    overflow-y: hidden;
+    height: 100%;
+    background-color: $color-blue-dark-3;
+    border-top: 2px solid $color-blue-dark-2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20rem;
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: initial;
+        color: #eee;
+        font-size: 2.6rem;
+        // width: 700px;
+        margin: 0 10rem 0 0;
+
+        &-input {
+            width: 200px;
+            font-size: 3rem;
+            background-color: $color-blue-1;
+            color:#ddd;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 2px;
+            transition: all .2s ease-in-out;
+
+            @include respond(smallphone){
+                width: 180px;
+            }
+
+            &:hover {
+                background-color: $color-blue-2;
+            }
+
+            &:active,
+            &:focus {
+                outline: none;
+                background-color: $color-blue-4;
+            }
+
+            &-file {
+                visibility: hidden;
+                display: none;
+                &-label {
+                    margin: 1rem 0;
+                    background-color: $color-blue-1;
+                    padding: 1rem 1.5rem;
+                    &:hover {
+                        background-color: $color-blue-2;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+        }
+
+        &-description {
+            width: 400px;
+            font-size: 3rem;
+            background-color: $color-blue-1;
+            color:#ddd;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 2px;
+            transition: all .2s ease-in-out;
+
+            @include respond(smallphone){
+                width: 300px;
+            }
+
+            &:hover {
+                background-color: $color-blue-2;
+            }
+
+            &:active,
+            &:focus {
+                outline: none;
+                background-color: $color-blue-4;
+            }
+
+        }
+
+        &-group {
+            & label {
+                float: right;
+                text-align: right;
+                margin-right: 15px;
+                width: auto;
+                
+                @include respond(smallphone){
+                    width: auto;
+                    float: none;
+                }
+            }
+            
+            // width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 1rem;
+            @include respond(smallphone){
+                width: 200px; 
+            }
+            
+        }
+        
+        &-btn {
+            background-color: $color-blue-3;
+            border: none;
+            border-radius: 3px;
+            font-size: 3rem;
+            // float: left;
+            color: #fff;
+            padding: 1rem 1.5rem;
+            width: 50%;
+            margin: 3rem 0 0;
+            
+            align-self: center;
+            @include respond(smallphone){
+                padding: 2rem 1.5rem;
+                width: 70%;
+                margin: 5rem auto 0;
+            }
+            
+        }
+
+        @include respond(smallphone){
+            margin: 0;
+            width: 100%;
+            align-items: center;
+
+            & > *:nth-child(7) {
+                margin-right: 20rem;
+            }
+        }
+    }
+}
+}

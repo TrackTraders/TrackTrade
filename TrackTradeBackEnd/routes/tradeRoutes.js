@@ -1,5 +1,7 @@
 const router = require("express").Router();
 
+const uploader = require("../config/cloudinary-setup");
+
 const tradeController = require("../controllers/tradeController");
 
 router.post("/postTrade", tradeController.postTrade);
@@ -12,16 +14,13 @@ router.post("/delete-trades", tradeController.deleteTrades);
 
 // trade image upload
 
-// router.post('/tradeUpload', uploader.single("imageUrl"), (req, res, next) => {
-//   if (!req.file) {
-//     next(new Error('No file uploaded!'));
-//     return;
-//   }
-//   Trade.updateOne("trade.trader": req.user.username,
-//     {imageURL: req.file.secure_url}, { new: true }).then(whatever => {
-//     console.log(whatever);
-//     res.json({ secure_url: req.file.secure_url });
-//   }).catch(err => console.log(err))
-// })
+router.post("/tradeUpload", uploader.single("imageUrl"), (req, res, next) => {
+    if (!req.file) {
+      next(new Error("No file uploaded!"));
+      return;
+    }
+    res.json({ secure_url: req.file.secure_url });
+  });
+  
 
 module.exports = router;

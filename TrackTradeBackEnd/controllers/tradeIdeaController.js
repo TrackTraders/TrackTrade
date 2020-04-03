@@ -10,7 +10,8 @@ exports.postIdea = (req, res, next) => {
       stoploss: req.body.stoploss,
       takeprofit: req.body.takeprofit,
       lot: req.body.lot,
-      description: req.body.description
+      description: req.body.description,
+      imageUrl: req.body.imageUrl
     }
   })
     .then(tradeIdea => {
@@ -32,7 +33,8 @@ exports.updateIdea = (req, res, next) => {
         stoploss: req.body.stoploss,
         takeprofit: req.body.takeprofit,
         lot: req.body.lot,
-        description: req.body.description
+        description: req.body.description,
+        imageUrl: req.body.imageUrl
       }
     }
   )

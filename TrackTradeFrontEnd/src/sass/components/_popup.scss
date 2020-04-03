@@ -17,11 +17,11 @@
         @include centerHorVer;
 
         height: 50vh;
-        width: 25%;
+        width: 60%;
         box-shadow: 0 1rem 3rem $color-black;
         color: $color-black;
         background-color: $color-white;
-        display: table;
+        display: flex;
         overflow: hidden;
         opacity: 0;
         transform: translate(-50%, -50%) scale(.5);
@@ -29,25 +29,40 @@
 
         @include respond(tab-port){
             width: 50%;
-            height: 30vh;
+            height: 70vh;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
         @include respond(phone){
             width: 70%;
-            height: 30vh;
+            height: 70vh;
         }
         @include respond(smallphone){
             width: 90%;
-            height: 40vh;
+            height: 70vh;
         }
     }
 
     &__left {
-        width: 66.6666%;
-        display: table-cell;
-        background-image: url("./images/chart-screenshot.png");
+        width: 50%;
+        height: 100%;
+        padding-left: 3%;
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+
+        @include respond(tab-port){
+            padding: 0;
+            width: 90%;
+            height: 70%;
+        }
+
+        &--image {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
     }
 
     // &__left {
@@ -75,8 +90,8 @@
     // }
 
     &__right {
-        width: 100%;
-        height: 50vh;
+        width: 50%;
+        height: 100%;
         font-size: 1.6rem;
         // width: 100%;
         display: flex;
@@ -130,7 +145,7 @@
 
     &__text {
         font-size: 1.6rem;
-        margin-bottom: 4rem;
+        margin-bottom: 1rem;
 
         // column-count: 2;
         // column-gap: 4rem;
@@ -208,6 +223,7 @@
             @include respond(tab-port){
                 position: absolute;
                 left: 90%;
+                top: -50rem;
                 padding:0;
             }
             @include respond(phone){
@@ -230,8 +246,8 @@
             font-size: 1.6rem;
             position: absolute;
             bottom: 3rem;
-            left: 3rem;
-            margin-left: 2rem;
+            right: 33%;
+            // margin-left: 4rem;
             
             text-decoration: none;
             padding: 1rem 2rem;
@@ -320,6 +336,7 @@
         }
 
         &-input {
+            width: 150px;
             font-size: 1.6rem;
             background-color: #111;
             color: #eee;
@@ -337,6 +354,21 @@
                 outline: none;
                 background-color: $color-blue-4;
             }
+
+            &-file {
+                visibility: hidden;
+                display: none;
+                &-label {
+                    margin: 1rem 0;
+                    background-color: #111;
+                    color: #ddd;
+                    padding: 1rem 1.5rem;
+                    &:hover {
+                        background-color: $color-blue-2;
+                        cursor: pointer;
+                    }
+                }
+            }
         }
 
         &-btn {
@@ -353,7 +385,7 @@
 }
 
 .popup_right-sharing-icons {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 
     & > * {
         margin-right: 1rem;

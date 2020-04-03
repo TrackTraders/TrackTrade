@@ -9,7 +9,9 @@ exports.postTrade = (req, res, next) => {
       entry: req.body.entry,
       close: req.body.close,
       lot: req.body.lot,
-      money: req.body.money
+      money: req.body.money,
+      risk: req.body.risk,
+      imageUrl: req.body.imageUrl
     }
   })
     .then(trade => {

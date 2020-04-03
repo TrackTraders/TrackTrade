@@ -10,7 +10,9 @@ const tradeSchema = new Schema({
         lot: Number,
         money: Number,
         description: String,
-        imageURL: String
+        imageURL: String,
+        risk: Number,
+        imageUrl: String
     }
 }, { timestamps: { createdAt: 'created_at' } })
 

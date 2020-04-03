@@ -3,10 +3,7 @@
     height: 100vh;
 }
 
-.trade-idea {
-    height: 100vh;
-    overflow-y: hidden;
-}
+
 
 .signup {
     overflow-y: hidden;
@@ -87,71 +84,9 @@
         margin: 5rem 33rem;
     }
 
-    &-trade-idea {
+    
 
-        overflow-y: hidden;
-        height: 100%;
-        background-color: $color-blue-dark-3;
-        border-top: 2px solid $color-blue-dark-2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 20rem;
-
-        &-form {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: initial;
-            color: #eee;
-            font-size: 2.6rem;
-            width: 700px;
-            margin: 0 10rem 0 0;
-
-            @include respond(smallphone){
-                margin: 0;
-                width: 100%;
-                align-items: center;
-
-                & > *:nth-child(7) {
-                    margin-right: 20rem;
-                }
-            }
-        }
-    }
-
-    &-trade {
-
-        overflow-y: hidden;
-        height: 100%;
-        background-color: $color-blue-dark-3;
-        border-top: 2px solid $color-blue-dark-2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 20rem;
-
-        &-form {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: initial;
-            color: #eee;
-            font-size: 2.6rem;
-            width: 700px;
-            margin: 0 10rem 0 0;
-
-            @include respond(smallphone){
-                margin: 0;
-                width: 100%;
-                align-items: center;
-
-                & > *:nth-child(6) {
-                    margin-right: 20rem;
-                }
-            }
-        }
-    }
+    
     
     &-form {
         
