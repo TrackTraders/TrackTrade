@@ -8,19 +8,21 @@ import {
   TwitterShareButton,
   TwitterIcon,
   WhatsappShareButton,
-  WhatsappIcon
+  WhatsappIcon,
 } from "react-share";
 
-export default class ShowTrades extends Component {
+//redux imports
+import { connect } from "react-redux";
+import { fetchTrades } from "../../actions";
+
+class ShowTrades extends Component {
   state = {};
 
   async componentDidMount() {
-    let actualTrades = await actions.getTrades();
-    this.setState({ actualTrades });
-    console.log(this.state);
+    await this.props.fetchTrades();
   }
 
-  deleteCard = async id => {
+  deleteCard = async (id) => {
     try {
       await actions.deleteTrades({ cardId: id });
       let actualTrades = await actions.getIdeas();
@@ -30,13 +32,14 @@ export default class ShowTrades extends Component {
     }
   };
 
-  formatTime = time => {
+  formatTime = (time) => {
     return String(new Date(time)).substring(0, 24);
   };
 
   showIdeas = () => {
-    if (this.state.actualTrades) {
-      return this.state.actualTrades.data.map(eachTrade => {
+    console.log(this.props)
+    if (this.props.actualTrades) {
+      return this.props.actualTrades.data.map((eachTrade) => {
         return (
           <div className="trade-ideas-card">
             <a
@@ -115,7 +118,7 @@ export default class ShowTrades extends Component {
 
   showOtherIdeas = () => {
     if (this.props.trades) {
-      return this.props.trades.map(eachTrade => {
+      return this.props.trades.map((eachTrade) => {
         return (
           <div className="trade-ideas-card">
             <a
@@ -410,3 +413,11 @@ export default class ShowTrades extends Component {
     }
   }
 }
+
+
+const mapStateToProps = state => {
+  console.log('state',state)
+  return {actualTrades: state.trades}
+}
+
+export default connect(mapStateToProps, {fetchTrades})(ShowTrades)

@@ -25,51 +25,57 @@ const actions = {
   logOut: async () => {
     return await service.get('/log-out');
   },
+
   postIdea: async (trade) => {
     return await service.post('/postIdea', trade);
   },
   updateIdea: async (trade) => {
     return await service.post('/updateIdea', trade);
   },
+  deleteIdeas: async (id) => {
+    return await service.post('/delete-ideas', id);
+  },
+
   postTrade: async (trade) => {
     return await service.post('/postTrade', trade);
   },
+  deleteTrades: async (id) => {
+    return await service.post('/delete-trades', id);
+  },
+
   getIdeas: async () => {
     return await service.get('/get-ideas');
   },
   getAllIdeas: async () => {
     return await service.get('/get-all-ideas');
   },
+
   getTrades: async () => {
     return await service.get('/get-trades');
   },
   getAllTrades: async () => {
     return await service.get('/get-all-trades');
   },
-  deleteIdeas: async (id) => {
-    return await service.post('/delete-ideas', id);
-  },
-  deleteTrades: async (id) => {
-    return await service.post('/delete-trades', id);
-  },
+
   updateAvatar: async (theFile) => {
     return await service.post('/updateAvatar', theFile)
       .then(res => res.data)
       .catch(err => console.error(err));
   },
 
-
+  //trade idea screenshot upload
   handleIdeaUpload: async (theFile) => {
     return await service.post('/ideaUpload', theFile)
       .then(res => res.data)
       .catch(err => console.error(err));
   },
+  //trade idea screenshot update
   handleIdeaUpdate: async (theFile) => {
     return await service.post('/ideaUpdate', theFile)
       .then(res => res.data)
       .catch(err => console.error(err));
   },
-  
+  //trade screenshot upload
   handleTradeUpload: async (theFile) => {
     return await service.post('/tradeUpload', theFile)
       .then(res => res.data)
