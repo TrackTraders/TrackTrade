@@ -24,7 +24,6 @@ class App extends Component {
   setUser = (user) => this.setState(user)
 
   render(){
-    console.log(this.state)
     return (
       <div>
       { this.state._id

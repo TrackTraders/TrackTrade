@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import actions from '../../services/index'
+
+//redux imports
+import { connect } from "react-redux";
+import { fetchTrades } from "../../actions";
+
 import CanvasJSReact from '../../canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -7,7 +11,7 @@ let allTradesDataPoints = [];
 let winLossDataPoints = [];
 let currencyPerformance = [];
 
-export default class ShowStats extends Component {
+class ShowStats extends Component {
 
     state = {
         currentChart: 'allTrades'
@@ -21,10 +25,9 @@ export default class ShowStats extends Component {
         var chart = this.chart;
 
         if(!this.props.otherProfile){
-            let actualTrades = await actions.getTrades();
-            this.setState({actualTrades})
+            await this.props.fetchTrades();
             
-            let trades = this.state.actualTrades.data
+            let trades = this.props.actualTrades.data
             let wins = 0;
             let losses = 0;
             let obj = {};
@@ -95,8 +98,7 @@ export default class ShowStats extends Component {
             chart.render();
         }
         else {
-            let actualTrades = await actions.getTrades();
-            this.setState({actualTrades})
+            await this.props.fetchTrades();
             
             let trades = this.props.trades
             let wins = 0;
@@ -443,3 +445,10 @@ export default class ShowStats extends Component {
     }
     }
 }
+
+const mapStateToProps = state => {
+  console.log('state',state)
+  return {actualTrades: state.trades}
+}
+
+export default connect(mapStateToProps, {fetchTrades})(ShowStats)
