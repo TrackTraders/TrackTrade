@@ -30,12 +30,12 @@ export const selectTrade = (trade) => {
 // getTradeIdeas
 
 export const fetchAllTradeIdeas = () => async (dispatch) => {
-    const response = await services.getAllIdeas();
-    dispatch({
-      type: "FETCH_ALLTRADEIDEAS",
-      payload: response,
-    });
-  };
+  const response = await services.getAllIdeas();
+  dispatch({
+    type: "FETCH_ALLTRADEIDEAS",
+    payload: response,
+  });
+};
 
 export const fetchTradeIdeas = () => async (dispatch) => {
   const response = await services.getIdeas();
@@ -66,11 +66,53 @@ export const findOtherProfile = (username) => async (dispatch) => {
 // get all traders
 
 export const fetchAllTraders = () => async (dispatch) => {
-    const response = await services.getAllTraders();
-  
-    dispatch({
-      type: "FETCH_ALLUSERS",
-      payload: response.data,
-    });
-  };
-  
+  const response = await services.getAllTraders();
+
+  dispatch({
+    type: "FETCH_ALLUSERS",
+    payload: response,
+  });
+};
+
+// get all messages
+
+export const fetchAllMessages = () => async (dispatch) => {
+  const response = await services.getAllMessages();
+  dispatch({
+    type: "FETCH_ALLMESSAGES",
+    payload: response,
+  });
+};
+
+// send message
+
+export const sendMessage = (data) => async (dispatch) => {
+  const response = await services.sendMessage(data);
+
+  dispatch({
+    type: "SEND_MESSAGE",
+    payload: response,
+  });
+};
+
+// add connection
+
+export const addConnection = (id) => async (dispatch) => {
+  const response = await services.addConnection(id);
+
+  dispatch({
+    type: "ADD_CONNECTION",
+    payload: response,
+  });
+};
+
+// remove connection
+
+export const removeConnection = (id) => async (dispatch) => {
+  const response = await services.removeConnection(id);
+
+  dispatch({
+    type: "REMOVE_CONNECTION",
+    payload: response,
+  });
+};

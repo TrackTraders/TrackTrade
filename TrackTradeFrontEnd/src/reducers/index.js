@@ -1,30 +1,59 @@
 import { combineReducers } from "redux";
-import tradeReducer from "./trades/tradeReducer";
-import selectedTradeReducer from "./trades/selectedTradeReducer";
 
-import allTradesReducer from "./trades/allTradesReducer";
+// loggedin user's trades
+import tradeReducer from "./profile/tradeReducer";
+import selectedTradeReducer from "./profile/selectedTradeReducer";
 
-import tradeIdeaReducer from "./trades/tradeIdeaReducer";
-import selectedTradeIdeaReducer from "./trades/selectedTradeIdeaReducer";
+// loggedin user's trade ideas
+import tradeIdeaReducer from "./profile/tradeIdeaReducer";
+import selectedTradeIdeaReducer from "./profile/selectedTradeIdeaReducer";
 
-import allTradeIdeasReducer from "./trades/allTradeIdeasReducer";
+// other users data
+import otherProfileReducer from "./profile/otherProfileReducer";
+import allTradesReducer from "./home/allTradesReducer";
+import allTradeIdeasReducer from "./home/allTradeIdeasReducer";
+import allTradersReducer from "./home/allTradersReducer";
 
-import otherProfileReducer from "./trades/otherProfileReducer";
+// connect with other users
+import addConnectionReducer from "./profile/addConnectionReducer";
+import removeConnectionReducer from "./profile/removeConnectionReducer";
 
-import allTradersReducer from "./trades/allTradersReducer";
+// messages
+import allMessagesReducer from "./profile/allMessagesReducer";
+import sendMessageReducer from "./profile/sendMessageReducer";
+
+// auth
+import checkLoginReducer from "./auth/checkLoginReducer";
+import loginReducer from "./auth/loginReducer";
+import signupReducer from "./auth/signupReducer";
+import logoutReducer from "./auth/logoutReducer";
 
 export default combineReducers({
+  // loggedin user's trade ideas
   trades: tradeReducer,
   selectedTrade: selectedTradeReducer,
 
-  allTrades: allTradesReducer,
-
+  // loggedin user's trade ideas
   tradeIdeas: tradeIdeaReducer,
   selectedTradeIdea: selectedTradeIdeaReducer,
 
-  allTradeIdeas: allTradeIdeasReducer,
-
+  // other users data
   otherProfile: otherProfileReducer,
-
   allTraders: allTradersReducer,
+  allTradeIdeas: allTradeIdeasReducer,
+  allTrades: allTradesReducer,
+
+  // connect with other users
+  addConnection: addConnectionReducer,
+  removeConnection: removeConnectionReducer,
+
+  // messages
+  allMessages: allMessagesReducer,
+  sendMessage: sendMessageReducer,
+
+  // auth
+  checkLogin: checkLoginReducer,
+  logIn: loginReducer,
+  signUp: signupReducer,
+  logout: logoutReducer,
 });

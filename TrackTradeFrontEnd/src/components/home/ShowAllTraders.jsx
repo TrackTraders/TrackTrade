@@ -10,22 +10,21 @@ class ShowAllTraders extends Component {
   state = {};
 
   async componentDidMount() {
-    let allTraders = await actions.getAllTraders();
-    this.setState({ allTraders: allTraders.data });
-    this.setState({ traders: allTraders.data });
-    console.log(this.state);
-    let actualTrades = await actions.getAllTrades();
-    this.setState({ actualTrades: actualTrades.data });
+    await this.props.fetchAllTraders();
+    await this.props.fetchAllTrades();
+
+    this.setState({ traders: this.props.allTraders.data });
+    this.setState({ actualTrades: this.props.actualTrades.data });
   }
 
   formatTime = (time) => String(new Date(time)).substring(0, 24);
 
   winLossRatio = (user) => {
-    if (this.state.actualTrades) {
+    if (this.props.actualTrades.data) {
       let wins = 0;
       let losses = 0;
 
-      let copyTrades = [...this.state.actualTrades];
+      let copyTrades = [...this.props.actualTrades.data];
       let userTrades = copyTrades.filter((eachTrade) => {
         return eachTrade.trade.trader === user;
       });
@@ -49,8 +48,8 @@ class ShowAllTraders extends Component {
   };
 
   totalTrades = (user) => {
-    if (this.state.actualTrades) {
-      let copyTrades = [...this.state.actualTrades];
+    if (this.props.actualTrades.data) {
+      let copyTrades = [...this.props.actualTrades.data];
       let userTrades = copyTrades.filter((eachTrade) => {
         return eachTrade.trade.trader === user;
       });
@@ -66,7 +65,7 @@ class ShowAllTraders extends Component {
   };
 
   searchTraders = (e) => {
-    let tradersList = [...this.state.allTraders];
+    let tradersList = [...this.props.allTraders.data];
     let filteredTraders = tradersList.filter((eachTrader) => {
       return eachTrader.username
         .toLowerCase()
@@ -83,40 +82,40 @@ class ShowAllTraders extends Component {
   sortTraders = (e) => {
     console.log(e.target.value);
     if (e.target.value === "") {
-      this.setState({ traders: this.state.allTraders });
+      this.setState({ traders: this.props.allTraders.data });
     } else if (e.target.value === "wlr-best") {
-      let tradersList = [...this.state.allTraders];
+      let tradersList = [...this.props.allTraders.data];
       tradersList.sort((b, a) => {
         return a.wlr - b.wlr;
       });
       this.setState({ traders: tradersList });
     } else if (e.target.value === "wlr-worst") {
-      let tradersList = [...this.state.allTraders];
+      let tradersList = [...this.props.allTraders.data];
       tradersList.sort((a, b) => {
         return a.wlr - b.wlr;
       });
       this.setState({ traders: tradersList });
     } else if (e.target.value === "total-most") {
-      let tradersList = [...this.state.allTraders];
+      let tradersList = [...this.props.allTraders.data];
       tradersList.sort((b, a) => {
         return a.totalTrades - b.totalTrades;
       });
       this.setState({ traders: tradersList });
     } else if (e.target.value === "total-least") {
-      let tradersList = [...this.state.allTraders];
+      let tradersList = [...this.props.allTraders.data];
       tradersList.sort((a, b) => {
         return a.totalTrades - b.totalTrades;
       });
       this.setState({ traders: tradersList });
     } else if (e.target.value === "joined-newest") {
-      let tradersList = [...this.state.allTraders];
+      let tradersList = [...this.props.allTraders.data];
       tradersList.sort((b, a) => {
         // console.log(a.created_at, "-----", b.created_at)
         return a.created_at.localeCompare(b.created_at);
       });
       this.setState({ traders: tradersList });
     } else if (e.target.value === "joined-oldest") {
-      let tradersList = [...this.state.allTraders];
+      let tradersList = [...this.props.allTraders.data];
       tradersList.sort((a, b) => {
         // console.log(a.created_at, "-----", b.created_at)
         return a.created_at.localeCompare(b.created_at);
@@ -200,6 +199,7 @@ class ShowAllTraders extends Component {
   };
 
   render() {
+    console.log(this.state, "000000000");
     return (
       <Fragment>
         <div className="home-content-search-sort">
@@ -235,7 +235,7 @@ class ShowAllTraders extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { allTraders: state.allTraders, allTrades: state.allTrades };
+  return { allTraders: state.allTraders, actualTrades: state.allTrades };
 };
 
 export default connect(mapStateToProps, { fetchAllTrades, fetchAllTraders })(
