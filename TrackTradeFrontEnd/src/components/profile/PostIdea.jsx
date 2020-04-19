@@ -1,33 +1,34 @@
 import React, { Component } from "react";
 import Header from "../partials/Header";
-// import Footer from '../partials/Footer'
-import actions from "../../services/index";
 
-export default class PostTrade extends Component {
+// redux imports
+import { connect } from "react-redux";
+import { postIdea, ideaImageUpload } from "../../actions";
+
+class PostIdea extends Component {
   state = {};
 
-  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-  handleFileUpload = async e => {
+  handleFileUpload = async (e) => {
     console.log("The file to be uploaded is: ", e.target.files[0]);
 
     const uploadData = new FormData();
     await uploadData.append("imageUrl", e.target.files[0]);
 
     try {
-      const result = await actions.handleIdeaUpload(uploadData);
-      console.log("result: ", result);
-      this.setState({ imageUrl: result.secure_url });
+      await this.props.ideaImageUpload(uploadData);
+      this.setState({imageUrl:this.props.imageUrl.secure_url})
     } catch (err) {
       console.log("*****", err.message);
     }
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(e)
     try {
-      await actions.postIdea(this.state);
+      await this.props.postIdea(this.state);
 
       this.props.history.push("/profile");
     } catch (err) {
@@ -152,8 +153,6 @@ export default class PostTrade extends Component {
                     required
                   />
                 </div>
-
-                
               </div>
             </div>
             <div className="trade-idea-container-form-group">
@@ -166,18 +165,31 @@ export default class PostTrade extends Component {
               />
             </div>
             <div className="trade-idea-container-form-group">
-                  <label for="screenshot">Screenshot</label>
-                  <input
-                    onChange={e => this.handleFileUpload(e)}
-                    type="file"
-                    className="trade-idea-container-form-input-file"
-                    name="screenshot"
-                    id="screenshot"
-                    required
-                  />
-                  <label tabindex="0" for="screenshot" class="trade-idea-container-form-input-file-label">Select a file...</label>
-                  {this.state.imageUrl ? <p>{this.state.imageUrl.slice(this.state.imageUrl.lastIndexOf('/')+1,-4)}</p> : null}
-                </div>
+              <label for="screenshot">Screenshot</label>
+              <input
+                onChange={(e) => this.handleFileUpload(e)}
+                type="file"
+                className="trade-idea-container-form-input-file"
+                name="screenshot"
+                id="screenshot"
+                required
+              />
+              <label
+                tabindex="0"
+                for="screenshot"
+                class="trade-idea-container-form-input-file-label"
+              >
+                Select a file...
+              </label>
+              {this.props.imageUrl ? (
+                <p>
+                  {this.props.imageUrl.secure_url.slice(
+                    this.props.imageUrl.secure_url.lastIndexOf("/") + 1,
+                    -4
+                  )}
+                </p>
+              ) : null}
+            </div>
             <button type="submit" className="trade-idea-container-form-btn">
               Post Idea
             </button>
@@ -187,3 +199,9 @@ export default class PostTrade extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { postIdea: state.postIdea, imageUrl: state.ideaImageUpload };
+};
+
+export default connect(mapStateToProps, { postIdea, ideaImageUpload })(PostIdea);

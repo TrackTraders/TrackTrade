@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from "react";
-import actions from "../../services/index";
 import { Link } from "react-router-dom";
 
 // redux imports
 import { connect } from "react-redux";
 import { fetchAllTrades, fetchAllTraders } from "../../actions";
+import { checkLogin } from "../../actions/auth";
 
 class Connections extends Component {
-    
   state = {};
 
   async componentDidMount() {
@@ -16,8 +15,7 @@ class Connections extends Component {
 
     await this.props.fetchAllTrades();
 
-    let user = await actions.isLoggedIn();
-    this.setState({ userData: user.data });
+    await this.props.checkLogin();
 
     console.log("props", this.props);
     console.log("state", this.state);
@@ -63,10 +61,10 @@ class Connections extends Component {
   };
 
   showConnections = () => {
-    if (this.props.allTraders && this.state.userData) {
+    if (this.props.allTraders && this.props.user.data) {
       let copyTraders = [...this.props.allTraders.data];
       let filteredTraders = copyTraders.filter((eachTrader) => {
-        return this.state.userData.connections.includes(eachTrader._id);
+        return this.props.user.data.connections.includes(eachTrader._id);
         //loop through this.props.user to get connections and
         //only return those that match you know
       });
@@ -148,8 +146,14 @@ class Connections extends Component {
   }
 }
 const mapStateToProps = (state) => {
-    return { allTraders: state.allTraders, actualTrades: state.allTrades };
+  return {
+    allTraders: state.allTraders,
+    actualTrades: state.allTrades,
+    user: state.checkLogin,
   };
-export default connect(mapStateToProps, { fetchAllTrades, fetchAllTraders })(
-  Connections
-);
+};
+export default connect(mapStateToProps, {
+  fetchAllTrades,
+  fetchAllTraders,
+  checkLogin,
+})(Connections);

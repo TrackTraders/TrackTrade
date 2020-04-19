@@ -34,21 +34,22 @@ class OtherProfile extends Component {
     await this.props.fetchAllMessages();
 
     await this.props.checkLogin();
-
-    if (this.props.match.params.otheruser !== this.props.username) {
-      if (this.props.otherProfile.userdata[0] && this.props.actualUser.data) {
-        if (
-          this.props.actualUser.data.connections.includes(
-            this.props.otherProfile.userdata[0]._id
-          )
-        ) {
-          this.setState({ connected: true });
+    if (this.props.otherProfile) {
+      if (this.props.match.params.otheruser !== this.props.username) {
+        if (this.props.otherProfile.userdata[0] && this.props.actualUser.data) {
+          if (
+            this.props.actualUser.data.connections.includes(
+              this.props.otherProfile.userdata[0]._id
+            )
+          ) {
+            this.setState({ connected: true });
+          } else {
+            this.setState({ connected: false });
+          }
+          // console.log(this.state.connected)
         } else {
           this.setState({ connected: false });
         }
-        // console.log(this.state.connected)
-      } else {
-        this.setState({ connected: false });
       }
     }
 
@@ -215,106 +216,112 @@ class OtherProfile extends Component {
 
   render() {
     console.log(this.props, "props");
+    if (this.props.actualUser) {
+      if (
+        this.props.match.params.otheruser !==
+        this.props.actualUser.data.username
+      ) {
+        return this.props.otherProfile ? (
+          <div>
+            <Header {...this.props} loggedIn={true} />
+            <div className="profile">
+              <div className="profile-nav">
+                <div className="profile-nav__user">
+                  <div className="profile-nav__user-avatar">
+                    {this.imageLoad()}
+                    <div className="profile-nav__user-avatar__image-default"></div>
+                  </div>
+                  <h1 className="profile-nav__user-username">
+                    {this.props.otherProfile.userdata[0].username}
+                  </h1>
+                  <div className="profile-nav__links-other">
+                    {this.state.connected ? (
+                      <div
+                        onClick={() =>
+                          this.disconnectUser(
+                            this.props.otherProfile.userdata[0]._id
+                          )
+                        }
+                        className="profile-nav__links-text-profile"
+                      >
+                        Disconnect
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() =>
+                          this.connectUser(
+                            this.props.otherProfile.userdata[0]._id
+                          )
+                        }
+                        className="profile-nav__links-text-profile"
+                      >
+                        Connect
+                      </div>
+                    )}
 
-    if (this.props.match.params.otheruser !== this.props.username) {
-      return this.props.otherProfile ? (
-        <div>
-          <Header {...this.props} loggedIn={true} />
-          <div className="profile">
-            <div className="profile-nav">
-              <div className="profile-nav__user">
-                <div className="profile-nav__user-avatar">
-                  {this.imageLoad()}
-                  <div className="profile-nav__user-avatar__image-default"></div>
-                </div>
-                <h1 className="profile-nav__user-username">
-                  {this.props.otherProfile.userdata[0].username}
-                </h1>
-                <div className="profile-nav__links-other">
-                  {this.state.connected ? (
-                    <div
-                      onClick={() =>
-                        this.disconnectUser(
-                          this.props.otherProfile.userdata[0]._id
-                        )
-                      }
+                    <a
+                      href="#chatbox"
                       className="profile-nav__links-text-profile"
                     >
-                      Disconnect
-                    </div>
-                  ) : (
-                    <div
-                      onClick={() =>
-                        this.connectUser(
-                          this.props.otherProfile.userdata[0]._id
-                        )
-                      }
-                      className="profile-nav__links-text-profile"
-                    >
-                      Connect
-                    </div>
-                  )}
-
-                  <a
-                    href="#chatbox"
-                    className="profile-nav__links-text-profile"
-                  >
-                    Message
-                  </a>
+                      Message
+                    </a>
+                  </div>
                 </div>
+                <ul className="profile-nav__links">
+                  <div className="profile-nav__links-flex">
+                    <li
+                      className={
+                        this.state.display === "ideas"
+                          ? "profile-nav__links-text-active"
+                          : "profile-nav__links-text"
+                      }
+                      onClick={() => this.setState({ display: "ideas" })}
+                    >
+                      <i className="fas fa-lightbulb profile-nav__links-phone"></i>
+                      <span className="profile-nav__links-desktop">Ideas</span>
+                    </li>
+
+                    <li
+                      className={
+                        this.state.display === "trades"
+                          ? "profile-nav__links-text-active"
+                          : "profile-nav__links-text"
+                      }
+                      onClick={() => this.setState({ display: "trades" })}
+                    >
+                      <i className="fas fa-dollar-sign profile-nav__links-phone"></i>
+                      <span className="profile-nav__links-desktop">Trades</span>
+                    </li>
+
+                    <li
+                      className={
+                        this.state.display === "stats"
+                          ? "profile-nav__links-text-active"
+                          : "profile-nav__links-text"
+                      }
+                      onClick={() => this.setState({ display: "stats" })}
+                    >
+                      <i className="fas fa-chart-line profile-nav__links-phone"></i>
+                      <span className="profile-nav__links-desktop">Stats</span>
+                    </li>
+                  </div>
+                </ul>
               </div>
-              <ul className="profile-nav__links">
-                <div className="profile-nav__links-flex">
-                  <li
-                    className={
-                      this.state.display === "ideas"
-                        ? "profile-nav__links-text-active"
-                        : "profile-nav__links-text"
-                    }
-                    onClick={() => this.setState({ display: "ideas" })}
-                  >
-                    <i className="fas fa-lightbulb profile-nav__links-phone"></i>
-                    <span className="profile-nav__links-desktop">Ideas</span>
-                  </li>
-
-                  <li
-                    className={
-                      this.state.display === "trades"
-                        ? "profile-nav__links-text-active"
-                        : "profile-nav__links-text"
-                    }
-                    onClick={() => this.setState({ display: "trades" })}
-                  >
-                    <i className="fas fa-dollar-sign profile-nav__links-phone"></i>
-                    <span className="profile-nav__links-desktop">Trades</span>
-                  </li>
-
-                  <li
-                    className={
-                      this.state.display === "stats"
-                        ? "profile-nav__links-text-active"
-                        : "profile-nav__links-text"
-                    }
-                    onClick={() => this.setState({ display: "stats" })}
-                  >
-                    <i className="fas fa-chart-line profile-nav__links-phone"></i>
-                    <span className="profile-nav__links-desktop">Stats</span>
-                  </li>
-                </div>
-              </ul>
+              <div className="profile-content">
+                {this.displayStuff()}
+                {this.showMessages()}
+              </div>
             </div>
-            <div className="profile-content">
-              {this.displayStuff()}
-              {this.showMessages()}
-            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      ) : (
-        <div>hello</div>
-      );
+        ) : (
+          <div>hello</div>
+        );
+      } else {
+        return <Redirect to="/profile" />;
+      }
     } else {
-      return <Redirect to="/profile" />;
+      return null;
     }
   }
 }

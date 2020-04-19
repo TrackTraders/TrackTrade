@@ -3,7 +3,8 @@ import actions from "../../services/index";
 
 // redux imports
 import { connect } from "react-redux";
-import { fetchAllTraders, fetchAllMessages } from '../../actions'
+import { fetchAllTraders, fetchAllMessages, sendMessage } from "../../actions";
+import { checkLogin } from "../../actions/auth";
 
 class Messages extends Component {
   constructor(props) {
@@ -16,36 +17,18 @@ class Messages extends Component {
     await this.props.fetchAllTraders();
     await this.props.fetchAllMessages();
 
-    let user = await actions.isLoggedIn();
-    this.setState({ userData: user.data });
+    await this.props.checkLogin();
 
     let actualMessages = this.props.allMessages.data.filter((eachMessage) => {
       return (
-        eachMessage.sender === this.state.userData._id ||
-        eachMessage.receiver === this.state.userData._id
+        eachMessage.sender === this.props.user.data._id ||
+        eachMessage.receiver === this.props.user.data._id
       );
     });
     this.setState({ actualMessages });
 
-    console.log(this.state);
+
   }
-
-  // updateMessages = async () => {
-  //     if(this.state.userData){
-  //         setInterval(async ()=>{
-  //             let allMessages = await actions.getAllMessages();
-  //             this.setState({allMessages: allMessages.data})
-
-  //             let actualMessages = this.props.allMessages.filter(eachMessage =>{
-  //                 return eachMessage.sender === this.state.userData._id || eachMessage.receiver === this.state.userData._id
-  //             })
-  //             this.setState({actualMessages})
-
-  //         }, 500)
-
-  //     }
-
-  // }
 
   formatTime = (time) => String(new Date(time)).substring(0, 24);
 
@@ -60,18 +43,21 @@ class Messages extends Component {
     console.log(this.state);
     this.input.current.value = "";
     try {
-      await actions.sendMessage({
+      await this.props.sendMessage({
         message: this.state.message,
         otherProfile: this.state.selectedProfile._id,
       });
+      await this.props.fetchAllMessages();
+      await this.props.checkLogin();
+      console.log("props", this.props)
     } catch (err) {
       console.log(err);
     }
-    if (this.state.userData) {
+    if (this.props.user.data) {
       let actualMessages = this.props.allMessages.data.filter((eachMessage) => {
         return (
-          eachMessage.sender === this.state.userData._id ||
-          eachMessage.receiver === this.state.userData._id
+          eachMessage.sender === this.props.user.data._id ||
+          eachMessage.receiver === this.props.user.data._id
         );
       });
       this.setState({ actualMessages });
@@ -79,10 +65,10 @@ class Messages extends Component {
   };
 
   selectProfile = () => {
-    if (this.props.allTraders && this.state.userData) {
+    if (this.props.allTraders && this.props.user.data) {
       let copyTraders = [...this.props.allTraders.data];
       let filteredTraders = copyTraders.filter((eachTrader) => {
-        return this.state.userData.connections.includes(eachTrader._id);
+        return this.props.user.data.connections.includes(eachTrader._id);
         //loop through this.props.user to get connections and
         //only return those that match you know
       });
@@ -174,7 +160,7 @@ class Messages extends Component {
 
                 {this.props.allMessages.data.map((eachMessage) => {
                   if (
-                    eachMessage.sender === this.state.userData._id &&
+                    eachMessage.sender === this.props.user.data._id &&
                     eachMessage.receiver === this.state.selectedProfile._id
                   ) {
                     return (
@@ -183,7 +169,7 @@ class Messages extends Component {
                       </div>
                     );
                   } else if (
-                    eachMessage.receiver === this.state.userData._id &&
+                    eachMessage.receiver === this.props.user.data._id &&
                     eachMessage.sender === this.state.selectedProfile._id
                   ) {
                     return (
@@ -234,7 +220,17 @@ class Messages extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { allTraders: state.allTraders, allMessages: state.allMessages }
-}
+  return {
+    allTraders: state.allTraders,
+    allMessages: state.allMessages,
+    user: state.checkLogin,
+    sendMessage: state.sendMessage
+  };
+};
 
-export default connect(mapStateToProps, {fetchAllTraders, fetchAllMessages})(Messages)
+export default connect(mapStateToProps, {
+  fetchAllTraders,
+  fetchAllMessages,
+  checkLogin,
+  sendMessage
+})(Messages);

@@ -29,9 +29,9 @@ export const signUp = (data) => async (dispatch) => {
 
 // log out
 export const logOut = () => async (dispatch) => {
-    const response = await services.logOut();
-    dispatch({
-      type: "LOG_OUT",
-      payload: response,
-    });
-  };
+  const response = await services.logOut();
+  dispatch({
+    type: "LOG_OUT",
+    payload: response,
+  });
+};

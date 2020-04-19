@@ -7,10 +7,10 @@ import ShowTrades from "./ShowTrades";
 import ShowStats from "./ShowStats";
 import Messages from "./Messages";
 import Connections from "./Connections";
-import actions from "../../services/index";
 
 // redux imports
 import { connect } from "react-redux";
+import { updateAvatar } from "../../actions";
 import { checkLogin } from "../../actions/auth";
 
 class Profile extends Component {
@@ -20,7 +20,7 @@ class Profile extends Component {
 
   async componentDidMount() {
     await this.props.checkLogin();
-    console.log(this.props)
+    console.log(this.props);
   }
 
   displayStuff = () => {
@@ -47,8 +47,8 @@ class Profile extends Component {
     await uploadData.append("imageUrl", e.target.files[0]);
 
     try {
-      await actions.updateAvatar(uploadData);
-      window.location.reload();
+      await this.props.updateAvatar(uploadData);
+      await this.props.checkLogin();
     } catch (err) {
       console.log("*****", err.message);
     }
@@ -190,7 +190,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.checkLogin };
+  return { user: state.checkLogin, avatar: state.updateAvatar };
 };
 
-export default connect(mapStateToProps, { checkLogin })(Profile);
+export default connect(mapStateToProps, { checkLogin, updateAvatar })(Profile);

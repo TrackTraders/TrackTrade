@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import Header from "../partials/Header";
-import actions from "../../services/index";
 
-export default class PostTrade extends Component {
+// redux imports
+import { connect } from "react-redux";
+import { postTrade, tradeImageUpload } from "../../actions";
+
+class PostTrade extends Component {
   state = {};
 
-  handleChange = e => this.setState({ [e.target.name]: e.target.value });
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     //console.log(e)
     let pips = 0;
@@ -39,7 +42,7 @@ export default class PostTrade extends Component {
 
     console.log(this.state);
     try {
-      await actions.postTrade(this.state);
+      await this.props.postTrade(this.state);
 
       this.props.history.push("/profile");
     } catch (err) {
@@ -47,21 +50,19 @@ export default class PostTrade extends Component {
     }
   };
 
-  handleFileUpload = async e => {
+  handleFileUpload = async (e) => {
     console.log("The file to be uploaded is: ", e.target.files[0]);
 
     const uploadData = new FormData();
     await uploadData.append("imageUrl", e.target.files[0]);
 
     try {
-      const result = await actions.handleTradeUpload(uploadData);
-      console.log("result: ", result);
-      this.setState({ imageUrl: result.secure_url });
+      await this.props.tradeImageUpload(uploadData);
+      this.setState({imageUrl:this.props.imageUrl.secure_url})
     } catch (err) {
       console.log("*****", err.message);
     }
   };
-
 
   render() {
     return (
@@ -193,7 +194,7 @@ export default class PostTrade extends Component {
             <div className="trade-idea-container-form-group">
               <label for="screenshot">Screenshot</label>
               <input
-                onChange={e => this.handleFileUpload(e)}
+                onChange={(e) => this.handleFileUpload(e)}
                 type="file"
                 className="trade-idea-container-form-input-file"
                 name="screenshot"
@@ -226,3 +227,9 @@ export default class PostTrade extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return { postTrade: state.postTrade, imageUrl: state.tradeImageUpload };
+};
+
+export default connect(mapStateToProps, { postTrade, tradeImageUpload })(PostTrade);

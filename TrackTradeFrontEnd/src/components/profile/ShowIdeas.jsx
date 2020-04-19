@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import actions from "../../services/index";
+
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -13,7 +13,7 @@ import {
 
 //redux imports
 import { connect } from "react-redux";
-import { fetchTradeIdeas, selectTradeIdea } from "../../actions";
+import { fetchTradeIdeas, selectTradeIdea, deleteIdea } from "../../actions";
 
 
 class ShowIdeas extends Component {
@@ -25,9 +25,8 @@ class ShowIdeas extends Component {
 
   deleteCard = async id => {
     try {
-      await actions.deleteIdeas({ cardId: id });
-      let actualTrades = await actions.getIdeas();
-      this.setState({ actualTrades });
+      await this.props.deleteIdea({ cardId: id });
+      await this.props.fetchTradeIdeas();
     } catch (err) {
       console.log("--=-=-=-=-=-=-=", err);
     }
@@ -265,13 +264,10 @@ class ShowIdeas extends Component {
   };
 
   render() {
-    console.log(this.props);
     if (!this.props.otherProfile) {
       return (
         <div className="trade-ideas">
           {this.showIdeas()}
-          {/* {this.exitPopup()} */}
-
           {this.props.selectedTradeIdea &&
             this.props.selectedTradeIdea.eachTrade ? (
             <div className="popup" id="popup">
@@ -581,7 +577,6 @@ class ShowIdeas extends Component {
         </div>
       );
     } else {
-      console.log("---------==================--------------")
       return (
         <div className="trade-ideas">
           {this.showOtherIdeas()}
@@ -725,8 +720,7 @@ class ShowIdeas extends Component {
 
 
 const mapStateToProps = state => {
-  console.log('state',state)
   return {actualTrades: state.tradeIdeas, selectedTradeIdea: state.selectedTradeIdea, otherProfile: state.otherProfile}
 }
 
-export default connect(mapStateToProps, {fetchTradeIdeas, selectTradeIdea})(ShowIdeas)
+export default connect(mapStateToProps, {fetchTradeIdeas, selectTradeIdea, deleteIdea})(ShowIdeas)
