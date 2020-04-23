@@ -28,9 +28,9 @@ class ShowTrades extends Component {
 
   showIdeas = () => {
     if (this.props.actualTrades) {
-      return this.props.actualTrades.data.map((eachTrade) => {
+      return this.props.actualTrades.data.map((eachTrade, index) => {
         return (
-          <div className="trade-ideas-card">
+          <div key={index} className="trade-ideas-card">
             <a
               href="#popup"
               onClick={async () => {
@@ -105,9 +105,9 @@ class ShowTrades extends Component {
 
   showOtherIdeas = () => {
     if (this.props.otherProfile) {
-      return this.props.otherProfile.trades.map((eachTrade) => {
+      return this.props.otherProfile.trades.map((eachTrade, index) => {
         return (
-          <div className="trade-ideas-card">
+          <div key={index} className="trade-ideas-card">
             <a
               href="#popup"
               onClick={async () => {
@@ -174,12 +174,11 @@ class ShowTrades extends Component {
   render() {
     if (!this.props.otherProfile) {
       return (
-        <div class="trade-ideas">
+        <div className="trade-ideas">
           {this.showIdeas()}
-          {this.props.selectedTrade &&
-            this.props.selectedTrade.eachTrade ? (
-            <div class="popup" id="popup">
-              <div class="popup__content" id="content">
+          {this.props.selectedTrade && this.props.selectedTrade.eachTrade ? (
+            <div className="popup" id="popup">
+              <div className="popup__content" id="content">
                 <div className="popup__left">
                   <img
                     className="popup__left--image"
@@ -187,40 +186,46 @@ class ShowTrades extends Component {
                     alt="trade"
                   />
                 </div>
-                <div class="popup__right">
-                  <a href="#main" class="popup__close">
+                <div className="popup__right">
+                  <a href="#main" className="popup__close">
                     &times;
                   </a>
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     {this.props.selectedTrade.eachTrade.trade.currency}{" "}
                     {this.props.selectedTrade.eachTrade.trade.kind}
                   </h2>
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     Lot size: {this.props.selectedTrade.eachTrade.trade.lot}
                   </h2>
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     Entry: {this.props.selectedTrade.eachTrade.trade.entry}
                   </h2>
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     Closed at: {this.props.selectedTrade.eachTrade.trade.close}
                   </h2>
                   {this.props.selectedTrade.eachTrade.trade.money > 0 ? (
                     <div className="trade-ideas-card-win-popup">
-                      ${this.props.selectedTrade.eachTrade.trade.money.toFixed(2)}
+                      $
+                      {this.props.selectedTrade.eachTrade.trade.money.toFixed(
+                        2
+                      )}
                     </div>
                   ) : (
                     <div className="trade-ideas-card-loss-popup">
-                      -${Math.abs(this.props.selectedTrade.eachTrade.trade.money).toFixed(2)}
+                      -$
+                      {Math.abs(
+                        this.props.selectedTrade.eachTrade.trade.money
+                      ).toFixed(2)}
                     </div>
                   )}
 
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     {this.props.selectedTrade.eachTrade.trade.description ? (
-                      <p class="popup__text">
+                      <p className="popup__text">
                         {this.props.selectedTrade.eachTrade.trade.description}
                       </p>
                     ) : (
-                      <p class="popup__text"></p>
+                      <p className="popup__text"></p>
                     )}
                   </h2>
 
@@ -229,9 +234,13 @@ class ShowTrades extends Component {
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
                       title={`MY TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -244,9 +253,13 @@ class ShowTrades extends Component {
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
                       title={`MY TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -259,9 +272,13 @@ class ShowTrades extends Component {
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
                       title={`MY TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -274,9 +291,13 @@ class ShowTrades extends Component {
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
                       title={`MY TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -294,49 +315,54 @@ class ShowTrades extends Component {
       );
     } else {
       return (
-        <div class="trade-ideas">
+        <div className="trade-ideas">
           {this.showOtherIdeas()}
-          {this.props.selectedTrade &&
-          this.props.selectedTrade.eachTrade ? (
-            <div class="popup" id="popup">
-              <div class="popup__content" id="content">
-                {/* <div class="popup__left">
+          {this.props.selectedTrade && this.props.selectedTrade.eachTrade ? (
+            <div className="popup" id="popup">
+              <div className="popup__content" id="content">
+                {/* <div className="popup__left">
                                 
                             </div> */}
-                <div class="popup__right">
-                  <a href="#main" class="popup__close">
+                <div className="popup__right">
+                  <a href="#main" className="popup__close">
                     &times;
                   </a>
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     {this.props.selectedTrade.eachTrade.trade.currency}{" "}
                     {this.props.selectedTrade.eachTrade.trade.kind}
                   </h2>
 
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     Entry: {this.props.selectedTrade.eachTrade.trade.entry}
                   </h2>
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     Closed at: {this.props.selectedTrade.eachTrade.trade.close}
                   </h2>
 
-                  <h2 class="heading-secondary u-margin-bottom-small">
+                  <h2 className="heading-secondary u-margin-bottom-small">
                     {this.props.selectedTrade.eachTrade.trade.description ? (
-                      <p class="popup__text">
+                      <p className="popup__text">
                         {this.props.selectedTrade.eachTrade.trade.description}
                       </p>
                     ) : (
-                      <p class="popup__text">No description provided</p>
+                      <p className="popup__text">No description provided</p>
                     )}
                   </h2>
 
                   <div className="popup_right-sharing-icons">
                     <FacebookShareButton
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
-                      title={`${this.props.selectedTrade.eachTrade.trade.trader}'s TRADE:\n${
+                      title={`${
+                        this.props.selectedTrade.eachTrade.trade.trader
+                      }'s TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -347,11 +373,17 @@ class ShowTrades extends Component {
                     </FacebookShareButton>
                     <TwitterShareButton
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
-                      title={`${this.props.selectedTrade.eachTrade.trade.trader}'s TRADE:\n${
+                      title={`${
+                        this.props.selectedTrade.eachTrade.trade.trader
+                      }'s TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -362,11 +394,17 @@ class ShowTrades extends Component {
                     </TwitterShareButton>
                     <TelegramShareButton
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
-                      title={`${this.props.selectedTrade.eachTrade.trade.trader}'s TRADE:\n${
+                      title={`${
+                        this.props.selectedTrade.eachTrade.trade.trader
+                      }'s TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -377,11 +415,17 @@ class ShowTrades extends Component {
                     </TelegramShareButton>
                     <WhatsappShareButton
                       url={`https://www.tracktrade.co/profile/${this.props.selectedTrade.eachTrade.trade.trader}`}
-                      title={`${this.props.selectedTrade.eachTrade.trade.trader}'s TRADE:\n${
+                      title={`${
+                        this.props.selectedTrade.eachTrade.trade.trader
+                      }'s TRADE:\n${
                         this.props.selectedTrade.eachTrade.trade.currency
-                      } ${this.props.selectedTrade.eachTrade.trade.kind}\nEntry: ${
+                      } ${
+                        this.props.selectedTrade.eachTrade.trade.kind
+                      }\nEntry: ${
                         this.props.selectedTrade.eachTrade.trade.entry
-                      }\nClose: ${this.props.selectedTrade.eachTrade.trade.close}\n${
+                      }\nClose: ${
+                        this.props.selectedTrade.eachTrade.trade.close
+                      }\n${
                         this.props.selectedTrade.eachTrade.trade.description
                           ? `Description: ${this.props.selectedTrade.eachTrade.trade.description}\n`
                           : ""
@@ -395,18 +439,21 @@ class ShowTrades extends Component {
               </div>
             </div>
           ) : null}
-          
-          
         </div>
       );
     }
   }
 }
 
+const mapStateToProps = (state) => {
+  console.log("state", state);
+  return {
+    actualTrades: state.trades,
+    selectedTrade: state.selectedTrade,
+    otherProfile: state.otherProfile,
+  };
+};
 
-const mapStateToProps = state => {
-  console.log('state',state)
-  return {actualTrades: state.trades, selectedTrade: state.selectedTrade, otherProfile: state.otherProfile}
-}
-
-export default connect(mapStateToProps, {fetchTrades, selectTrade})(ShowTrades)
+export default connect(mapStateToProps, { fetchTrades, selectTrade })(
+  ShowTrades
+);

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 // redux imports
@@ -6,29 +6,32 @@ import { connect } from "react-redux";
 import { fetchAllTrades, fetchAllTraders } from "../../actions";
 import { checkLogin } from "../../actions/auth";
 
-class Connections extends Component {
-  state = {};
+const Connections = (props) => {
 
-  async componentDidMount() {
-    await this.props.fetchAllTraders();
-    this.setState({ traders: this.props.allTraders });
+  useEffect(() => {
+    if (!props.allTraders) {
+      fetchData();
+    } else {
+      console.log('hurray!')
+    }
+  });
 
-    await this.props.fetchAllTrades();
+  const fetchData = async () => {
+    await props.fetchAllTraders();
 
-    await this.props.checkLogin();
+    await props.fetchAllTrades();
 
-    console.log("props", this.props);
-    console.log("state", this.state);
-  }
+    await props.checkLogin();
+  };
 
-  formatTime = (time) => String(new Date(time)).substring(0, 24);
+  const formatTime = (time) => String(new Date(time)).substring(0, 24);
 
-  winLossRatio = (user) => {
-    if (this.props.actualTrades) {
+  const winLossRatio = (user) => {
+    if (props.actualTrades) {
       let wins = 0;
       let losses = 0;
 
-      let copyTrades = [...this.props.actualTrades.data];
+      let copyTrades = [...props.actualTrades.data];
       let userTrades = copyTrades.filter((eachTrade) => {
         return eachTrade.trade.trader === user;
       });
@@ -40,32 +43,32 @@ class Connections extends Component {
       // console.log(wins, "--=-=-=-==--=-=-", losses)
 
       if (percent) {
-        // this.setState({traders.: {wlr: percent}})
+        // setState({traders.: {wlr: percent}})
         return percent.toString() + "%";
       } else return null;
     }
   };
 
-  totalTrades = (user) => {
-    if (this.props.actualTrades) {
-      let copyTrades = [...this.props.actualTrades.data];
+  const totalTrades = (user) => {
+    if (props.actualTrades) {
+      let copyTrades = [...props.actualTrades.data];
       let userTrades = copyTrades.filter((eachTrade) => {
         return eachTrade.trade.trader === user;
       });
       if (userTrades.length > 0) {
-        // this.setState({traders: {totalTrades: userTrades.length}})
-        //console.log(this.state)
+        // setState({traders: {totalTrades: userTrades.length}})
+        //console.log(state)
         return userTrades.length;
       }
     }
   };
 
-  showConnections = () => {
-    if (this.props.allTraders && this.props.user.data) {
-      let copyTraders = [...this.props.allTraders.data];
+  const showConnections = () => {
+    if (props.allTraders && props.user.data) {
+      let copyTraders = [...props.allTraders.data];
       let filteredTraders = copyTraders.filter((eachTrader) => {
-        return this.props.user.data.connections.includes(eachTrader._id);
-        //loop through this.props.user to get connections and
+        return props.user.data.connections.includes(eachTrader._id);
+        //loop through props.user to get connections and
         //only return those that match you know
       });
       return filteredTraders.map((eachOne) => {
@@ -99,27 +102,27 @@ class Connections extends Component {
                       User since:
                     </div>
                     <div className="trade-ideas-card__item-content">
-                      {this.formatTime(eachOne.created_at)}
+                      {formatTime(eachOne.created_at)}
                     </div>
                   </div>
                 )}
-                {this.winLossRatio(eachOne.username) && (
+                {winLossRatio(eachOne.username) && (
                   <div className="trade-ideas-card__item">
                     <div className="trade-ideas-card__item-title">
                       Win Loss Ratio:
                     </div>
                     <div className="trade-ideas-card__item-content">
-                      {this.winLossRatio(eachOne.username)}
+                      {winLossRatio(eachOne.username)}
                     </div>
                   </div>
                 )}
-                {this.totalTrades(eachOne.username) ? (
+                {totalTrades(eachOne.username) ? (
                   <div className="trade-ideas-card__item">
                     <div className="trade-ideas-card__item-title">
                       Total Trades:
                     </div>
                     <div className="trade-ideas-card__item-content">
-                      {this.totalTrades(eachOne.username)}
+                      {totalTrades(eachOne.username)}
                     </div>
                   </div>
                 ) : (
@@ -137,14 +140,12 @@ class Connections extends Component {
     }
   };
 
-  render() {
-    return (
-      <Fragment>
-        <div className="trade-ideas">{this.showConnections()}</div>
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <div className="trade-ideas">{showConnections()}</div>
+    </Fragment>
+  );
+};
 const mapStateToProps = (state) => {
   return {
     allTraders: state.allTraders,

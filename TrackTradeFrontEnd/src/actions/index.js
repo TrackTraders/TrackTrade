@@ -74,48 +74,7 @@ export const fetchAllTraders = () => async (dispatch) => {
   });
 };
 
-// get all messages
 
-export const fetchAllMessages = () => async (dispatch) => {
-  const response = await services.getAllMessages();
-  dispatch({
-    type: "FETCH_ALLMESSAGES",
-    payload: response,
-  });
-};
-
-// send message
-
-export const sendMessage = (data) => async (dispatch) => {
-  const response = await services.sendMessage(data);
-
-  dispatch({
-    type: "SEND_MESSAGE",
-    payload: response,
-  });
-};
-
-// add connection
-
-export const addConnection = (id) => async (dispatch) => {
-  const response = await services.addConnection(id);
-
-  dispatch({
-    type: "ADD_CONNECTION",
-    payload: response,
-  });
-};
-
-// remove connection
-
-export const removeConnection = (id) => async (dispatch) => {
-  const response = await services.removeConnection(id);
-
-  dispatch({
-    type: "REMOVE_CONNECTION",
-    payload: response,
-  });
-};
 
 // post trade
 export const postTrade = (trade) => async (dispatch) => {

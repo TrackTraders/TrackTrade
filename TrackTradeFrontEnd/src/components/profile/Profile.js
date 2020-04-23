@@ -82,7 +82,7 @@ class Profile extends Component {
                   <form className="profile-nav__user-avatar__change-form">
                     <label
                       className="profile-nav__user-avatar__change-form--label"
-                      for="img"
+                      htmlFor="img"
                     >
                       Change Avatar
                     </label>

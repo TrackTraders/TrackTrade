@@ -15,7 +15,6 @@ import {
 import { connect } from "react-redux";
 import { fetchTradeIdeas, selectTradeIdea, deleteIdea } from "../../actions";
 
-
 class ShowIdeas extends Component {
   state = {};
 
@@ -38,9 +37,9 @@ class ShowIdeas extends Component {
 
   showIdeas = () => {
     if (this.props.actualTrades) {
-      return this.props.actualTrades.data.map(eachTrade => {
+      return this.props.actualTrades.data.map((eachTrade, index) => {
         return (
-          <div className="trade-ideas-card">
+          <div key={index} className="trade-ideas-card">
             <a
               href="#popup"
               onClick={async () => {

@@ -8,13 +8,9 @@ import ShowStats from "./ShowStats";
 
 //redux imports
 import { connect } from "react-redux";
-import {
-  findOtherProfile,
-  fetchAllMessages,
-  sendMessage,
-  addConnection,
-  removeConnection,
-} from "../../actions";
+import { findOtherProfile } from "../../actions";
+import { addConnection, removeConnection } from "../../actions/connections.js";
+import { fetchAllMessages, sendMessage } from "../../actions/messages.js";
 import { checkLogin } from "../../actions/auth.js";
 
 class OtherProfile extends Component {

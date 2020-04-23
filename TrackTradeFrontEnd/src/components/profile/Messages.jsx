@@ -1,103 +1,105 @@
-import React, { Component } from "react";
-import actions from "../../services/index";
+import React, { useState, useEffect, useRef } from "react";
 
 // redux imports
 import { connect } from "react-redux";
-import { fetchAllTraders, fetchAllMessages, sendMessage } from "../../actions";
+import { fetchAllTraders } from "../../actions";
+import { fetchAllMessages, sendMessage } from "../../actions/messages.js";
 import { checkLogin } from "../../actions/auth";
 
-class Messages extends Component {
-  constructor(props) {
-    super(props);
-    this.input = React.createRef();
-    this.state = {};
-  }
+const Messages = (props) => {
+  const [selectedProfile, selectProfile] = useState({});
+  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
 
-  async componentDidMount() {
-    await this.props.fetchAllTraders();
-    await this.props.fetchAllMessages();
+  useEffect(() => {
+    if (!props.allMessages) {
+      fetchData();
+      console.log('++++++')
+    } else {
+      console.log("-------")
+      let actualMessages = props.allMessages.data.filter((eachMessage) => {
+        return (
+          eachMessage.sender === props.user.data._id ||
+          eachMessage.receiver === props.user.data._id
+        );
+      });
+      console.log("test", actualMessages);
+      setMessages(actualMessages);
+    }
+  }, [props.allMessages]);
 
-    await this.props.checkLogin();
+  const ref = useRef(message);
 
-    let actualMessages = this.props.allMessages.data.filter((eachMessage) => {
-      return (
-        eachMessage.sender === this.props.user.data._id ||
-        eachMessage.receiver === this.props.user.data._id
-      );
-    });
-    this.setState({ actualMessages });
+  const fetchData = async () => {
+    await props.fetchAllTraders();
+    await props.fetchAllMessages();
 
+    await props.checkLogin();
+    console.log("props----", props);
 
-  }
-
-  formatTime = (time) => String(new Date(time)).substring(0, 24);
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+    console.log("props", props);
   };
 
-  sendMessage = async (e) => {
+  const formatTime = (time) => String(new Date(time)).substring(0, 24);
+
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const sendMessage = async (e) => {
     e.preventDefault();
-    console.log(this.state);
-    this.input.current.value = "";
+
     try {
-      await this.props.sendMessage({
-        message: this.state.message,
-        otherProfile: this.state.selectedProfile._id,
+      await props.sendMessage({
+        message: message,
+        otherProfile: selectedProfile._id,
       });
-      await this.props.fetchAllMessages();
-      await this.props.checkLogin();
-      console.log("props", this.props)
+      await props.fetchAllMessages();
+      await props.checkLogin();
+      console.log("props", props);
     } catch (err) {
       console.log(err);
     }
-    if (this.props.user.data) {
-      let actualMessages = this.props.allMessages.data.filter((eachMessage) => {
-        return (
-          eachMessage.sender === this.props.user.data._id ||
-          eachMessage.receiver === this.props.user.data._id
-        );
-      });
-      this.setState({ actualMessages });
-    }
+
+    setMessage("")
   };
 
-  selectProfile = () => {
-    if (this.props.allTraders && this.props.user.data) {
-      let copyTraders = [...this.props.allTraders.data];
+  const selectTheProfile = () => {
+    if (props.allTraders && props.user.data) {
+      let copyTraders = [...props.allTraders.data];
       let filteredTraders = copyTraders.filter((eachTrader) => {
-        return this.props.user.data.connections.includes(eachTrader._id);
-        //loop through this.props.user to get connections and
+        return props.user.data.connections.includes(eachTrader._id);
+        //loop through props.user to get connections and
         //only return those that match you know
       });
-      return filteredTraders.map((eachOne) => {
-        if (this.state.selectedProfile === eachOne) {
+      return filteredTraders.map((eachOne, index) => {
+        if (selectedProfile === eachOne) {
           return (
             <a
+              key={index}
               className="connections-container-each-active"
               href="#chatbox"
               onClick={() => {
-                this.setState({ selectedProfile: eachOne });
-                console.log(this.state.selectedProfile);
+                selectProfile(eachOne);
+                console.log(selectedProfile);
               }}
             >
-              {this.imageMessagesLoad(eachOne)}
+              {imageMessagesLoad(eachOne)}
               {eachOne.username}
             </a>
           );
         } else {
           return (
             <a
+              key={index}
               className="connections-container-each"
               href="#chatbox"
               onClick={() => {
-                this.setState({ selectedProfile: eachOne });
-                console.log(this.state.selectedProfile);
+                selectProfile(eachOne);
+                console.log(selectedProfile);
               }}
             >
-              {this.imageMessagesLoad(eachOne)}
+              {imageMessagesLoad(eachOne)}
               <span>{eachOne.username}</span>
             </a>
           );
@@ -106,7 +108,7 @@ class Messages extends Component {
     }
   };
 
-  imageMessagesLoad = (profile) => {
+  const imageMessagesLoad = (profile) => {
     if (profile) {
       return profile.avatar ? (
         <img
@@ -120,12 +122,12 @@ class Messages extends Component {
     }
   };
 
-  imageLoad = () => {
-    if (this.state.selectedProfile) {
-      return this.state.selectedProfile.avatar ? (
+  const imageLoad = () => {
+    if (selectedProfile) {
+      return selectedProfile.avatar ? (
         <img
           className="profile-nav__user-avatar__image"
-          src={this.state.selectedProfile.avatar}
+          src={selectedProfile.avatar}
           alt="Avatar"
         />
       ) : (
@@ -134,34 +136,35 @@ class Messages extends Component {
     }
   };
 
-  showMessages = () => {
-    if (this.state.selectedProfile) {
+  const showMessages = () => {
+    if (selectedProfile && props.allMessages) {
+      console.log(props.allMessages);
       return (
         <div className="chatbox" id="chatbox">
           <div className="chatbox__content" id="content">
             <div className="chatbox__top">
               <div className="chatbox__top-avatar profile-nav__user-avatar">
-                {this.imageLoad()}
+                {imageLoad()}
                 <div className="profile-nav__user-avatar__image-default"></div>
               </div>
               <h1 className="profile-nav__user-username">
-                {this.state.selectedProfile.username}
+                {selectedProfile.username}
               </h1>
             </div>
             <div className="chatbox__middle">
               <div className="chatbox__middle-content">
                 <a
                   href="#main"
-                  onClick={() => this.setState({ selectedProfile: null })}
+                  onClick={() => selectProfile(null)}
                   className="chatbox__close"
                 >
                   &times;
                 </a>
 
-                {this.props.allMessages.data.map((eachMessage) => {
+                {messages.map((eachMessage) => {
                   if (
-                    eachMessage.sender === this.props.user.data._id &&
-                    eachMessage.receiver === this.state.selectedProfile._id
+                    eachMessage.sender === props.user.data._id &&
+                    eachMessage.receiver === selectedProfile._id
                   ) {
                     return (
                       <div className="chatbox__middle-bubble chatbox__middle-bubble-sender">
@@ -169,8 +172,8 @@ class Messages extends Component {
                       </div>
                     );
                   } else if (
-                    eachMessage.receiver === this.props.user.data._id &&
-                    eachMessage.sender === this.state.selectedProfile._id
+                    eachMessage.receiver === props.user.data._id &&
+                    eachMessage.sender === selectedProfile._id
                   ) {
                     return (
                       <div className="chatbox__middle-bubble chatbox__middle-bubble-receiver">
@@ -183,14 +186,15 @@ class Messages extends Component {
             </div>
             <div className="chatbox__bottom">
               <form
-                onSubmit={this.sendMessage}
+                onSubmit={(e) => sendMessage(e)}
                 className="chatbox__bottom-form"
               >
                 <textarea
-                  onChange={this.handleChange}
-                  ref={this.input}
+                  onChange={(e) => handleChange(e)}
+                  ref={ref}
                   type="text"
                   name="message"
+                  value={message}
                   className="chatbox__bottom-form-message"
                   placeholder="Type your message"
                   required
@@ -206,25 +210,22 @@ class Messages extends Component {
     }
   };
 
-  render() {
-    // this.updateMessages()
-    return (
-      <div className="connections">
-        <div className="connections-container">{this.selectProfile()}</div>
-        <div className="connections-card">
-          <div className="trade-ideas">{this.showMessages()}</div>
-        </div>
+  return (
+    <div className="connections">
+      <div className="connections-container">{selectTheProfile()}</div>
+      <div className="connections-card">
+        <div className="trade-ideas">{showMessages()}</div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     allTraders: state.allTraders,
     allMessages: state.allMessages,
     user: state.checkLogin,
-    sendMessage: state.sendMessage
+    sendMessage: state.sendMessage,
   };
 };
 
@@ -232,5 +233,5 @@ export default connect(mapStateToProps, {
   fetchAllTraders,
   fetchAllMessages,
   checkLogin,
-  sendMessage
+  sendMessage,
 })(Messages);

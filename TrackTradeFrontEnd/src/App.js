@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+
+// component imports
 import Landing from "./components/home/Landing";
 import Home from "./components/home/Home";
 import NotFound from "./components/404/NotFound.js";

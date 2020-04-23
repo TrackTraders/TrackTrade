@@ -55,37 +55,37 @@ class Header extends Component {
               <div className="navigation--right__links-phone">
                 <input
                   type="checkbox"
-                  class="menu__checkbox"
+                  className="menu__checkbox"
                   id="navi-toggle"
                 />
 
-                <label for="navi-toggle" class="menu__button">
-                  <span class="menu__icon">&nbsp;</span>
+                <label htmlFor="navi-toggle" className="menu__button">
+                  <span className="menu__icon">&nbsp;</span>
                 </label>
 
-                <div class="menu__background">&nbsp;</div>
+                <div className="menu__background">&nbsp;</div>
 
-                <nav class="menu__nav">
-                  <ul class="menu__list">
-                    <li class="menu__item">
+                <nav className="menu__nav">
+                  <ul className="menu__list">
+                    <li className="menu__item">
                       <Link className="menu-link" to="/home">
                         Home
                       </Link>
                     </li>
 
-                    <li class="menu__item">
+                    <li className="menu__item">
                       <Link className="menu-link" to="/tools">
                         Tools
                       </Link>
                     </li>
 
-                    <li class="menu__item">
+                    <li className="menu__item">
                       <Link className="menu-link" to="/profile">
                         Profile
                       </Link>
                     </li>
 
-                    <li class="menu__item">
+                    <li className="menu__item">
                       <Link
                         onClick={this.logOut}
                         className="menu-link menu-link-logout"
