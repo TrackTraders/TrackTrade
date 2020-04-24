@@ -1,80 +1,158 @@
-import React, {Component} from 'react';
-import { Switch, Route } from 'react-router-dom';
-import Landing from './components/home/Landing';
-import Home from './components/home/Home';
-import NotFound from './components/404/NotFound.js';
-import SignUp from './components/auth/SignUp';
-import LogIn from './components/auth/LogIn';
-import PostIdea from './components/profile/PostIdea'
-import PostTrade from './components/profile/PostTrade'
-import Profile from './components/profile/Profile'
-import OtherProfile from './components/profile/OtherProfile'
-import actions from './services/index'
-import Tools from './components/tools/Tools';
+import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
+
+// component imports
+import Landing from "./components/home/Landing";
+import Home from "./components/home/Home";
+import NotFound from "./components/404/NotFound.js";
+import SignUp from "./components/auth/SignUp";
+import LogIn from "./components/auth/LogIn";
+import PostIdea from "./components/profile/PostIdea";
+import PostTrade from "./components/profile/PostTrade";
+import Profile from "./components/profile/Profile";
+import OtherProfile from "./components/profile/OtherProfile";
+import actions from "./services/index";
+import Tools from "./components/tools/Tools";
+
+// redux imports
+import { connect } from "react-redux";
+import { checkLogin } from "./actions/auth";
 
 class App extends Component {
-  
-  state = { }
-  
+  state = {};
+
   async componentDidMount() {
-    let user = await actions.isLoggedIn()
-    this.setState({...user.data})
+    await this.props.checkLogin();
+    console.log(this.props)
   }
 
-  setUser = (user) => this.setState(user)
-
-  render(){
-    console.log(this.state)
+  render() {
     return (
       <div>
-      { this.state._id
-      ?
-      <Switch>
-        <Route exact path="/" render={(props) => <Home {...props} username={this.state.username} />}></Route>
+        {this.props.user &&
+          this.props.user.data ? (
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => <Home {...props} />}
+            ></Route>
 
-        <Route exact path="/home" render={(props) => <Home {...props} username={this.state.username}/>}></Route>
+            <Route
+              exact
+              path="/home"
+              render={(props) => <Home {...props} />}
+            ></Route>
 
-        <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
+            <Route
+              exact
+              path="/sign-up"
+              render={(props) => <SignUp {...props} />}
+            ></Route>
 
-        <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+            <Route
+              exact
+              path="/log-in"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
 
-        <Route exact path="/profile/:otheruser" render={(props) => <OtherProfile {...props} username={this.state.username} />}></Route>
+            <Route
+              exact
+              path="/profile/:otheruser"
+              render={(props) => <OtherProfile {...props} />}
+            ></Route>
 
-        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state} avatar={this.state.avatar} username={this.state.username} />}></Route>
-        
-        <Route exact path="/postIdea" render={(props) => <PostIdea {...props} username={this.state.username} />}></Route>
+            <Route
+              exact
+              path="/profile"
+              render={(props) => <Profile {...props} />}
+            ></Route>
 
-        <Route exact path="/postTrade" render={(props) => <PostTrade {...props} username={this.state.username} />}></Route>
+            <Route
+              exact
+              path="/postIdea"
+              render={(props) => <PostIdea {...props} />}
+            ></Route>
 
-        <Route exact path="/tools" render={(props) => <Tools {...props} username={this.state.username} />}></Route>
+            <Route
+              exact
+              path="/postTrade"
+              render={(props) => <PostTrade {...props} />}
+            ></Route>
 
-        <Route component={NotFound} />
-      </Switch>
-      :
-      <Switch>
-        <Route exact path="/" render={(props) => <Landing {...props} />}></Route>
+            <Route
+              exact
+              path="/tools"
+              render={(props) => <Tools {...props} />}
+            ></Route>
 
-        <Route exact path="/home" render={(props) => <Landing {...props} />}></Route>
+            <Route component={NotFound} />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => <Landing {...props} />}
+            ></Route>
 
-        <Route exact path="/sign-up" render={(props) => <SignUp {...props} setUser={this.setUser}  />}></Route>
+            <Route
+              exact
+              path="/home"
+              render={(props) => <Landing {...props} />}
+            ></Route>
 
-        <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
+            <Route
+              exact
+              path="/sign-up"
+              render={(props) => <SignUp {...props} />}
+            ></Route>
 
-        <Route exact path="/profile/:otheruser" render={(props) => <LogIn {...props}  />}></Route>
+            <Route
+              exact
+              path="/log-in"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
 
-        <Route exact path="/profile" render={(props) => <LogIn {...props} setUser={this.setUser} />}></Route>
-        
-        <Route exact path="/postIdea" render={(props) => <LogIn {...props} />}></Route>
+            <Route
+              exact
+              path="/profile/:otheruser"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
 
-        <Route exact path="/postTrade" render={(props) => <LogIn {...props} />}></Route>
+            <Route
+              exact
+              path="/profile"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
 
-        <Route exact path="/tools" render={(props) => <LogIn {...props} />}></Route>
+            <Route
+              exact
+              path="/postIdea"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
 
-        <Route component={NotFound} />
-      </Switch>
-      }
-    </div>
-  );
+            <Route
+              exact
+              path="/postTrade"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
+
+            <Route
+              exact
+              path="/tools"
+              render={(props) => <LogIn {...props} />}
+            ></Route>
+
+            <Route component={NotFound} />
+          </Switch>
+        )}
+      </div>
+    );
   }
 }
-export default App;
+
+const mapStateToProps = (state) => {
+  return { user: state.checkLogin };
+};
+export default connect(mapStateToProps, { checkLogin })(App);

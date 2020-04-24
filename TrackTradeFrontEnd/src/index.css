@@ -1708,6 +1708,8 @@ body::-webkit-scrollbar-thumb {
         background-color: #081c24;
         color: #ddd;
         outline: none; }
+        .chatbox__bottom-form-message:required {
+          box-shadow: none; }
       .chatbox__bottom-form-submit {
         height: 100%;
         width: 20%;

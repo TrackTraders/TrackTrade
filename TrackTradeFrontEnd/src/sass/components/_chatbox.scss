@@ -163,6 +163,10 @@
                 background-color: $color-blue-dark-3;
                 color: #ddd;
                 outline: none;
+
+                &:required {
+                    box-shadow:none;
+                }
                 @include respond(smallphone){
                     
                 }
