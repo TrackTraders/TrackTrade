@@ -11,29 +11,29 @@ const passport = require("passport");
 const path = require("path");
 
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
 });
 
 const app = express();
 
 app.use(
-  cors({
-    origin: function(origin, callback) {
-      return callback(null, true);
-    },
-    optionsSuccessStatus: 200,
-    credentials: true
-  })
+    cors({
+        origin: function (origin, callback) {
+            return callback(null, true);
+        },
+        optionsSuccessStatus: 200,
+        credentials: true,
+    })
 );
 
 app.use(
-  session({
-    secret: "Our little secret.",
-    resave: false,
-    saveUninitialized: false
-  })
+    session({
+        secret: "Our little secret.",
+        resave: false,
+        saveUninitialized: false,
+    })
 );
 
 app.use(passport.initialize());
@@ -67,11 +67,11 @@ console.log("client", client);
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 5000;
+    port = 5005;
 }
 
-app.listen(port, function() {
-  console.log(`Server started on port ${port}`);
+app.listen(port, function () {
+    console.log(`Server started on port ${port}`);
 });
 
 module.exports = app;

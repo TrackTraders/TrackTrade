@@ -1,22 +1,32 @@
 .profile {
-
     min-height: 80vh;
     max-height: 100%;
     background-color: $color-blue-dark-3;
     border-top: 2px solid $color-blue-dark-2;
     color: #ddd;
-    // padding: 5rem 10%;
+    padding: 84px 0 5rem;
     width: 100%;
-    border-bottom: 1.4px solid #040e13;
+
+    &-nodatatext {
+        width: 100%;
+        font-size: 3rem;
+        text-align: center;
+        &-stats {
+            width: 33%;
+            font-size: 3rem;
+            text-align: center;
+        }
+    }
 
     &-nav {
-
         display: flex;
         justify-content: space-between;
         border-bottom: 1.4px solid black;
-        padding: 5rem 10%;
-        background-image: linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,0.25));
-    
+        padding: 1rem 10%;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.25)
+        );
 
         &-link {
             &,
@@ -26,30 +36,47 @@
                 text-decoration: none;
                 color: #ddd;
             }
+            &_button {
+                &,
+                &:link,
+                &:visited {
+                    background-color: $color-blue-bright-1;
+                    width: 100px;
+                    height: auto;
+                    text-decoration: none;
+                    color: #000;
+                    padding: 1rem 1.5rem;
+                    border-radius: 3px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: $color-blue-bright-2;
+                    }
+                }
+            }
         }
 
         &__user {
-            
             display: flex;
             align-items: center;
-            
-            &-avatar {
 
+            &-avatar {
                 border-radius: 50%;
                 border: none;
-                height: 100px;
-                width: 100px;
+                height: 60px;
+                width: 60px;
                 background-color: #ccc;
                 overflow: hidden;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 50px;
                     width: 50px;
                 }
 
                 &:hover > &__change {
-                    transform: translateY(-6rem);
+                    transform: translateY(-7rem);
                     z-index: 3;
+                    cursor: pointer;
                 }
 
                 &__image {
@@ -58,92 +85,79 @@
                     width: 100%;
                     z-index: -20;
 
-
                     &-default {
                         background-image: url("./images/userdefault.png");
                         background-size: cover;
-                        
+
                         height: 100%;
                         width: 100%;
                         z-index: -20;
                     }
                 }
-                
 
                 &__change {
-                    background-color: rgba(34,34,34,0.8);
+                    background-color: rgba(34, 34, 34, 0.8);
                     color: #fff;
                     font-weight: 700;
                     text-transform: uppercase;
                     padding: 2rem auto;
                     transform: translateY(10rem);
-                    transition: all .2s ease-in-out;
+                    transition: all 0.2s ease-in-out;
                     z-index: 100;
-                    
+
                     &-form {
-                        padding: 1rem 2.5rem 3rem;
+                        padding: 2rem 1rem;
                         &--input {
                             display: none;
-                            &:hover {
-                                cursor: pointer;
-                            }
                         }
                         &--label {
-                            &:hover {
-                                cursor: pointer;
-                            }
+                            cursor: pointer;
                         }
                     }
                 }
-
-                
-            
             }
 
             &-username {
                 padding: 0 4rem;
                 font-size: 3rem;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     font-size: 2.5rem;
                 }
             }
         }
 
         &__links {
-
             &-other {
-
                 display: flex;
 
                 & > * {
-                    
-                    @include respond(smallphone){
-                        padding: .5rem 1rem !important;
+                    @include respond(smallphone) {
+                        padding: 0.5rem 1rem !important;
                     }
                 }
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     margin-bottom: 2rem;
                     flex-direction: column;
                 }
             }
-            
+
             display: flex;
             justify-content: space-evenly;
             padding-right: 3rem;
 
             &-flex {
                 display: flex;
-                
-                @include respond(tab-land){
+
+                @include respond(tab-land) {
                     flex-direction: column;
-                    
+
                     & > * {
                         padding: 1rem;
                     }
                 }
 
-                @include respond(tab-port){
+                @include respond(tab-port) {
                     flex-direction: row;
                     position: fixed;
                     z-index: 100000;
@@ -162,11 +176,10 @@
                     }
                 }
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     padding: 0 !important;
-                    
+
                     & > * {
-                        
                         width: 20%;
                         text-align: center;
                         border: 2px solid black;
@@ -177,30 +190,27 @@
             }
 
             &-text {
-
-                padding: 1rem 1.5rem;
+                padding: 0.5rem 1rem;
                 margin: auto 2rem;
-                
+
                 color: #ddd;
                 border-radius: 2px;
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
-                transition: all .2s ease-in-out;
+                transition: all 0.2s ease-in-out;
 
-                @include respond(tab-port){
+                @include respond(tab-port) {
                     margin: auto 0rem;
                 }
 
                 &:hover {
-                    background-color: rgba($color-blue-dark-1, 0.7);
+                    background-color: rgba($color-blue-dark-3, 0.7);
                     color: #ddd;
                     cursor: pointer;
-
                 }
 
                 &-profile {
-
                     padding: 1rem 1.5rem;
                     margin: 1rem 2rem;
                     background-color: rgba($color-blue-dark-1, 0.7);
@@ -209,54 +219,49 @@
                     font-size: 2rem;
                     text-transform: uppercase;
                     list-style: none;
-                    transition: all .2s ease-in-out;
-    
+                    transition: all 0.2s ease-in-out;
+
+                    background-color: $color-blue-bright-1;
+                    width: auto;
+                    height: auto;
+                    text-decoration: none;
+                    color: #000;
+                    padding: 1rem 1.5rem;
+                    border-radius: 3px;
+
                     &:hover {
-
-                        background-color: rgba($color-blue-dark-2, 1);
-                        color: #ddd;
                         cursor: pointer;
-    
-                    }    
+                        background-color: $color-blue-bright-2;
+                    }
 
-                    @include respond(smallphone){
-                        
+                    @include respond(smallphone) {
                         padding: 4rem;
                         margin: 2rem 0;
                     }
                 }
             }
             &-text-active {
-                padding: 1rem 1.5rem;
+                padding: 0.5rem 1rem;
                 margin: auto 2rem;
                 border-bottom: 2px solid $color-blue-bright-1;
-                color: #ddd;
                 border-radius: 2px;
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
-                transition: all .2s ease-in-out;
+                transition: all 0.2s ease-in-out;
 
-                &:hover {
-                    background-color: rgba($color-blue-dark-1, 0.7);
-                    color: #ddd;
-                    cursor: pointer;
-
-                }
+                cursor: pointer;
             }
         }
     }
 
     &-content {
         margin: 8rem auto;
-        min-height: 65vh;
     }
 }
 
-
 .profile-nav__links-desktop {
-
-    @include respond(smallphone){
+    @include respond(smallphone) {
         display: none;
     }
 }
@@ -264,9 +269,9 @@
 .profile-nav__links-phone {
     display: none;
 
-    @include respond(smallphone){
+    @include respond(smallphone) {
         display: inline;
-        font-size: 4    rem;        
+        font-size: 4 rem;
         margin: 2rem 0;
     }
 }

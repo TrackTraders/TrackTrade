@@ -3,7 +3,7 @@
     display: block;
     width: 100%;
     height: 30vh;
-    bottom: 0;
+    bottom: 2%;
     left: 0;
     transform: translate(50%, 100%);
     z-index: 2002;
@@ -13,14 +13,14 @@
 
     opacity: 0;
     visibility: hidden;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
 
-    @include respond(smallphone){
+    @include respond(smallphone) {
         bottom: 77px;
         left: 30px;
     }
 
-    &__content{
+    &__content {
         @include centerHorVer;
 
         height: 70vh;
@@ -32,10 +32,10 @@
         flex-direction: column;
         overflow: hidden;
         opacity: 0;
-        transform: translate(-50%, -50%) scale(.5);
-        transition: all .3s ease-in-out;
+        transform: translate(-50%, -50%) scale(0.5);
+        transition: all 0.3s ease-in-out;
 
-        @include respond(smallphone){
+        @include respond(smallphone) {
             width: 60%;
             height: 55vh;
             // transform: translate(-50%, -50%) scale(.5);
@@ -56,7 +56,7 @@
             width: 50px;
             margin-left: 2rem;
             margin-right: -2rem;
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 height: 40px;
                 width: 40px;
             }
@@ -74,32 +74,31 @@
         overflow-y: scroll;
 
         &-content {
-         overflow-anchor: auto;
+            overflow-anchor: auto;
         }
 
         &-bubble {
-            
-              position: relative;
-              clear: both;
-              display: block;
-              height: auto;
-              width: auto;
-              max-width: 50%;
-              word-wrap: break-word;
-              word-break: keep-all;
-              font-family: sans-serif;
-              text-align: left;
-              line-height: 1.5em;
-              margin: 2px 10px;
-              padding: 10px;
-              cursor: default;
-              border-radius: 15px;
-              font-size: 1.6rem;
-            
+            position: relative;
+            clear: both;
+            display: block;
+            height: auto;
+            width: auto;
+            max-width: 50%;
+            word-wrap: break-word;
+            word-break: keep-all;
+            font-family: sans-serif;
+            text-align: left;
+            line-height: 1.5em;
+            margin: 2px 10px;
+            padding: 10px;
+            cursor: default;
+            border-radius: 15px;
+            font-size: 1.6rem;
+
             &-receiver {
                 float: left;
                 background-color: #999;
-                
+
                 &::before {
                     /* Left Message Bubble Tail */
                     content: "";
@@ -108,7 +107,7 @@
                     left: -10px;
                     border-top: 15px solid #999;
                     border-left: 15px solid transparent;
-                  }
+                }
             }
 
             &-sender {
@@ -123,7 +122,7 @@
                     right: -10px;
                     border-bottom: 15px solid $color-blue-bright-2;
                     border-right: 15px solid transparent;
-                  }
+                }
             }
         }
     }
@@ -136,16 +135,15 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        
+
         // padding: 3rem 5rem;
         // vertical-align: middle;
 
-        @include respond(smallphone){
+        @include respond(smallphone) {
             padding: 0 !important;
         }
 
         &-form {
-
             height: 100%;
             width: auto;
             display: flex;
@@ -165,10 +163,9 @@
                 outline: none;
 
                 &:required {
-                    box-shadow:none;
+                    box-shadow: none;
                 }
-                @include respond(smallphone){
-                    
+                @include respond(smallphone) {
                 }
             }
 
@@ -180,24 +177,25 @@
                 font-size: 2rem;
                 font-weight: 700;
                 text-transform: uppercase;
+                cursor: pointer;
                 background-color: $color-blue-bright-2;
             }
         }
 
-        @include respond(tab-land){
+        @include respond(tab-land) {
             display: inline-block;
             padding: 5rem;
             width: 100%;
             position: relative;
         }
-        @include respond(tab-port){
+        @include respond(tab-port) {
             display: inline-block;
             padding: 5rem;
             width: 100%;
             position: relative;
         }
 
-        @include respond(phone){
+        @include respond(phone) {
             width: 100%;
 
             & .heading-secondary {
@@ -211,7 +209,7 @@
         display: block;
         width: 100%;
 
-        @include respond(tab-port){
+        @include respond(tab-port) {
             display: inline;
             float: left;
         }
@@ -224,7 +222,7 @@
         // column-count: 2;
         // column-gap: 4rem;
         // column-rule: 1px solid #444;
-        
+
         // -webkit-hyphens: auto;
         // -ms-hyphens: auto;
         // hyphens: auto;
@@ -232,44 +230,39 @@
         &--dots {
             display: none;
 
-            @include respond(tab-land){
+            @include respond(tab-land) {
                 display: none;
             }
-            @include respond(tab-port){
+            @include respond(tab-port) {
                 display: inline;
             }
-            @include respond(phone){
+            @include respond(phone) {
                 display: inline;
             }
-
         }
 
         &--more {
             display: inline;
 
-            @include respond(tab-land){
+            @include respond(tab-land) {
                 display: inline;
             }
-            @include respond(tab-port){
+            @include respond(tab-port) {
                 display: none;
             }
-            @include respond(phone){
+            @include respond(phone) {
                 display: none;
             }
-
         }
 
-
-        @include respond(tab-port){
+        @include respond(tab-port) {
             column-count: 1;
-            
         }
 
-        @include respond(phone){
+        @include respond(phone) {
             column-count: 1;
         }
     }
-
 
     &:target {
         opacity: 1;
@@ -293,20 +286,19 @@
             display: inline-block;
             line-height: 1;
 
-            
-            @include respond(tab-port){
+            @include respond(tab-port) {
                 position: absolute;
                 left: 90%;
-                padding:0;
+                padding: 0;
             }
-            @include respond(phone){
+            @include respond(phone) {
                 position: absolute;
                 left: 85%;
                 padding: 0;
             }
         }
 
-        &:hover{
+        &:hover {
             color: red;
         }
     }
@@ -315,7 +307,8 @@
         &,
         &:link,
         &:visited {
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+                "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
             font-size: 1.6rem;
             position: absolute;
             bottom: 3rem;
@@ -327,7 +320,7 @@
             background-color: #c21;
             border-radius: 3px;
             border: none;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         &:hover {
@@ -337,7 +330,8 @@
     }
 
     &__edit {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+            "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
         font-size: 1.6rem;
         position: absolute;
         bottom: 3rem;
@@ -349,7 +343,7 @@
         background-color: $color-blue-bright-1;
         border-radius: 3px;
         border: none;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
             background-color: $color-blue-bright-2;
@@ -368,7 +362,7 @@
         background-color: $color-blue-bright-1;
         border-radius: 3px;
         border: none;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
             background-color: $color-blue-bright-2;
@@ -377,30 +371,26 @@
     }
 
     &-form {
-
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         color: #222;
-        font-size: 2rem;        
-        
-        &-group {
+        font-size: 2rem;
 
+        &-group {
             & label {
-                
                 text-align: center;
-                
+
                 // width: 400px;
             }
-            
+
             // width: 700px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             margin-bottom: 1rem;
-
         }
 
         &-input {
@@ -410,7 +400,7 @@
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 2px;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
                 background-color: $color-blue-2;

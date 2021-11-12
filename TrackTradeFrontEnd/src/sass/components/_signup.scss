@@ -3,8 +3,6 @@
     height: 100vh;
 }
 
-
-
 .signup {
     overflow-y: hidden;
     height: 100%;
@@ -14,7 +12,7 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 25rem;
-
+    padding-top: 10rem;
 
     &-lotcalc {
         width: 100%;
@@ -31,8 +29,8 @@
             color: #eee;
             font-size: 3rem;
             width: 1000px;
-            @include respond(smallphone){
-                width: 300px !important; 
+            @include respond(smallphone) {
+                width: 300px !important;
             }
 
             &-group {
@@ -41,25 +39,23 @@
                     text-align: right;
                     margin-right: 15px;
                     width: 400px;
-                    
-                    @include respond(smallphone){
+
+                    @include respond(smallphone) {
                         width: 100px;
-                        
                     }
                 }
-                
+
                 width: 800px;
                 display: flex;
-                
+
                 justify-content: space-between;
                 align-items: center;
                 margin: 2rem 1rem;
-                @include respond(smallphone){
-                    width: 300px; 
+                @include respond(smallphone) {
+                    width: 300px;
                 }
-                
             }
-            
+
             &-btn {
                 background-color: $color-blue-3;
                 border: none;
@@ -70,12 +66,11 @@
                 padding: 1rem 1.5rem;
                 width: 50%;
                 margin: 5rem -1rem 0 10rem;
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     padding: 1rem 1.5rem;
                     width: 70%;
                     margin: 5rem auto 0;
                 }
-                
             }
         }
     }
@@ -84,62 +79,42 @@
         margin: 5rem 33rem;
     }
 
-    
-
-    
-    
     &-form {
-        
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: initial;
         color: #eee;
         font-size: 3rem;
-        width: 700px;
-        margin: 0  0 0;
-        
-        @include respond(smallphone){
-            width: 300px !important; 
+        margin: 0 0 0;
+
+        @include respond(smallphone) {
+            width: 300px !important;
         }
-        
+
         &-group {
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            margin: 2rem 0;
+            @include respond(smallphone) {
+                width: 200px;
+            }
 
             & label {
-                float: right;
-                text-align: right;
-                margin-right: 15px;
-                width: 400px;
-
-                @include respond(smallphone){
-                    width: 100px;
-                    
-                }
-            }
-            
-            width: 700px;
-            display: flex;
-            
-            justify-content: space-between;
-            align-items: center;
-            margin: 2rem 1rem;
-            @include respond(smallphone){
-                width: 200px; 
+                margin-bottom: 0.5rem;
             }
         }
 
         &-input {
             font-size: 3rem;
             background-color: $color-blue-1;
-            color:#ddd;
+            color: #ddd;
             padding: 1rem 1.5rem;
+            width: 100%;
             border: none;
             border-radius: 2px;
-            transition: all .2s ease-in-out;
-
-            @include respond(smallphone){
-                width: 180px;
-            }
+            transition: all 0.2s ease-in-out;
 
             &:hover {
                 background-color: $color-blue-2;
@@ -160,11 +135,15 @@
             float: left;
             color: #fff;
             padding: 1rem 1.5rem;
-            margin: 5rem -1rem 0 7.5rem;
+            margin: 5rem 0 0;
+            cursor: pointer;
 
-            @include respond(smallphone){
+            &:hover {
+                background-color: $color-blue-4;
+            }
+
+            @include respond(smallphone) {
                 padding: 1rem 1.5rem;
-                width: 70%;
                 margin: 5rem auto 0;
             }
         }

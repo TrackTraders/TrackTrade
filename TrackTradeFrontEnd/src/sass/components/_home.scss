@@ -4,12 +4,12 @@
     background-color: $color-blue-dark-3;
     border-top: 2px solid $color-blue-dark-2;
     color: #ddd;
-    padding: 5rem 5%;
+    padding: 90px 5% 5rem;
 
-    @include respond(tab-port){
+    @include respond(tab-port) {
         padding: 5rem 0;
     }
-    
+
     &-card {
         &,
         &:link,
@@ -20,18 +20,15 @@
     }
 
     &-nav {
-
         display: flex;
         justify-content: space-evenly;
         padding-bottom: 7rem;
 
         &__links {
-            
             display: flex;
             justify-content: space-evenly;
 
             &-text {
-
                 padding: 1rem 1.5rem;
                 margin: auto 8rem;
                 text-align: center;
@@ -40,12 +37,12 @@
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
-                transition: all .2s ease-in-out;
+                transition: all 0.2s ease-in-out;
 
-                @include respond(tab-land){
+                @include respond(tab-land) {
                     margin: auto 5rem;
                 }
-                @include respond(tab-port){
+                @include respond(tab-port) {
                     margin: auto 1rem;
                 }
 
@@ -53,7 +50,6 @@
                     background-color: rgba($color-blue-dark-1, 0.7);
                     color: #ddd;
                     cursor: pointer;
-
                 }
             }
             &-text-active {
@@ -66,12 +62,12 @@
                 font-size: 2rem;
                 text-transform: uppercase;
                 list-style: none;
-                transition: all .2s ease-in-out;
+                transition: all 0.2s ease-in-out;
 
-                @include respond(tab-land){
+                @include respond(tab-land) {
                     margin: auto 5rem;
                 }
-                @include respond(tab-port){
+                @include respond(tab-port) {
                     margin: auto 1rem;
                 }
 
@@ -79,14 +75,12 @@
                     background-color: rgba($color-blue-dark-1, 0.7);
                     color: #ddd;
                     cursor: pointer;
-
                 }
             }
         }
     }
 
     &-content {
-
         display: flex;
         flex-direction: column;
 
@@ -96,15 +90,13 @@
             justify-content: center;
         }
 
-
         &-section1 {
             // align-self: center;
             text-align: center;
 
-
-            @include respond(phone){
-                display: flex;                flex-direction: column;
-                
+            @include respond(phone) {
+                display: flex;
+                flex-direction: column;
             }
         }
 
@@ -134,6 +126,5 @@
             font-size: 2rem;
             padding-right: 1rem;
         }
-
     }
 }

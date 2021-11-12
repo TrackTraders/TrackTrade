@@ -1,44 +1,45 @@
 .navigation {
-
     display: flex;
     justify-content: space-between;
-    padding: 2rem 10%;
+    padding: 1rem 10%;
     align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
     width: 100%;
     background-color: $color-blue-dark-1;
     color: #ddd;
-    font-size: 3rem;
     font-weight: 700;
 
-    @include respond(tab-port){
-      padding: 1rem 3%;
+    @include respond(tab-port) {
+        padding: 1rem 3%;
     }
 
     &--brand {
         &,
         &:link,
         &:visited {
+            font-size: 2.2rem;
             width: 5rem;
             letter-spacing: 1rem;
             font-weight: 300;
-            padding: 3rem 0;
+            padding: 0;
             text-transform: uppercase;
             color: #ddd;
             text-decoration: none;
-            
-            @include respond(tab-port){
-              padding: 3rem 5rem
+
+            @include respond(tab-port) {
+                padding: 3rem 5rem;
             }
-    
-            @include respond(phone){
-              padding: 3rem 2rem
+
+            @include respond(phone) {
+                padding: 3rem 2rem;
             }
         }
 
         &:hover {
             cursor: pointer;
         }
-
     }
 
     &--right {
@@ -50,25 +51,25 @@
             font-size: 2rem;
         }
 
-        @include respond(tab-port){
-          padding-right: 1rem;
+        @include respond(tab-port) {
+            padding-right: 1rem;
         }
 
         &__links {
-
-          &-phone {
-            display: none;
-            margin-bottom: 3rem;
-            @include respond(phone){
-              display: inline;
+            &-phone {
+                display: none;
+                margin-bottom: 3rem;
+                @include respond(phone) {
+                    display: inline;
+                }
             }
-          }
-          &-desktop {
-            display: flex;
-            @include respond(phone){
-              display: none;
+            &-desktop {
+                display: flex;
+                align-items: center;
+                @include respond(phone) {
+                    display: none;
+                }
             }
-          }
         }
     }
 
@@ -77,13 +78,28 @@
         &:link,
         &:visited {
             text-decoration: none;
-            padding: 1rem 2rem;
+            padding: 0 2rem;
             color: #ddd;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         &:hover {
             color: $color-blue-bright-1;
+        }
+
+        &_active {
+            &,
+            &:link,
+            &:visited {
+                text-decoration: none;
+                padding: 0 2rem;
+                color: $color-blue-bright-1;
+                transition: all 0.2s ease-in-out;
+            }
+
+            &:hover {
+                color: $color-blue-bright-1;
+            }
         }
     }
 
@@ -97,7 +113,7 @@
             color: #000;
             background-color: $color-blue-bright-1;
             border-radius: 3px;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         &:hover {
@@ -116,185 +132,193 @@
             color: #000;
             background-color: $color-blue-bright-1;
             border-radius: 3px;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
         }
 
         &:hover {
             background-color: $color-blue-bright-2;
         }
     }
-
 }
 
-
-
-
 .menu {
-
-  &-link {
-
-    &,
-    &:link,
-    &:visited {
-      text-decoration: none;
-      color: #ddd;
-      font-size: 5rem;
+    &-link {
+        &,
+        &:link,
+        &:visited {
+            text-decoration: none;
+            color: #ddd;
+            font-size: 5rem;
+        }
     }
-  }
 
-  &__checkbox {
-      display: none;
-  }
+    &__checkbox {
+        display: none;
+    }
 
-  &__button {
-      background-color: $color-white;
-      height: 7rem;
-      width: 7rem;
-      position: fixed;
-      top: 7rem;
-      right: 6rem;
-      border-radius: 50%;
-      z-index: 2000;
-      box-shadow: 0 1rem 3rem rgba($color-black, .1);
-      text-align: center;
-      cursor: pointer;
+    &__button {
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 7rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+        text-align: center;
+        cursor: pointer;
 
-      @include respond(tab-port){
-          top: 4rem;
-          right: 4rem;
-      }
-  }
+        @include respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+        }
+    }
 
-  &__background {
-      height: 6rem;
-      width: 6rem;
-      border-radius: 50%;
-      position: fixed;
-      top: 7.5rem;
-      right: 6.5rem;
-      background-image: radial-gradient($color-blue-dark-1, $color-blue-dark-2);
-      z-index: 1000;
-      transition: all .7s cubic-bezier(0.86, 0, 0.07, 1);
+    &__background {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 7.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient(
+            $color-blue-dark-1,
+            $color-blue-dark-2
+        );
+        z-index: 1000;
+        transition: all 0.7s cubic-bezier(0.86, 0, 0.07, 1);
 
-      @include respond(tab-port){
-          top: 4.5rem;
-          right: 4.5rem;
-      }
-  }
+        @include respond(tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+    }
 
-  &__nav {
-      height: 100vh;
-      width: 0%;
-      position: fixed;
-      top: 1rem;
-      right: 0;
-      z-index: 15000;
-      opacity: 0;
-      transition: all .7s cubic-bezier(0.86, 0, 0.07, 1);
+    &__nav {
+        height: 100vh;
+        width: 0%;
+        position: fixed;
+        top: 1rem;
+        right: 0;
+        z-index: 15000;
+        opacity: 0;
+        transition: all 0.7s cubic-bezier(0.86, 0, 0.07, 1);
 
-      @include respond(smallphone){
-          height: 70vh;
-          top: 15%;
-          left: 80rem;
-      }
-  }
+        @include respond(smallphone) {
+            height: 70vh;
+            top: 15%;
+            left: 80rem;
+        }
+    }
 
-  &__list {
-      @include centerHorVer;
-      list-style: none;
-      text-align: center;
+    &__list {
+        @include centerHorVer;
+        list-style: none;
+        text-align: center;
+    }
 
-  }
+    &__item {
+        padding: 2rem;
+    }
 
-  &__item {
-      padding: 2rem;
-      
-  }
+    &__link {
+        &:link,
+        &:visited {
+            display: inline-block;
+            font-size: 3rem;
+            padding: 1rem 2rem;
+            font-weight: 300;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(
+                120deg,
+                transparent 0%,
+                transparent 50%,
+                $color-white 50%
+            );
+            background-size: 225%;
+            transition: all 0.4s;
 
-  &__link {
-      &:link,
-      &:visited {
-          display: inline-block;
-          font-size: 3rem;
-          padding: 1rem 2rem;
-          font-weight: 300;
-          color: $color-white;
-          text-decoration: none;
-          text-transform: uppercase;
-          background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
-          background-size: 225%;
-          transition: all .4s;
+            @include respond(phone) {
+                background-image: linear-gradient(
+                    120deg,
+                    transparent 0%,
+                    transparent 60%,
+                    $color-white 60%
+                );
+            }
+        }
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-blue-bright-1;
+            transform: translateX(1rem);
 
-          @include respond(phone){
-              background-image: linear-gradient(120deg, transparent 0%, transparent 60%, $color-white 60%);
-          }
-      }
-      &:hover,
-      &:active {
-          background-position: 100%;
-          color: $color-blue-bright-1;
-          transform: translateX(1rem);
+            @include respond(phone) {
+                background-size: 300%;
+            }
+        }
+    }
 
-          @include respond(phone){
-              background-size: 300%;
-          }
-      }
-  }
+    &__checkbox:checked ~ &__background {
+        transform: scale(80);
+    }
+    &__checkbox:checked ~ &__nav {
+        opacity: 1;
+        width: 100%;
+        left: 0;
+    }
 
-  &__checkbox:checked ~ &__background {
-      transform: scale(80);
-  }
-  &__checkbox:checked ~ &__nav {
-      opacity: 1;
-      width: 100%;
-      left: 0;
-  }
+    &__icon {
+        position: relative;
+        margin-top: 3.5rem;
 
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-blue-gray-1;
+            display: inline-block;
+        }
 
-  &__icon {
-      position: relative;
-      margin-top: 3.5rem;
-              
-      &,
-      &::before,
-      &::after {
-          width: 3rem;
-          height: 2px;
-          background-color: $color-blue-gray-1;
-          display: inline-block;
-      }
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all 0.2s;
+        }
 
-      &::before,
-      &::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          transition: all .2s;
-      }
+        &::before {
+            top: -0.8rem;
+        }
+        &::after {
+            top: 0.8rem;
+        }
+    }
 
-      &::before { top: -.8rem; }
-      &::after { top: .8rem; }
-  }
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
 
-  &__button:hover &__icon::before {
-      top: -1rem;
-  }
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
 
-  &__button:hover &__icon::after {
-      top: 1rem;
-  }
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+    }
 
-  &__checkbox:checked + &__button &__icon {
-      background-color: transparent;
-  }
+    &__checkbox:checked + &__button &__icon:before {
+        transform: rotate(135deg);
+        top: 0;
+    }
 
-  &__checkbox:checked + &__button &__icon:before {
-      transform: rotate(135deg);
-      top: 0;
-  }
-
-  &__checkbox:checked + &__button &__icon:after {
-      transform: rotate(-135deg);
-      top: 0;
-  }
+    &__checkbox:checked + &__button &__icon:after {
+        transform: rotate(-135deg);
+        top: 0;
+    }
 }

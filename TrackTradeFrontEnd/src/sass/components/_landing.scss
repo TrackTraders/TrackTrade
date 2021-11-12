@@ -1,27 +1,24 @@
 .landing {
-
     overflow-x: hidden;
 
     &-main {
-
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20rem;
-        padding: 5rem 10% 30rem;
-        height: 100%;
+        padding: 15rem 10% 30rem;
+        height: 90vh;
         background-color: $color-blue-dark-3;
         border-top: 2px solid $color-blue-dark-2;
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 
-        @include respond(smallphone){
+        @include respond(smallphone) {
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
             padding: 5rem 5rem 20rem;
             justify-content: center;
         }
 
-        &--text{
-            
+        &--text {
         }
 
         &--title {
@@ -32,10 +29,10 @@
             line-height: 1.5;
             letter-spacing: 2px;
 
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 font-size: 3.5rem;
                 padding-top: 5rem;
-                width: 40rem;                
+                width: 40rem;
             }
         }
 
@@ -47,7 +44,7 @@
             margin-bottom: 7rem;
             line-height: 1.75;
 
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 font-size: 3rem;
                 padding-top: 7rem;
                 width: 45rem;
@@ -65,8 +62,6 @@
                 background-color: $color-blue-bright-1;
                 border-radius: 3px;
                 padding: 1.5rem 3rem;
-                transition: all .2s ease-in-out;
-                animation: pulse 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
             }
 
             &:hover {
@@ -75,49 +70,50 @@
         }
 
         &--image {
-
             background-image: url("./images/laptop-bg-landing.png");
             background-size: cover;
             background-position: center;
-            
+
             height: 488px;
             width: 612px;
             margin: 10rem 3rem 0 0;
 
-            animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) .1s infinite;
+            animation: float 3s cubic-bezier(0.645, 0.045, 0.355, 1) 0.1s
+                infinite;
 
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 display: none;
             }
-
         }
     }
 
     &-section-1 {
-
-        background-image: linear-gradient(rgba($color-blue-dark-2,.8),rgba($color-blue-dark-2,.8)), url("./images/chartbglanding.png");
+        background-image: linear-gradient(
+                rgba($color-blue-dark-2, 0.8),
+                rgba($color-blue-dark-2, 0.8)
+            ),
+            url("./images/chartbglanding.png");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        
+
         margin: -35rem auto -30rem;
         padding: 20rem 10% 30rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        
+
         &--title {
             font-size: 4rem;
             color: #eee;
         }
 
         &--cards {
-
             display: grid;
             width: 100%;
             margin: 2rem auto;
-            
+
             justify-content: center;
             grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
 
@@ -126,10 +122,10 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                height: 140px;
-                width: 135px;
+                height: 50px;
+                width: 50px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 80px;
                     width: 75px;
                 }
@@ -140,10 +136,10 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                height: 140px;
-                width: 135px;
+                height: 50px;
+                width: 50px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 80px;
                     width: 75px;
                 }
@@ -154,10 +150,10 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                height: 140px;
-                width: 135px;
+                height: 50px;
+                width: 50px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 80px;
                     width: 75px;
                 }
@@ -167,10 +163,10 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                height: 140px;
-                width: 135px;
+                height: 50px;
+                width: 50px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 80px;
                     width: 75px;
                 }
@@ -180,10 +176,10 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                height: 140px;
-                width: 135px;
+                height: 50px;
+                width: 50px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 80px;
                     width: 75px;
                 }
@@ -193,10 +189,10 @@
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
-                height: 140px;
-                width: 135px;
+                height: 50px;
+                width: 50px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 80px;
                     width: 75px;
                 }
@@ -208,33 +204,33 @@
             &__4,
             &__5,
             &__6 {
-
                 display: flex;
                 flex-direction: column;
-                justify-content: space-evenly;
-                align-items: start;
+                justify-content: flex-start;
+                align-items: center;
                 border-radius: 3px;
                 border: 1px solid rgba(200, 200, 200, 0.95);
                 background-color: rgba(255, 255, 255, 0.85);
                 padding: 4rem;
                 margin: 2rem;
-                height: 500px;
-                width: 350px;
+                height: 360px;
+                width: 330px;
 
-                @include respond(smallphone){
+                @include respond(smallphone) {
                     height: 400px;
                     width: 250px;
                     margin: 2rem auto;
                 }
 
                 &--title {
-                    font-size: 2.5rem;
-                    color:#111;
+                    font-size: 2rem;
+                    margin: 4rem 0 2rem;
+                    color: #111;
                 }
 
                 &--text {
                     font-size: 1.6rem;
-                    color:#111;
+                    color: #111;
                 }
 
                 &--button {
@@ -247,9 +243,9 @@
                         border: 1px solid $color-aqua;
                         border-radius: 3px;
                         padding: 1.5rem 3rem;
-                        transition: all .2s ease-in-out;
+                        transition: all 0.2s ease-in-out;
                     }
-        
+
                     &:hover {
                         background-color: $color-aqua;
                         color: #fff;
@@ -263,45 +259,48 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        // margin-bottom: 20rem;
         padding: 20rem 10% 20rem;
         height: 100%;
         background-color: $color-blue-dark-2;
         clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
 
-        @include respond(smallphone){
+        @include respond(smallphone) {
             clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
             flex-direction: column;
             padding: 15rem 5rem 1rem;
             justify-content: center;
         }
 
-        &--text{
-            
+        &--text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
 
         &--title {
             color: #ddd;
-            width: 75rem;
+            width: auto;
             font-size: 5rem;
             padding-top: 5rem;
 
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 font-size: 3.5rem;
                 padding-top: 5rem;
-                width: 40rem;                
+                width: 40rem;
             }
         }
 
         &--description {
             color: #ddd;
-            width: 55rem;
+            width: 50%;
             font-size: 2rem;
             padding-top: 5rem;
             margin-bottom: 7rem;
             line-height: 1.75;
 
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 font-size: 3rem;
                 padding-top: 7rem;
                 width: 45rem;
@@ -319,11 +318,6 @@
                 background-color: $color-blue-bright-1;
                 border-radius: 3px;
                 padding: 1.5rem 3rem;
-                transition: all .2s ease-in-out;
-                
-                animation: pulse 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-
-                // animation: pulse 2s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
             }
 
             &:hover {
@@ -335,42 +329,41 @@
             background-image: url("./images/newnewheadshot.jpg");
             background-size: cover;
             background-position: center;
-            
+
             width: 388px;
             height: 512px;
             margin: 10rem 5rem 0 0;
 
-            @include respond(smallphone){
+            @include respond(smallphone) {
                 width: 100%;
                 height: 500px;
-                
+
                 margin: 10rem 0 5rem;
             }
-            
         }
     }
 }
 
 @keyframes float {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(-15px);
-	}
-	100% {
-		transform: translatey(0px);
-	}
+    0% {
+        transform: translatey(0px);
+    }
+    50% {
+        transform: translatey(-15px);
+    }
+    100% {
+        transform: translatey(0px);
+    }
 }
 
 @keyframes pulse {
-	0% {
-		box-shadow: 0 0 .5rem $color-blue-bright-1;
-	}
-	50% {
-		box-shadow: 0 0 1.5rem $color-blue-bright-1;
-	}
-	100% {
-		box-shadow: 0 0 .5rem $color-blue-bright-1;
-	}
+    0% {
+        box-shadow: 0 0 0.5rem $color-blue-bright-1;
+    }
+    50% {
+        box-shadow: 0 0 1.5rem $color-blue-bright-1;
+    }
+    100% {
+        box-shadow: 0 0 0.5rem $color-blue-bright-1;
+    }
 }
