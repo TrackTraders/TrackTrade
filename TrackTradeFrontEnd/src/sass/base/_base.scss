@@ -114,3 +114,16 @@ body::-webkit-scrollbar-thumb {
         background-color: $color-blue-bright-2;
     }
 }
+
+#fxcalendar {
+    margin: 1rem 10%;
+}
+
+#charts {
+    padding: 200px 10%;
+    background-color: $color-blue-dark-3;
+}
+
+#tradingview-widget-container {
+    height: 500px;
+}

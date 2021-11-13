@@ -7,7 +7,7 @@ import ShowTrades from "./ShowAllTrades";
 
 export default class Home extends Component {
     state = {
-        display: "traders",
+        display: "ideas",
     };
     displayStuff = () => {
         if (this.state.display) {
@@ -31,18 +31,6 @@ export default class Home extends Component {
                         <ul className="home-nav__links">
                             <li
                                 className={
-                                    this.state.display === "traders"
-                                        ? "home-nav__links-text-active"
-                                        : "home-nav__links-text"
-                                }
-                                onClick={() =>
-                                    this.setState({ display: "traders" })
-                                }
-                            >
-                                All Traders
-                            </li>
-                            <li
-                                className={
                                     this.state.display === "ideas"
                                         ? "home-nav__links-text-active"
                                         : "home-nav__links-text"
@@ -64,6 +52,18 @@ export default class Home extends Component {
                                 }
                             >
                                 All Trades
+                            </li>
+                            <li
+                                className={
+                                    this.state.display === "traders"
+                                        ? "home-nav__links-text-active"
+                                        : "home-nav__links-text"
+                                }
+                                onClick={() =>
+                                    this.setState({ display: "traders" })
+                                }
+                            >
+                                All Traders
                             </li>
                         </ul>
                     </div>

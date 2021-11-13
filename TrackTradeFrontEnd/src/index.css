@@ -105,6 +105,16 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
     background-color: #1985d8; }
 
+#fxcalendar {
+  margin: 1rem 10%; }
+
+#charts {
+  padding: 200px 10%;
+  background-color: #081c24; }
+
+#tradingview-widget-container {
+  height: 500px; }
+
 .container {
   background-color: #3223ff30; }
 
@@ -1295,6 +1305,9 @@ body::-webkit-scrollbar-thumb {
       font-size: 2rem;
       padding-right: 1rem; }
 
+.details {
+  padding: 100px 10%; }
+
 .profile-stats {
   display: flex;
   justify-content: center;
@@ -1358,31 +1371,19 @@ body::-webkit-scrollbar-thumb {
         width: 300px !important; } }
 
 .popup {
-  position: fixed;
-  display: block;
+  display: flex;
   width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background-color: rgba(17, 17, 17, 0.9);
-  z-index: 2002;
-  opacity: 0;
-  visibility: hidden;
+  height: 100%;
+  z-index: 20000;
+  position: relative;
   transition: all 0.4s; }
   .popup__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     height: 50vh;
-    width: 60%;
+    width: 100%;
     box-shadow: 0 1rem 3rem #111;
     color: #111;
-    background-color: #ddd;
     display: flex;
     overflow: hidden;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5);
     transition: all 0.5s; }
     @media only screen and (max-width: 65em) {
       .popup__content {
@@ -1400,7 +1401,7 @@ body::-webkit-scrollbar-thumb {
         width: 90%;
         height: 70vh; } }
   .popup__left {
-    width: 50%;
+    width: 600px;
     height: 100%;
     object-fit: contain;
     background-repeat: no-repeat;
@@ -1415,6 +1416,7 @@ body::-webkit-scrollbar-thumb {
       width: 100%;
       object-fit: contain; }
   .popup__right {
+    min-width: 500px;
     width: 100%;
     height: 100%;
     font-size: 1.6rem;
@@ -1491,23 +1493,24 @@ body::-webkit-scrollbar-thumb {
   .popup:target .popup__content {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1); }
-  .popup__close:link, .popup__close:visited {
+  .popup__close {
     color: #333;
     position: absolute;
     top: 2.5rem;
     right: 5rem;
+    cursor: pointer;
     font-size: 3rem;
     text-decoration: none;
     display: inline-block;
     line-height: 1; }
     @media only screen and (max-width: 65em) {
-      .popup__close:link, .popup__close:visited {
+      .popup__close {
         position: absolute;
         left: 90%;
         top: -50rem;
         padding: 0; } }
     @media only screen and (max-width: 44em) {
-      .popup__close:link, .popup__close:visited {
+      .popup__close {
         position: absolute;
         left: 85%;
         padding: 0; } }
@@ -1516,9 +1519,7 @@ body::-webkit-scrollbar-thumb {
   .popup__delete, .popup__delete:link, .popup__delete:visited {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 1.6rem;
-    position: absolute;
-    bottom: 3rem;
-    right: 33%;
+    margin-left: 4rem;
     text-decoration: none;
     padding: 1rem 2rem;
     color: #eee;
@@ -1532,9 +1533,6 @@ body::-webkit-scrollbar-thumb {
   .popup__edit {
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 1.6rem;
-    position: absolute;
-    bottom: 3rem;
-    right: 4rem;
     margin-left: 2rem;
     text-decoration: none;
     padding: 1rem 2rem;
@@ -1613,10 +1611,8 @@ body::-webkit-scrollbar-thumb {
       padding: 1rem 1.5rem;
       margin: 5rem -1rem 0 7.5rem; }
 
-.popup_right-sharing-icons {
-  margin-bottom: 5rem; }
-  .popup_right-sharing-icons > * {
-    margin-right: 1rem; }
+.popup_right-sharing-icons > * {
+  margin-right: 1rem; }
 
 .chatbox {
   position: fixed;
@@ -1945,8 +1941,8 @@ body::-webkit-scrollbar-thumb {
     border-radius: 2px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 375px;
+    justify-content: flex-start;
+    min-height: 375px;
     word-wrap: break-word;
     position: relative;
     transition: all 0.3s ease-in-out; }
@@ -2080,5 +2076,5 @@ body::-webkit-scrollbar-thumb {
       .trade-ideas-card__item-content {
         font-size: 1.8rem; }
       .trade-ideas-card__item-date {
-        padding-top: 2rem;
+        padding: 2rem 1rem;
         font-size: 1.6rem; }

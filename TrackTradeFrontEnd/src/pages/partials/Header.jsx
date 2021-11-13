@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 // redux imports
 import { connect } from "react-redux";
@@ -7,10 +8,11 @@ import { logOut, checkLogin } from "../../actions/auth";
 import MainButton from "components/MainButton";
 
 const Header = (props) => {
+    const history = useHistory();
     const logOut = async () => {
         await props.logOut();
         await props.checkLogin();
-        props.history.push("/");
+        history.push("/");
     };
 
     if (!props.loggedIn) {
@@ -111,6 +113,17 @@ const Header = (props) => {
                                 to="/home"
                             >
                                 Home
+                            </Link>
+
+                            <Link
+                                className={
+                                    props.where === "Charts"
+                                        ? "navigation--link_active"
+                                        : "navigation--link"
+                                }
+                                to="/charts"
+                            >
+                                Charts
                             </Link>
 
                             <Link

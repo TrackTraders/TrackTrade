@@ -24,8 +24,8 @@
             border-radius: 2px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            height: 375px;
+            justify-content: flex-start;
+            min-height: 375px;
 
             // align-items: start;
 
@@ -213,7 +213,7 @@
                 }
 
                 &-date {
-                    padding-top: 2rem;
+                    padding: 2rem 1rem;
                     font-size: 1.6rem;
                     &-title {
                     }

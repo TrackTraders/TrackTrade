@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 import LotSizeCalc from "./LotSizeCalc";
-import NewsAlert from "./NewsAlert";
+import News from "./News";
 import PriceAlert from "./PriceAlert";
 import Resources from "./Resources";
 
@@ -15,8 +15,8 @@ export default class Tools extends Component {
         if (this.state.display) {
             if (this.state.display === "lotSizeCalc") {
                 return <LotSizeCalc />;
-            } else if (this.state.display === "newsAlert") {
-                return <NewsAlert />;
+            } else if (this.state.display === "news") {
+                return <News />;
             } else if (this.state.display === "priceAlert") {
                 return <PriceAlert />;
             } else if (this.state.display === "resources") {
@@ -48,12 +48,12 @@ export default class Tools extends Component {
                             </li>
                             <li
                                 className={
-                                    this.state.display === "newsAlert"
+                                    this.state.display === "news"
                                         ? "profile-nav__links-text-active"
                                         : "profile-nav__links-text"
                                 }
                                 onClick={() =>
-                                    this.setState({ display: "newsAlert" })
+                                    this.setState({ display: "news" })
                                 }
                             >
                                 News Alert

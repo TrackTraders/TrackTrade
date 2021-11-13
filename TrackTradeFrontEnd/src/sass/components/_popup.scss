@@ -1,29 +1,23 @@
 .popup {
-    position: fixed;
-    display: block;
+    display: flex;
     width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: rgba($color-black, 0.9);
-    z-index: 2002;
-
-    opacity: 0;
-    visibility: hidden;
+    height: 100%;
+    // background-color: rgba($color-black, 0.9);
+    z-index: 20000;
+    position: relative;
     transition: all 0.4s;
 
     &__content {
-        @include centerHorVer;
+        // @include centerHorVer;
 
         height: 50vh;
-        width: 60%;
+        width: 100%;
         box-shadow: 0 1rem 3rem $color-black;
         color: $color-black;
-        background-color: $color-white;
+        // background-color: $color-white;
         display: flex;
         overflow: hidden;
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.5);
+        // transform: translate(-50%, -50%) scale(0.5);
         transition: all 0.5s;
 
         @include respond(tab-port) {
@@ -44,7 +38,7 @@
     }
 
     &__left {
-        width: 50%;
+        width: 600px;
         height: 100%;
         object-fit: contain;
         background-repeat: no-repeat;
@@ -88,6 +82,7 @@
     // }
 
     &__right {
+        min-width: 500px;
         width: 100%;
         height: 100%;
         font-size: 1.6rem;
@@ -202,12 +197,12 @@
     }
 
     &__close {
-        &:link,
-        &:visited {
+        & {
             color: #333;
             position: absolute;
             top: 2.5rem;
             right: 5rem;
+            cursor: pointer;
             font-size: 3rem;
             text-decoration: none;
             display: inline-block;
@@ -238,10 +233,7 @@
             font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
                 "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
             font-size: 1.6rem;
-            position: absolute;
-            bottom: 3rem;
-            right: 33%;
-            // margin-left: 4rem;
+            margin-left: 4rem;
 
             text-decoration: none;
             padding: 1rem 2rem;
@@ -262,9 +254,6 @@
         font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
             "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
         font-size: 1.6rem;
-        position: absolute;
-        bottom: 3rem;
-        right: 4rem;
         margin-left: 2rem;
         text-decoration: none;
         padding: 1rem 2rem;
@@ -376,7 +365,7 @@
 }
 
 .popup_right-sharing-icons {
-    margin-bottom: 5rem;
+    // margin-bottom: 5rem;
 
     & > * {
         margin-right: 1rem;

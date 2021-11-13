@@ -15,6 +15,7 @@ import {
 // redux imports
 import { connect } from "react-redux";
 import { fetchAllTradeIdeas } from "../../actions";
+import TradeIdeaCard from "components/TradeIdeaCard";
 
 class ShowAllIdeas extends Component {
     state = {};
@@ -82,94 +83,7 @@ class ShowAllIdeas extends Component {
     showIdeas = () => {
         if (this.state.tradeIdeas) {
             return this.state.tradeIdeas.map((eachTrade) => {
-                return (
-                    <div className="trade-ideas-card">
-                        <a
-                            href="#popup"
-                            onClick={async () => {
-                                await this.setState({ eachTrade });
-                                console.log(this.state);
-                            }}
-                            className="trade-ideas-card-more"
-                        >
-                            click for more info
-                        </a>
-                        <a
-                            href="#popup"
-                            className="trade-ideas-card-link"
-                            onClick={async () => {
-                                await this.setState({ eachTrade });
-                                console.log(this.state);
-                            }}
-                        >
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    {eachTrade.trade.currency}{" "}
-                                    {eachTrade.trade.kind}
-                                </div>
-                            </div>
-                            {/* <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Lot Size:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.lot}
-                            </div>
-                        </div> */}
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    Entry:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.entry}
-                                </div>
-                            </div>
-                            {/* <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Stoploss:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.stoploss}
-                            </div>
-                        </div>
-                        <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Takeprofit:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.takeprofit}
-                            </div>
-                        </div> */}
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    By:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.trader}
-                                </div>
-                            </div>
-                            <div className="trade-ideas-card__item-date">
-                                <div className="trade-ideas-card__item-date-title">
-                                    Created at:
-                                </div>
-                                <div className="trade-ideas-card__item-date-content">
-                                    {this.formatTime(eachTrade.created_at)}
-                                </div>
-                            </div>
-                            {eachTrade.updatedAt ===
-                            eachTrade.created_at ? null : (
-                                <div className="trade-ideas-card__item-date">
-                                    <div className="trade-ideas-card__item-date-title">
-                                        Updated at:
-                                    </div>
-                                    <div className="trade-ideas-card__item-date-content">
-                                        {this.formatTime(eachTrade.updatedAt)}
-                                    </div>
-                                </div>
-                            )}
-                        </a>
-                    </div>
-                );
+                return <TradeIdeaCard tradeIdea={eachTrade} />;
             });
         } else {
             return null;
@@ -385,6 +299,7 @@ class ShowAllIdeas extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log("state", state);
     return { actualTrades: state.allTradeIdeas };
 };
 

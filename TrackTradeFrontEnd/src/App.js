@@ -19,6 +19,7 @@ import Tools from "./pages/tools/Tools";
 import { connect } from "react-redux";
 import { checkLogin } from "./actions/auth";
 import { useAsyncEffect } from "./hooks/use-async-effect";
+import Charts from "pages/charts/Charts";
 
 const App = (props) => {
     useAsyncEffect(async () => {
@@ -73,6 +74,11 @@ const App = (props) => {
                         render={(props) => <PostTrade {...props} />}
                     ></Route>
 
+                    <Route
+                        exact
+                        path="/charts"
+                        render={(props) => <Charts {...props} />}
+                    ></Route>
                     <Route
                         exact
                         path="/tools"
