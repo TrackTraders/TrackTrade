@@ -19,6 +19,7 @@ import { useAsyncEffect } from "hooks/use-async-effect";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@mui/material";
 import { SYMBOLS } from "enums/symbols";
+import TradeIdeaCard from "components/TradeIdeaCard";
 
 const ShowIdeas = (props) => {
     const [edit, setEdit] = useState(false);
@@ -67,92 +68,7 @@ const ShowIdeas = (props) => {
         } else if (ideas && !loading) {
             console.log("ideas!!!", ideas);
             return ideas.map((eachTrade, index) => {
-                return (
-                    <div key={index} className="trade-ideas-card">
-                        <a
-                            href="#popup"
-                            onClick={async () => {
-                                await props.selectTradeIdea({ eachTrade });
-                            }}
-                            className="trade-ideas-card-more"
-                        >
-                            click for more info
-                        </a>
-                        <a
-                            href="#popup"
-                            className="trade-ideas-card-link"
-                            onClick={async () => {
-                                await props.selectTradeIdea({ eachTrade });
-                            }}
-                        >
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    {eachTrade.trade.currency}{" "}
-                                    {eachTrade.trade.kind}
-                                </div>
-                            </div>
-                            {/* <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Lot Size:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.lot}
-                            </div>
-                        </div> */}
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    Entry:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.entry}
-                                </div>
-                            </div>
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    Stoploss:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.stoploss}
-                                </div>
-                            </div>
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    Takeprofit:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.takeprofit}
-                                </div>
-                            </div>
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    By:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.trader}
-                                </div>
-                            </div>
-                            <div className="trade-ideas-card__item-date">
-                                <div className="trade-ideas-card__item-date-title">
-                                    Created at:
-                                </div>
-                                <div className="trade-ideas-card__item-date-content">
-                                    {formatTime(eachTrade.created_at)}
-                                </div>
-                            </div>
-                            {eachTrade.updatedAt ===
-                            eachTrade.created_at ? null : (
-                                <div className="trade-ideas-card__item-date">
-                                    <div className="trade-ideas-card__item-date-title">
-                                        Updated at:
-                                    </div>
-                                    <div className="trade-ideas-card__item-date-content">
-                                        {formatTime(eachTrade.updatedAt)}
-                                    </div>
-                                </div>
-                            )}
-                        </a>
-                    </div>
-                );
+                return <TradeIdeaCard trade={eachTrade} />;
             });
         } else {
             return null;
@@ -162,92 +78,7 @@ const ShowIdeas = (props) => {
     const showOtherIdeas = () => {
         if (ideas.length && !loading) {
             return ideas.map((eachTrade) => {
-                return (
-                    <div className="trade-ideas-card">
-                        <a
-                            href="#popup"
-                            onClick={async () => {
-                                await props.selectTradeIdea({ eachTrade });
-                            }}
-                            className="trade-ideas-card-more"
-                        >
-                            click for more info
-                        </a>
-                        <a
-                            href="#popup"
-                            className="trade-ideas-card-link"
-                            onClick={async () => {
-                                await props.selectTradeIdea({ eachTrade });
-                            }}
-                        >
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    {eachTrade.trade.currency}{" "}
-                                    {eachTrade.trade.kind}
-                                </div>
-                            </div>
-                            {/* <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Lot Size:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {props.selectedTradeIdea.eachTrade.trade.lot}
-                            </div>
-                        </div> */}
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    Entry:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.entry}
-                                </div>
-                            </div>
-                            {/* <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Stoploss:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.stoploss}
-                            </div>
-                        </div>
-                        <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Takeprofit:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.takeprofit}
-                            </div>
-                        </div> */}
-                            <div className="trade-ideas-card__item">
-                                <div className="trade-ideas-card__item-title">
-                                    By:
-                                </div>
-                                <div className="trade-ideas-card__item-content">
-                                    {eachTrade.trade.trader}
-                                </div>
-                            </div>
-                            <div className="trade-ideas-card__item-date">
-                                <div className="trade-ideas-card__item-date-title">
-                                    Created at:
-                                </div>
-                                <div className="trade-ideas-card__item-date-content">
-                                    {formatTime(eachTrade.created_at)}
-                                </div>
-                            </div>
-                            {eachTrade.updatedAt ===
-                            eachTrade.created_at ? null : (
-                                <div className="trade-ideas-card__item-date">
-                                    <div className="trade-ideas-card__item-date-title">
-                                        Updated at:
-                                    </div>
-                                    <div className="trade-ideas-card__item-date-content">
-                                        {formatTime(eachTrade.updatedAt)}
-                                    </div>
-                                </div>
-                            )}
-                        </a>
-                    </div>
-                );
+                return <TradeIdeaCard trade={eachTrade} />;
             });
         } else {
             return null;
