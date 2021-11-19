@@ -15,8 +15,11 @@ import {
 // redux imports
 import { connect } from "react-redux";
 import { fetchAllTrades } from "../../actions";
+import Toolbar from "components/Toolbar";
+import HeaderText from "components/HeaderText";
+import TradeCard from "components/TradeCard";
 
-class ShowAllTrades extends Component {
+class AllTrades extends Component {
     state = {};
 
     async componentDidMount() {
@@ -94,89 +97,7 @@ class ShowAllTrades extends Component {
         if (this.props.allTrades) {
             return this.state.trades
                 ? this.state.trades.map((eachTrade) => {
-                      return (
-                          <div className="trade-ideas-card">
-                              <a
-                                  href="#popup"
-                                  onClick={async () => {
-                                      await this.setState({ eachTrade });
-                                      console.log(this.state);
-                                  }}
-                                  className="trade-ideas-card-more"
-                              >
-                                  click for more info
-                              </a>
-                              <a
-                                  href="#popup"
-                                  onClick={async () => {
-                                      await this.setState({ eachTrade });
-                                      console.log(this.state);
-                                  }}
-                                  className="trade-ideas-card-link"
-                              >
-                                  {/* <div onClick={() => this.deleteCard(eachTrade._id)} class="trade-ideas-card-delete">&times;</div> */}
-
-                                  {eachTrade.trade.money > 0 ? (
-                                      <div className="trade-ideas-card-win-all">
-                                          WIN
-                                      </div>
-                                  ) : (
-                                      <div className="trade-ideas-card-loss-all">
-                                          LOSS
-                                      </div>
-                                  )}
-
-                                  <div className="trade-ideas-card__item">
-                                      <div className="trade-ideas-card__item-title">
-                                          {eachTrade.trade.currency}{" "}
-                                          {eachTrade.trade.kind}
-                                      </div>
-                                  </div>
-                                  {/* <div className="trade-ideas-card__item">
-                            <div className="trade-ideas-card__item-title">
-                                Lot Size:
-                            </div>
-                            <div className="trade-ideas-card__item-content">
-                                {eachTrade.trade.lot}
-                            </div>
-                        </div> */}
-                                  <div className="trade-ideas-card__item">
-                                      <div className="trade-ideas-card__item-title">
-                                          Entry:
-                                      </div>
-                                      <div className="trade-ideas-card__item-content">
-                                          {eachTrade.trade.entry}
-                                      </div>
-                                  </div>
-                                  <div className="trade-ideas-card__item">
-                                      <div className="trade-ideas-card__item-title">
-                                          Close:
-                                      </div>
-                                      <div className="trade-ideas-card__item-content">
-                                          {eachTrade.trade.close}
-                                      </div>
-                                  </div>
-                                  <div className="trade-ideas-card__item">
-                                      <div className="trade-ideas-card__item-title">
-                                          By:
-                                      </div>
-                                      <div className="trade-ideas-card__item-content">
-                                          {eachTrade.trade.trader}
-                                      </div>
-                                  </div>
-                                  <div className="trade-ideas-card__item-date">
-                                      <div className="trade-ideas-card__item-date-title">
-                                          Created at:
-                                      </div>
-                                      <div className="trade-ideas-card__item-date-content">
-                                          {this.formatTime(
-                                              eachTrade.created_at
-                                          )}
-                                      </div>
-                                  </div>
-                              </a>
-                          </div>
-                      );
+                      return <TradeCard trade={eachTrade} />;
                   })
                 : null;
         } else {
@@ -187,36 +108,20 @@ class ShowAllTrades extends Component {
     render() {
         return (
             <Fragment>
-                <div className="home-content-search-sort">
-                    <div className="home-content-section1">
-                        <input
-                            onChange={this.searchTrades}
-                            className="home-content--search"
-                            type="text"
-                            placeholder="Search for trades by their symbol"
-                        />
-                        <label className="home-content--label" htmlFor="sort">
-                            Sort By:
-                        </label>
-                        <select
-                            name="sort"
-                            className="home-content--select"
-                            onChange={this.sortTrades}
-                        >
-                            <option value="">-</option>
-                            <option value="sell">Sells</option>
-                            <option value="buy">Buys</option>
-                            <option value="wins">Wins</option>
-                            <option value="losses">Losses</option>
-                            <option value="created-newest">
-                                Created: newest
-                            </option>
-                            <option value="created-oldest">
-                                Created: oldest
-                            </option>
-                        </select>
-                    </div>
-                </div>
+                <HeaderText value="All Trades" />
+                <Toolbar
+                    onSearch={this.searchTrade}
+                    searchPlaceholder={"Search for trades by their symbol..."}
+                    onSort={this.sortTrade}
+                    sortOptions={[
+                        { text: "Newest", value: "newest" },
+                        { text: "Oldest", value: "oldest" },
+                        { text: "Sells", value: "sell" },
+                        { text: "Buys", value: "buy" },
+                    ]}
+                    onButton={() => null}
+                    buttonText="Post Trade"
+                />
                 <div class="trade-ideas">
                     {this.showTrades()}
                     {this.state.eachTrade ? (
@@ -376,4 +281,4 @@ const mapStateToProps = (state) => {
     return { allTrades: state.allTrades };
 };
 
-export default connect(mapStateToProps, { fetchAllTrades })(ShowAllTrades);
+export default connect(mapStateToProps, { fetchAllTrades })(AllTrades);

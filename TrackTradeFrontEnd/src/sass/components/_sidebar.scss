@@ -1,0 +1,83 @@
+.logo {
+    height: 35px;
+    width: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -1px;
+    color: $color-blue-dark-3;
+    cursor: default;
+
+    &-text {
+        cursor: default;
+        color: #fff;
+        text-decoration: none;
+        font-size: 2.4rem;
+        text-align: left;
+        text-transform: uppercase;
+        line-height: 1.2;
+    }
+}
+
+.sidebar {
+    background-color: $color-blue-dark-1;
+    border-right: 2px solid #00000050;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 300;
+    padding: 20px;
+    transition: all 0.1s ease-in;
+
+    &-link {
+        &,
+        &:link,
+        &:visited {
+            color: #fff;
+            text-decoration: none;
+        }
+        &:hover {
+            color: #2ba7fa;
+        }
+
+        &_selected {
+            &,
+            &:link,
+            &:visited {
+                color: #2ba7fa;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.subsidebar {
+    width: 150px;
+    height: 100%;
+    position: fixed;
+    background-color: $color-blue-dark-3;
+    border-radius: 0;
+    color: #fff;
+    z-index: 299;
+    margin-left: 80px;
+
+    &-header {
+        font-size: 3.5rem;
+        padding: 1.5rem 0 2rem 1.5rem;
+    }
+    &-item {
+        color: #fff;
+
+        &:hover {
+            color: #2ba7fa;
+        }
+        &_selected {
+            color: #2ba7fa;
+        }
+    }
+}

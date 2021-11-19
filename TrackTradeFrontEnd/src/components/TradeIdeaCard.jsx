@@ -1,3 +1,4 @@
+import { Paper } from "@mui/material";
 import { useAsyncEffect } from "hooks/use-async-effect";
 import React, { useState } from "react";
 import { connect } from "react-redux";
@@ -20,6 +21,7 @@ import CustomModal from "./CustomModal";
 import Flex from "./Flex";
 
 const TradeIdeaCard = ({ tradeIdea, ...props }) => {
+    console.log(tradeIdea);
     const [modalOpen, setModalOpen] = useState(false);
     const [edit, setEdit] = useState();
     const [isProfile, setIsProfile] = useState(false);
@@ -39,7 +41,7 @@ const TradeIdeaCard = ({ tradeIdea, ...props }) => {
     };
     return (
         <>
-            <div className="trade-ideas-card">
+            <Paper elevation={4} className="trade-ideas-card">
                 <div
                     onClick={() => {
                         setModalOpen(true);
@@ -109,7 +111,7 @@ const TradeIdeaCard = ({ tradeIdea, ...props }) => {
                         </div>
                     )}
                 </div>
-            </div>
+            </Paper>
             <CustomModal open={modalOpen} onClose={() => setModalOpen(false)}>
                 <div class="popup">
                     <div class="popup__content" id="content">

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
-import ShowTraders from "./ShowAllTraders";
-import ShowIdeas from "./ShowAllIdeas";
-import ShowTrades from "./ShowAllTrades";
+import ShowTraders from "./AllTraders";
+import ShowIdeas from "../browse/AllIdeas";
+import ShowTrades from "./AllTrades";
 
 export default class Home extends Component {
     state = {
@@ -25,7 +25,6 @@ export default class Home extends Component {
     render() {
         return (
             <div>
-                <Header {...this.props} where={"Home"} loggedIn={true} />
                 <div className="home">
                     <div className="home-nav">
                         <ul className="home-nav__links">

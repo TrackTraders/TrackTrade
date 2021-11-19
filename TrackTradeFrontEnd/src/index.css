@@ -25,7 +25,8 @@ ORDER: Base + typography > general layout + grid >  page layout > components
 
 html {
   font-size: 62.5%;
-  background-color: #081c24; }
+  background-color: #081c24;
+  overflow-x: hidden; }
   @media only screen and (max-width: 90em) {
     html {
       font-size: 56.25%; } }
@@ -59,6 +60,10 @@ body::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #2ba7fa; }
+
+main {
+  background-color: #081c24;
+  min-height: 100vh; }
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -94,7 +99,7 @@ body::-webkit-scrollbar-thumb {
 .mainbutton {
   background-color: #2ba7fa;
   width: fit-content;
-  display: inline;
+  height: fit-content;
   text-decoration: none;
   color: #000;
   padding: 1rem 1.5rem;
@@ -106,14 +111,30 @@ body::-webkit-scrollbar-thumb {
     background-color: #1985d8; }
 
 #fxcalendar {
-  margin: 1rem 10%; }
+  width: 100%;
+  height: 100%; }
+  #fxcalendar > div {
+    width: 100% !important;
+    height: 100% !important; }
+    #fxcalendar > div > iframe {
+      width: 100% !important;
+      height: 100% !important; }
 
 #charts {
   padding: 200px 10%;
   background-color: #081c24; }
 
 #tradingview-widget-container {
-  height: 500px; }
+  height: 450px; }
+
+.wrapper {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #f3f3f3; }
+
+.MuiTooltip-tooltip {
+  font-size: 1.2rem !important; }
 
 .container {
   background-color: #3223ff30; }
@@ -282,7 +303,7 @@ body::-webkit-scrollbar-thumb {
   display: none; }
 
 .menu__button {
-  background-color: #ddd;
+  background-color: #f3f3f3;
   height: 7rem;
   width: 7rem;
   position: fixed;
@@ -344,15 +365,15 @@ body::-webkit-scrollbar-thumb {
   font-size: 3rem;
   padding: 1rem 2rem;
   font-weight: 300;
-  color: #ddd;
+  color: #f3f3f3;
   text-decoration: none;
   text-transform: uppercase;
-  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #ddd 50%);
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #f3f3f3 50%);
   background-size: 225%;
   transition: all 0.4s; }
   @media only screen and (max-width: 44em) {
     .menu__link:link, .menu__link:visited {
-      background-image: linear-gradient(120deg, transparent 0%, transparent 60%, #ddd 60%); } }
+      background-image: linear-gradient(120deg, transparent 0%, transparent 60%, #f3f3f3 60%); } }
 
 .menu__link:hover, .menu__link:active {
   background-position: 100%;
@@ -680,18 +701,6 @@ body::-webkit-scrollbar-thumb {
       padding: 1.5rem 3rem; }
     .landing-about--button:hover {
       background-color: #1985d8; }
-    .landing-about--image {
-      background-image: url("./images/newnewheadshot.jpg");
-      background-size: cover;
-      background-position: center;
-      width: 388px;
-      height: 512px;
-      margin: 10rem 5rem 0 0; }
-      @media only screen and (max-width: 35em) {
-        .landing-about--image {
-          width: 100%;
-          height: 500px;
-          margin: 10rem 0 5rem; } }
 
 @keyframes float {
   0% {
@@ -1308,6 +1317,66 @@ body::-webkit-scrollbar-thumb {
 .details {
   padding: 100px 10%; }
 
+.logo {
+  height: 35px;
+  width: 35px;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 1rem;
+  font-size: 1.7rem;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: -1px;
+  color: #081c24;
+  cursor: default; }
+  .logo-text {
+    cursor: default;
+    color: #fff;
+    text-decoration: none;
+    font-size: 2.4rem;
+    text-align: left;
+    text-transform: uppercase;
+    line-height: 1.2; }
+
+.sidebar {
+  background-color: #06151b;
+  border-right: 2px solid #00000050;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  z-index: 300;
+  padding: 20px;
+  transition: all 0.1s ease-in; }
+  .sidebar-link, .sidebar-link:link, .sidebar-link:visited {
+    color: #fff;
+    text-decoration: none; }
+  .sidebar-link:hover {
+    color: #2ba7fa; }
+  .sidebar-link_selected, .sidebar-link_selected:link, .sidebar-link_selected:visited {
+    color: #2ba7fa;
+    text-decoration: none; }
+
+.subsidebar {
+  width: 150px;
+  height: 100%;
+  position: fixed;
+  background-color: #081c24;
+  border-radius: 0;
+  color: #fff;
+  z-index: 299;
+  margin-left: 80px; }
+  .subsidebar-header {
+    font-size: 3.5rem;
+    padding: 1.5rem 0 2rem 1.5rem; }
+  .subsidebar-item {
+    color: #fff; }
+    .subsidebar-item:hover {
+      color: #2ba7fa; }
+    .subsidebar-item_selected {
+      color: #2ba7fa; }
+
 .profile-stats {
   display: flex;
   justify-content: center;
@@ -1641,7 +1710,7 @@ body::-webkit-scrollbar-thumb {
     width: 30%;
     box-shadow: 0 1rem 3rem #111;
     color: #111;
-    background-color: #ddd;
+    background-color: #f3f3f3;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -1932,31 +2001,29 @@ body::-webkit-scrollbar-thumb {
   display: grid;
   grid-template-columns: repeat(auto-fit, 35rem);
   margin: auto;
-  justify-content: center;
+  width: auto;
   gap: 5rem 5rem; }
   .trade-ideas-card {
-    background-color: rgba(153, 153, 153, 0.2);
     border: 1px solid rgba(153, 153, 153, 0.3);
-    box-shadow: 0 0.75rem 2rem #0d0d0d;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-height: 375px;
+    height: fit-content;
     word-wrap: break-word;
     position: relative;
-    transition: all 0.3s ease-in-out; }
+    transform: translateY(0rem);
+    transition: all 0.3s ease-in-out !important; }
     .trade-ideas-card-link, .trade-ideas-card-link:link, .trade-ideas-card-link:visited {
       padding: 3rem 1rem;
       text-decoration: none;
-      color: #ddd; }
+      color: #111; }
     @media only screen and (max-width: 65em) {
       .trade-ideas-card {
         height: 270px; } }
     .trade-ideas-card:hover {
       cursor: pointer;
-      transform: translateY(-0.5rem);
-      box-shadow: 0 1.25rem 3rem #0d0d0d; }
+      transform: translateY(-0.5rem); }
       .trade-ideas-card:hover .trade-ideas-card-more {
         opacity: 1; }
       .trade-ideas-card:hover .trade-ideas-card-win, .trade-ideas-card:hover .trade-ideas-card-win-all {
@@ -1969,18 +2036,21 @@ body::-webkit-scrollbar-thumb {
       position: absolute;
       height: 101%;
       width: 101%;
-      padding-top: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -1px;
       margin-left: -0.75px;
       text-align: center;
       font-size: 2rem;
       transition: all 0.2s ease-in-out;
       color: #fff;
       text-decoration: none;
-      background-color: rgba(13, 13, 13, 0.85); }
+      background-color: rgba(13, 13, 13, 0.75); }
     .trade-ideas-card-win-all {
       display: block;
       position: absolute;
-      top: 73.5px;
+      top: 40px;
       right: 20px;
       font-size: 2rem;
       font-weight: 700;
@@ -1989,7 +2059,7 @@ body::-webkit-scrollbar-thumb {
     .trade-ideas-card-loss-all {
       display: block;
       position: absolute;
-      top: 73.5px;
+      top: 40px;
       right: 20px;
       font-size: 2rem;
       font-weight: 700;

@@ -16,8 +16,15 @@ import {
 import { connect } from "react-redux";
 import { fetchAllTradeIdeas } from "../../actions";
 import TradeIdeaCard from "components/TradeIdeaCard";
+import Search from "components/Search";
+import Flex from "components/Flex";
 
-class ShowAllIdeas extends Component {
+import SelectInput from "components/SelectInput";
+import Toolbar from "components/Toolbar";
+import { Typography } from "@mui/material";
+import HeaderText from "components/HeaderText";
+
+class AllIdeas extends Component {
     state = {};
 
     async componentDidMount() {
@@ -48,30 +55,26 @@ class ShowAllIdeas extends Component {
     };
 
     sortTradeIdeas = (e) => {
-        console.log(e.target.value);
+        let tradeIdeasList = [...this.props.actualTrades.data];
         if (e.target.value === "") {
             this.setState({ tradeIdeas: this.props.actualTrades.data });
         } else if (e.target.value === "sell") {
-            let tradeIdeasList = [...this.props.actualTrades.data];
             let filteredTradeIdeas = tradeIdeasList.filter((eachTradeIdea) => {
                 return eachTradeIdea.trade.kind === "sell";
             });
             this.setState({ tradeIdeas: filteredTradeIdeas });
         } else if (e.target.value === "buy") {
-            let tradeIdeasList = [...this.props.actualTrades.data];
             let filteredTradeIdeas = tradeIdeasList.filter((eachTradeIdea) => {
                 return eachTradeIdea.trade.kind === "buy";
             });
             this.setState({ tradeIdeas: filteredTradeIdeas });
-        } else if (e.target.value === "created-newest") {
-            let tradeIdeasList = [...this.props.actualTrades.data];
+        } else if (e.target.value === "newest") {
             tradeIdeasList.sort((b, a) => {
                 // console.log(a.created_at, "-----", b.created_at)
                 return a.created_at.localeCompare(b.created_at);
             });
             this.setState({ tradeIdeas: tradeIdeasList });
-        } else if (e.target.value === "created-oldest") {
-            let tradeIdeasList = [...this.props.actualTrades.data];
+        } else if (e.target.value === "oldest") {
             tradeIdeasList.sort((a, b) => {
                 // console.log(a.created_at, "-----", b.created_at)
                 return a.created_at.localeCompare(b.created_at);
@@ -93,34 +96,22 @@ class ShowAllIdeas extends Component {
     render() {
         return (
             <Fragment>
-                <div className="home-content-search-sort">
-                    <div className="home-content-section1">
-                        <input
-                            onChange={this.searchTradeIdeas}
-                            className="home-content--search"
-                            type="text"
-                            placeholder="Search for trade ideas by their symbol"
-                        />
-                        <label className="home-content--label" htmlFor="sort">
-                            Sort By:
-                        </label>
-                        <select
-                            name="sort"
-                            className="home-content--select"
-                            onChange={this.sortTradeIdeas}
-                        >
-                            <option value="">-</option>
-                            <option value="sell">Sells</option>
-                            <option value="buy">Buys</option>
-                            <option value="created-newest">
-                                Created: newest
-                            </option>
-                            <option value="created-oldest">
-                                Created: oldest
-                            </option>
-                        </select>
-                    </div>
-                </div>
+                <HeaderText value="All Ideas" />
+                <Toolbar
+                    onSearch={this.searchTradeIdeas}
+                    searchPlaceholder={
+                        "Search for trade ideas by their symbol..."
+                    }
+                    onSort={this.sortTradeIdeas}
+                    sortOptions={[
+                        { text: "Newest", value: "newest" },
+                        { text: "Oldest", value: "oldest" },
+                        { text: "Sells", value: "sell" },
+                        { text: "Buys", value: "buy" },
+                    ]}
+                    onButton={() => null}
+                    buttonText="Post Idea"
+                />
                 <div className="trade-ideas">
                     {this.showIdeas()}
                     {/* {this.exitPopup()} */}
@@ -303,4 +294,4 @@ const mapStateToProps = (state) => {
     return { actualTrades: state.allTradeIdeas };
 };
 
-export default connect(mapStateToProps, { fetchAllTradeIdeas })(ShowAllIdeas);
+export default connect(mapStateToProps, { fetchAllTradeIdeas })(AllIdeas);

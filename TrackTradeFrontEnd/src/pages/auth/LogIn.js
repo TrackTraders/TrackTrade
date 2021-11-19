@@ -18,7 +18,7 @@ const Login = (props) => {
         try {
             await props.logIn({ username, password });
             await props.checkLogin();
-            history.push("/home");
+            history.push("/dashboard");
         } catch (err) {
             console.log(err);
         }

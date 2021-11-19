@@ -324,23 +324,6 @@
                 background-color: $color-blue-bright-2;
             }
         }
-
-        &--image {
-            background-image: url("./images/newnewheadshot.jpg");
-            background-size: cover;
-            background-position: center;
-
-            width: 388px;
-            height: 512px;
-            margin: 10rem 5rem 0 0;
-
-            @include respond(smallphone) {
-                width: 100%;
-                height: 500px;
-
-                margin: 10rem 0 5rem;
-            }
-        }
     }
 }
 

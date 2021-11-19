@@ -4,7 +4,7 @@ import { CssBaseline } from "@mui/material";
 
 // component imports
 import Landing from "./pages/home/Landing";
-import Home from "./pages/home/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
 import NotFound from "./pages/404/NotFound.js";
 import SignUp from "./pages/auth/SignUp";
 import LogIn from "./pages/auth/LogIn";
@@ -20,6 +20,10 @@ import { connect } from "react-redux";
 import { checkLogin } from "./actions/auth";
 import { useAsyncEffect } from "./hooks/use-async-effect";
 import Charts from "pages/charts/Charts";
+import Sidebar from "components/Sidebar";
+import ContentWrapper from "components/ContentWrapper";
+import ProtectedRoute from "components/ProtectedRoute";
+import Browse from "pages/browse/Browse";
 
 const App = (props) => {
     useAsyncEffect(async () => {
@@ -30,122 +34,69 @@ const App = (props) => {
     return (
         <main>
             <CssBaseline />
-            {props.user?.data ? (
-                <Switch>
-                    <Route
-                        exact
-                        path={["/", "/home"]}
-                        render={(props) => <Home {...props} />}
-                    ></Route>
 
-                    <Route
-                        exact
-                        path="/sign-up"
-                        render={(props) => <SignUp {...props} />}
-                    ></Route>
+            <Sidebar />
+            <Switch>
+                <Route
+                    exact
+                    path="/sign-up"
+                    render={(props) => <SignUp {...props} />}
+                ></Route>
 
-                    <Route
-                        exact
-                        path="/log-in"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
+                <Route
+                    exact
+                    path="/log-in"
+                    render={(props) => <LogIn {...props} />}
+                ></Route>
 
-                    <Route
-                        exact
-                        path="/profile/:otheruser"
-                        render={(props) => <OtherProfile {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    exact
+                    path={["/", "/dashboard"]}
+                    render={(props) => <Dashboard {...props} />}
+                ></ProtectedRoute>
 
-                    <Route
-                        exact
-                        path="/profile"
-                        render={(props) => <Profile {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    path="/browse"
+                    render={(props) => <Browse {...props} />}
+                ></ProtectedRoute>
 
-                    <Route
-                        exact
-                        path="/postIdea"
-                        render={(props) => <PostIdea {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    exact
+                    path="/profile/:otheruser"
+                    render={(props) => <OtherProfile {...props} />}
+                ></ProtectedRoute>
 
-                    <Route
-                        exact
-                        path="/postTrade"
-                        render={(props) => <PostTrade {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    exact
+                    path="/profile"
+                    render={(props) => <Profile {...props} />}
+                ></ProtectedRoute>
 
-                    <Route
-                        exact
-                        path="/charts"
-                        render={(props) => <Charts {...props} />}
-                    ></Route>
-                    <Route
-                        exact
-                        path="/tools"
-                        render={(props) => <Tools {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    exact
+                    path="/postIdea"
+                    render={(props) => <PostIdea {...props} />}
+                ></ProtectedRoute>
 
-                    <Route component={NotFound} />
-                </Switch>
-            ) : (
-                <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        render={(props) => <Landing {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    exact
+                    path="/postTrade"
+                    render={(props) => <PostTrade {...props} />}
+                ></ProtectedRoute>
 
-                    <Route
-                        exact
-                        path="/home"
-                        render={(props) => <Landing {...props} />}
-                    ></Route>
+                <ProtectedRoute
+                    exact
+                    path="/charts"
+                    render={(props) => <Charts {...props} />}
+                ></ProtectedRoute>
+                <ProtectedRoute
+                    exact
+                    path="/tools"
+                    render={(props) => <Tools {...props} />}
+                ></ProtectedRoute>
 
-                    <Route
-                        exact
-                        path="/sign-up"
-                        render={(props) => <SignUp {...props} />}
-                    ></Route>
-
-                    <Route
-                        exact
-                        path="/log-in"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
-
-                    <Route
-                        exact
-                        path="/profile/:otheruser"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
-
-                    <Route
-                        exact
-                        path="/profile"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
-
-                    <Route
-                        exact
-                        path="/postIdea"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
-
-                    <Route
-                        exact
-                        path="/postTrade"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
-
-                    <Route
-                        exact
-                        path="/tools"
-                        render={(props) => <LogIn {...props} />}
-                    ></Route>
-
-                    <Route component={NotFound} />
-                </Switch>
-            )}
+                <ProtectedRoute component={NotFound} />
+            </Switch>
         </main>
     );
 };

@@ -3,7 +3,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, 35rem);
         margin: auto;
-        justify-content: center;
+        width: auto;
         gap: 5rem 5rem;
 
         &-card {
@@ -13,25 +13,24 @@
                 &:visited {
                     padding: 3rem 1rem;
                     text-decoration: none;
-                    color: #ddd;
+                    color: #111;
                 }
             }
 
-            background-color: rgba(153, 153, 153, 0.2);
             border: 1px solid rgba(153, 153, 153, 0.3);
 
-            box-shadow: 0 0.75rem 2rem rgba(13, 13, 13, 1);
             border-radius: 2px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            min-height: 375px;
+            height: fit-content;
 
             // align-items: start;
 
             word-wrap: break-word;
             position: relative;
-            transition: all 0.3s ease-in-out;
+            transform: translateY(0rem);
+            transition: all 0.3s ease-in-out !important;
 
             @include respond(tab-port) {
                 height: 270px;
@@ -40,7 +39,7 @@
             &:hover {
                 cursor: pointer;
                 transform: translateY(-0.5rem);
-                box-shadow: 0 1.25rem 3rem rgba(13, 13, 13, 1);
+                // box-shadow: 0 1.25rem 3rem rgba(13, 13, 13, 1);
 
                 & .trade-ideas-card-more {
                     // display: block;
@@ -70,21 +69,24 @@
                     position: absolute;
                     height: 101%;
                     width: 101%;
-                    padding-top: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: -1px;
                     margin-left: -0.75px;
                     text-align: center;
                     font-size: 2rem;
                     transition: all 0.2s ease-in-out;
                     color: #fff;
                     text-decoration: none;
-                    background-color: rgba(13, 13, 13, 0.85);
+                    background-color: rgba(13, 13, 13, 0.75);
                 }
             }
 
             &-win-all {
                 display: block;
                 position: absolute;
-                top: 73.5px;
+                top: 40px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
@@ -95,7 +97,7 @@
             &-loss-all {
                 display: block;
                 position: absolute;
-                top: 73.5px;
+                top: 40px;
                 right: 20px;
                 font-size: 2rem;
                 font-weight: 700;
