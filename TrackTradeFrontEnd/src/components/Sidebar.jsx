@@ -309,6 +309,7 @@ const Sidebar = (props) => {
                                             alignItems: "center",
                                             height: "40px",
                                             margin: ".5rem 0",
+                                            cursor: "pointer",
                                         }}
                                     >
                                         <Icon

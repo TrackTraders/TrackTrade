@@ -1,41 +1,46 @@
 import { Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import CustomBar from "components/charts/Bar";
 import CustomPie from "components/charts/Pie";
 import ContentWrapper from "components/ContentWrapper";
 import Flex from "components/Flex";
+
+import { checkLogin } from "../../actions/auth";
+import Chart from "pages/tools/Chart";
 import News from "pages/tools/News";
 import React from "react";
 import { Link } from "react-router-dom";
-import TradingviewWidget, { Themes } from "react-tradingview-widget";
+import { connect } from "react-redux";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     return (
-        <ContentWrapper contentStyle={{ paddingTop: "60px" }}>
+        <ContentWrapper contentStyle={{ paddingTop: "30px" }}>
             <Flex sx={{ flexDirection: "column", marginLeft: "50px" }}>
+                <Typography
+                    sx={{ fontSize: "3rem", fontWeight: "600", mb: "3rem" }}
+                >
+                    Happy trading, {props.userData.username}!
+                </Typography>
                 <Flex sx={{ justifyContent: "space-between" }}>
                     <Paper
                         elevation={4}
                         id="tradingview-widget-container"
-                        style={{ width: "70%" }}
+                        style={{ width: "70%", height: "400px" }}
                     >
-                        <TradingviewWidget
-                            symbol="CURRENCYCOM:US30"
-                            locale="en"
-                            autosize
-                        />
+                        <Chart />
                     </Paper>
                     <Flex
                         sx={{
                             flexDirection: "column",
                             width: "25%",
                             justifyContent: "space-between",
-                            height: "450px",
+                            height: "400px",
                         }}
                     >
                         <Paper
                             elevation={4}
                             style={{
-                                height: "250px",
+                                height: "200px",
                                 width: "100%",
                                 borderRadius: "3px",
                             }}
@@ -59,73 +64,81 @@ const Dashboard = () => {
                                 <hr
                                     style={{
                                         borderTop: "2px solid #22222225",
-                                        marginBottom: "1rem",
                                         width: "100%",
                                     }}
                                 />
-                                <Link
-                                    to="/profile/post-idea"
-                                    style={{
+                                <Flex
+                                    sx={{
+                                        flexDirection: "column",
                                         width: "100%",
+                                        height: "100%",
+                                        justifyContent: "center",
                                     }}
                                 >
-                                    <Typography
-                                        sx={{
-                                            color: "#1985d8",
-                                            fontSize: "2rem",
-                                            textAlign: "center",
-                                            padding: "1rem 0",
-
-                                            "&:hover": {
-                                                backgroundColor: "#eee",
-                                            },
+                                    <Link
+                                        to="/profile/post-idea"
+                                        style={{
+                                            width: "100%",
                                         }}
                                     >
-                                        Post Idea
-                                    </Typography>
-                                </Link>
-                                <Link
-                                    to="/profile/post-trade"
-                                    style={{
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Typography
-                                        sx={{
-                                            color: "#1985d8",
-                                            fontSize: "2rem",
-                                            textAlign: "center",
-                                            padding: "1rem 0",
+                                        <Typography
+                                            sx={{
+                                                color: "#1985d8",
+                                                fontSize: "2rem",
+                                                textAlign: "center",
+                                                padding: ".75rem 0",
 
-                                            "&:hover": {
-                                                backgroundColor: "#eee",
-                                            },
+                                                "&:hover": {
+                                                    backgroundColor: "#eee",
+                                                },
+                                            }}
+                                        >
+                                            Post Idea
+                                        </Typography>
+                                    </Link>
+                                    <Link
+                                        to="/profile/post-trade"
+                                        style={{
+                                            width: "100%",
                                         }}
                                     >
-                                        Post Trade
-                                    </Typography>
-                                </Link>
-                                <Link
-                                    to="/profile/stats"
-                                    style={{
-                                        width: "100%",
-                                    }}
-                                >
-                                    <Typography
-                                        sx={{
-                                            color: "#1985d8",
-                                            fontSize: "2rem",
-                                            textAlign: "center",
-                                            padding: "1rem 0",
+                                        <Typography
+                                            sx={{
+                                                color: "#1985d8",
+                                                fontSize: "2rem",
+                                                textAlign: "center",
+                                                padding: ".75rem 0",
 
-                                            "&:hover": {
-                                                backgroundColor: "#eee",
-                                            },
+                                                "&:hover": {
+                                                    backgroundColor: "#eee",
+                                                },
+                                            }}
+                                        >
+                                            Post Trade
+                                        </Typography>
+                                    </Link>
+                                    <Link
+                                        to="/profile/stats"
+                                        style={{
+                                            width: "100%",
                                         }}
                                     >
-                                        View Stats
-                                    </Typography>
-                                </Link>
+                                        <Typography
+                                            sx={{
+                                                color: "#1985d8",
+                                                fontSize: "2rem",
+                                                textAlign: "center",
+                                                padding: ".75rem 0",
+
+                                                "&:hover": {
+                                                    backgroundColor: "#eee",
+                                                },
+                                            }}
+                                        >
+                                            View Stats
+                                        </Typography>
+                                    </Link>
+                                </Flex>
                             </Flex>
                         </Paper>
                         <Paper
@@ -197,19 +210,20 @@ const Dashboard = () => {
                                 sx={{
                                     fontSize: "3rem",
                                     fontWeight: "600",
-                                    marginTop: "2rem",
+                                    margin: "2rem 0",
                                 }}
                             >
-                                Win/Loss Ratio
+                                Currency Performance
                             </Typography>
                             <Box
                                 sx={{
                                     height: "300px",
-                                    width: "50%",
+                                    width: "100%",
                                     fontSize: "1.8rem",
                                 }}
                             >
-                                <CustomPie />
+                                {/* <CustomPie /> */}
+                                <CustomBar />
                             </Box>
                         </Flex>
                     </Paper>
@@ -219,4 +233,8 @@ const Dashboard = () => {
     );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+    return { userData: state.checkLogin.data };
+};
+
+export default connect(mapStateToProps, { checkLogin })(Dashboard);

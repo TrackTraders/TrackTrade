@@ -18,15 +18,15 @@ const Signup = (props) => {
         e.preventDefault();
         if (username.includes(" ") || password.includes(" ")) {
             alert("No spaces allowed");
-        } else if (username.length > 13) {
+        } else if (username.length > 20) {
             alert(
-                "Username cannot be bigger than 13 characters, sorry Mr. 'johnSmithTraderAccountTrackTrade123' "
+                "Username cannot be bigger than 20 characters, sorry Mr. 'johnSmithTraderAccountTrackTrade123' "
             );
         } else {
             try {
                 await props.signUp({ username, password });
                 await props.checkLogin();
-                history.push("/home");
+                history.push("/dashboard");
             } catch (err) {
                 console.log(err);
             }
