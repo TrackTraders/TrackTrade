@@ -19,7 +19,6 @@ import Tools from "./pages/tools/Tools";
 import { connect } from "react-redux";
 import { checkLogin } from "./actions/auth";
 import { useAsyncEffect } from "./hooks/use-async-effect";
-import Charts from "pages/charts/Charts";
 import Sidebar from "components/Sidebar";
 import ContentWrapper from "components/ContentWrapper";
 import ProtectedRoute from "components/ProtectedRoute";
@@ -82,12 +81,6 @@ const App = (props) => {
                     exact
                     path="/postTrade"
                     render={(props) => <PostTrade {...props} />}
-                ></ProtectedRoute>
-
-                <ProtectedRoute
-                    exact
-                    path="/charts"
-                    render={(props) => <Charts {...props} />}
                 ></ProtectedRoute>
                 <ProtectedRoute
                     exact
