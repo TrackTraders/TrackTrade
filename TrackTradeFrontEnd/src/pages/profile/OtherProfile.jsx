@@ -1,5 +1,5 @@
 import React, { Component, Fragment, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 import ShowIdeas from "./ShowIdeas";
@@ -320,7 +320,7 @@ const OtherProfile = (props) => {
                 )
             );
         } else {
-            return <Redirect to="/profile" />;
+            return <Navigate to="/profile" />;
         }
     } else {
         return null;
