@@ -1,8 +1,7 @@
 import { useAsyncEffect } from "hooks/use-async-effect";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Route as BaseRoute, useLocation } from "react-router-dom";
-import { Redirect } from "react-router";
+import { Route as BaseRoute, Navigate, useLocation } from "react-router-dom";
 import { checkLogin } from "actions/auth";
 import Loading from "./Loading";
 import Flex from "./Flex";
@@ -32,7 +31,7 @@ const ProtectedRoute = ({ path, children, exact, ...props }) => {
         );
     } else if (!props.user?.data) {
         return (
-            <Redirect
+            <Navigate
                 to={{
                     pathname: "/log-in",
                     state: { referrer: location },
