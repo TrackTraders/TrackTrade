@@ -1,7 +1,8 @@
 import { useAsyncEffect } from "hooks/use-async-effect";
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Route as BaseRoute, Redirect, useLocation } from "react-router-dom";
+import { Route as BaseRoute, useLocation } from "react-router-dom";
+import { Redirect } from "react-router";
 import { checkLogin } from "actions/auth";
 import Loading from "./Loading";
 import Flex from "./Flex";
