@@ -8,6 +8,8 @@ process.env.NODE_ENV === "production"
       (baseURL = "https://tracktrade.herokuapp.com")
     : (baseURL = "http://localhost:5005");
 
+console.log(process.env.NODE_ENV);
+
 const service = axios.create({ withCredentials: true, baseURL });
 
 const services = {

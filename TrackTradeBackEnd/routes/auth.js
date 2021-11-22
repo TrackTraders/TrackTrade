@@ -3,12 +3,10 @@ const router = require("express").Router();
 const passport = require("../config/passport");
 
 router.get("/is-logged-in", (req, res, next) => {
-    console.log(req, res);
     res.json(req.user);
 });
 
 router.post("/log-in", passport.authenticate("local"), (req, res, next) => {
-    console.log(req, res);
     res.status(200).json(req.user);
 });
 

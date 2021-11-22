@@ -11,8 +11,14 @@ const ProtectedRoute = ({ path, children, exact, ...props }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useAsyncEffect(async () => {
-        await props.checkLogin();
-        setIsLoading(false);
+        try {
+            await props.checkLogin();
+            console.log("logged in", props);
+            setIsLoading(false);
+        } catch (err) {
+            console.log(err);
+            setIsLoading(false);
+        }
     }, []);
 
     if (isLoading) {

@@ -18,6 +18,7 @@ const Login = (props) => {
         try {
             await props.logIn({ username, password });
             await props.checkLogin();
+            console.log("logged in");
             history.push("/dashboard");
         } catch (err) {
             console.log(err);

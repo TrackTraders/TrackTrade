@@ -3,6 +3,7 @@ import services from "../services";
 // check log in
 export const checkLogin = () => async (dispatch) => {
     const response = await services.isLoggedIn();
+    console.log(response);
     dispatch({
         type: "CHECK_LOGIN",
         payload: response,
