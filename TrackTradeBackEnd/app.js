@@ -10,11 +10,20 @@ const session = require("express-session");
 const passport = require("passport");
 const path = require("path");
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-});
+const connectDB = async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+        });
+        console.log("MongoDB connected!!");
+    } catch (err) {
+        console.log("Failed to connect to MongoDB", err);
+    }
+};
+
+connectDB();
 
 const app = express();
 
